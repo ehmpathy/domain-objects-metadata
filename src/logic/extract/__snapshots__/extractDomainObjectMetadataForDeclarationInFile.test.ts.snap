@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for a more complicated entity 1`] = `
+DomainObjectMetadata {
+  "decorations": Object {
+    "unique": Array [
+      "upc",
+    ],
+    "updatable": Array [
+      "colors",
+      "quantity",
+      "description",
+    ],
+  },
+  "extends": "DomainEntity",
+  "name": "Item",
+  "properties": Object {
+    "colors": DomainObjectProperty {
+      "nullable": false,
+      "of": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "required": true,
+      "type": "ARRAY",
+    },
+    "description": DomainObjectProperty {
+      "nullable": false,
+      "required": true,
+      "type": "STRING",
+    },
+    "price": DomainObjectProperty {
+      "nullable": false,
+      "required": true,
+      "type": "NUMBER",
+    },
+    "upc": DomainObjectProperty {
+      "nullable": false,
+      "required": true,
+      "type": "STRING",
+    },
+  },
+}
+`;
+
+exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for a simple entity 1`] = `
+DomainObjectMetadata {
+  "decorations": Object {
+    "unique": Array [
+      "gate",
+    ],
+    "updatable": Array [
+      "operational",
+      "phoneNumber",
+    ],
+  },
+  "extends": "DomainEntity",
+  "name": "LoadingDock",
+  "properties": Object {
+    "gateNumber": DomainObjectProperty {
+      "nullable": false,
+      "required": true,
+      "type": "NUMBER",
+    },
+    "id": DomainObjectProperty {
+      "nullable": false,
+      "required": false,
+      "type": "NUMBER",
+    },
+    "operational": DomainObjectProperty {
+      "nullable": false,
+      "required": true,
+      "type": "BOOLEAN",
+    },
+    "phoneNumber": DomainObjectProperty {
+      "nullable": true,
+      "required": true,
+      "type": "STRING",
+    },
+    "uuid": DomainObjectProperty {
+      "nullable": false,
+      "required": false,
+      "type": "STRING",
+    },
+  },
+}
+`;
+
+exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for simple entity 1`] = `
+DomainObjectMetadata {
+  "decorations": Object {
+    "unique": Array [
+      "gate",
+    ],
+    "updatable": Array [
+      "operational",
+      "phoneNumber",
+    ],
+  },
+  "extends": "DomainEntity",
+  "name": "LoadingDock",
+  "properties": Object {
+    "gateNumber": DomainObjectProperty {
+      "nullable": false,
+      "required": true,
+      "type": "NUMBER",
+    },
+    "id": DomainObjectProperty {
+      "nullable": false,
+      "required": false,
+      "type": "NUMBER",
+    },
+    "operational": DomainObjectProperty {
+      "nullable": false,
+      "required": true,
+      "type": "BOOLEAN",
+    },
+    "phoneNumber": DomainObjectProperty {
+      "nullable": true,
+      "required": true,
+      "type": "STRING",
+    },
+    "uuid": DomainObjectProperty {
+      "nullable": false,
+      "required": false,
+      "type": "STRING",
+    },
+  },
+}
+`;
+
+exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for simple value object 1`] = `
+DomainObjectMetadata {
+  "decorations": Object {
+    "unique": null,
+    "updatable": null,
+  },
+  "extends": "DomainValueObject",
+  "name": "Address",
+  "properties": Object {
+    "city": DomainObjectProperty {
+      "nullable": false,
+      "required": true,
+      "type": "STRING",
+    },
+    "postal": DomainObjectProperty {
+      "nullable": false,
+      "required": true,
+      "type": "STRING",
+    },
+    "state": DomainObjectProperty {
+      "nullable": false,
+      "required": true,
+      "type": "STRING",
+    },
+    "street": DomainObjectProperty {
+      "nullable": false,
+      "required": true,
+      "type": "STRING",
+    },
+    "suite": DomainObjectProperty {
+      "nullable": true,
+      "required": true,
+      "type": "STRING",
+    },
+  },
+}
+`;

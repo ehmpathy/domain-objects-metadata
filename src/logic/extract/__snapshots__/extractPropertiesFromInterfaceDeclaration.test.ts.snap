@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface that references another interface 1`] = `
+Object {
+  "destination": DomainObjectProperty {
+    "nullable": false,
+    "of": "Address",
+    "required": true,
+    "type": "REFERENCE",
+  },
+  "id": DomainObjectProperty {
+    "nullable": false,
+    "required": false,
+    "type": "NUMBER",
+  },
+  "items": DomainObjectProperty {
+    "nullable": false,
+    "of": DomainObjectProperty {
+      "nullable": false,
+      "of": "Item",
+      "required": true,
+      "type": "REFERENCE",
+    },
+    "required": true,
+    "type": "ARRAY",
+  },
+  "status": DomainObjectProperty {
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+  "uuid": DomainObjectProperty {
+    "nullable": false,
+    "required": false,
+    "type": "STRING",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface that references another interface or an array of interfaces 1`] = `
+Object {
+  "destination": DomainObjectProperty {
+    "nullable": false,
+    "of": "Address",
+    "required": true,
+    "type": "REFERENCE",
+  },
+  "id": DomainObjectProperty {
+    "nullable": false,
+    "required": false,
+    "type": "NUMBER",
+  },
+  "items": DomainObjectProperty {
+    "nullable": false,
+    "of": DomainObjectProperty {
+      "nullable": false,
+      "of": "Item",
+      "required": true,
+      "type": "REFERENCE",
+    },
+    "required": true,
+    "type": "ARRAY",
+  },
+  "status": DomainObjectProperty {
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+  "uuid": DomainObjectProperty {
+    "nullable": false,
+    "required": false,
+    "type": "STRING",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with all of the primitive types we support: number, string, boolean w/ required and optional combination 1`] = `
+Object {
+  "gateNumber": DomainObjectProperty {
+    "nullable": false,
+    "required": true,
+    "type": "NUMBER",
+  },
+  "id": DomainObjectProperty {
+    "nullable": false,
+    "required": false,
+    "type": "NUMBER",
+  },
+  "operational": DomainObjectProperty {
+    "nullable": false,
+    "required": true,
+    "type": "BOOLEAN",
+  },
+  "phoneNumber": DomainObjectProperty {
+    "nullable": true,
+    "required": true,
+    "type": "STRING",
+  },
+  "uuid": DomainObjectProperty {
+    "nullable": false,
+    "required": false,
+    "type": "STRING",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with an array property 1`] = `
+Object {
+  "colors": DomainObjectProperty {
+    "nullable": false,
+    "of": DomainObjectProperty {
+      "nullable": false,
+      "required": true,
+      "type": "STRING",
+    },
+    "required": true,
+    "type": "ARRAY",
+  },
+  "description": DomainObjectProperty {
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+  "price": DomainObjectProperty {
+    "nullable": false,
+    "required": true,
+    "type": "NUMBER",
+  },
+  "upc": DomainObjectProperty {
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from our Address interface. all strings 1`] = `
+Object {
+  "city": DomainObjectProperty {
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+  "postal": DomainObjectProperty {
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+  "state": DomainObjectProperty {
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+  "street": DomainObjectProperty {
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+  "suite": DomainObjectProperty {
+    "nullable": true,
+    "required": true,
+    "type": "STRING",
+  },
+}
+`;
