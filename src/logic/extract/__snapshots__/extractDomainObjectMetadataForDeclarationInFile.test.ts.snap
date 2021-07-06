@@ -87,49 +87,6 @@ DomainObjectMetadata {
 }
 `;
 
-exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for simple entity 1`] = `
-DomainObjectMetadata {
-  "decorations": Object {
-    "unique": Array [
-      "gate",
-    ],
-    "updatable": Array [
-      "operational",
-      "phoneNumber",
-    ],
-  },
-  "extends": "DomainEntity",
-  "name": "LoadingDock",
-  "properties": Object {
-    "gateNumber": DomainObjectProperty {
-      "nullable": false,
-      "required": true,
-      "type": "NUMBER",
-    },
-    "id": DomainObjectProperty {
-      "nullable": false,
-      "required": false,
-      "type": "NUMBER",
-    },
-    "operational": DomainObjectProperty {
-      "nullable": false,
-      "required": true,
-      "type": "BOOLEAN",
-    },
-    "phoneNumber": DomainObjectProperty {
-      "nullable": true,
-      "required": true,
-      "type": "STRING",
-    },
-    "uuid": DomainObjectProperty {
-      "nullable": false,
-      "required": false,
-      "type": "STRING",
-    },
-  },
-}
-`;
-
 exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for simple value object 1`] = `
 DomainObjectMetadata {
   "decorations": Object {

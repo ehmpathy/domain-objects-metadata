@@ -69,29 +69,6 @@ describe('extractPropertiesFromInterfaceDeclaration', () => {
     expect(properties).toMatchSnapshot();
   });
   it('should be able to extract properties from an interface with an enum', () => {
-    const program = ts.createProgram([`${__dirname}/../__test_assets__/Delivery.ts`], {});
-    const file = program.getSourceFiles().find((thisFile) => thisFile.fileName.includes('/Delivery.ts'))!; // grab the right file
-    const interfaceDeclaration = file.statements.find(isInterfaceDeclaration)!;
-    const properties = extractPropertiesFromInterfaceDeclaration(interfaceDeclaration);
-    // console.log(JSON.stringify(properties, null, 2));
-
-    // prove we got the nested interfaces defined referenced correctly
-    expect(properties.destination).toMatchObject({
-      type: DomainObjectPropertyType.REFERENCE,
-      of: 'Address',
-    });
-    expect(properties.items).toMatchObject({
-      type: DomainObjectPropertyType.ARRAY,
-      of: {
-        type: DomainObjectPropertyType.REFERENCE,
-        of: 'Item',
-      },
-    });
-
-    // save an example
-    expect(properties).toMatchSnapshot();
-  });
-  it.only('should be able to extract properties from an interface with an enum', () => {
     const program = ts.createProgram([`${__dirname}/../__test_assets__/Payment.ts`], {});
     const file = program.getSourceFiles().find((thisFile) => thisFile.fileName.includes('/Payment.ts'))!; // grab the right file
     const interfaceDeclaration = file.statements.find(isInterfaceDeclaration)!;

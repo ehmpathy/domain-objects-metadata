@@ -1,4 +1,4 @@
-import ts, { ClassDeclaration, ImportDeclaration, InterfaceDeclaration, SyntaxKind } from 'typescript';
+import ts, { ClassDeclaration, InterfaceDeclaration, SyntaxKind } from 'typescript';
 import { getDeclarationOfClassOverview } from './getDeclarationOfClassOverview';
 import { getDeclarationOfInterfaceOverview } from './getDeclarationOfInterfaceOverview';
 

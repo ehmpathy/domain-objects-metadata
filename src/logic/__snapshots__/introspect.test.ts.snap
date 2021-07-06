@@ -1,0 +1,699 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`introspect should be possible to introspect all of those files at the same time 1`] = `
+Array [
+  DomainObjectMetadata {
+    "decorations": Object {
+      "unique": null,
+      "updatable": null,
+    },
+    "extends": "DomainValueObject",
+    "name": "Address",
+    "properties": Object {
+      "city": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "postal": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "state": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "street": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "suite": DomainObjectProperty {
+        "nullable": true,
+        "required": true,
+        "type": "STRING",
+      },
+    },
+  },
+  DomainObjectMetadata {
+    "decorations": Object {
+      "unique": Array [
+        "vin",
+      ],
+      "updatable": Array [
+        "milage",
+      ],
+    },
+    "extends": "DomainEntity",
+    "name": "DeliveryVan",
+    "properties": Object {
+      "id": DomainObjectProperty {
+        "nullable": false,
+        "required": false,
+        "type": "NUMBER",
+      },
+      "make": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "milage": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+      "model": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "uuid": DomainObjectProperty {
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+      "vin": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "year": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+    },
+  },
+  DomainObjectMetadata {
+    "decorations": Object {
+      "unique": Array [
+        "trackingNumber",
+      ],
+      "updatable": null,
+    },
+    "extends": "DomainEntity",
+    "name": "Package",
+    "properties": Object {
+      "id": DomainObjectProperty {
+        "nullable": false,
+        "required": false,
+        "type": "NUMBER",
+      },
+      "trackingNumber": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "uuid": DomainObjectProperty {
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+      "weight": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+    },
+  },
+  DomainObjectMetadata {
+    "decorations": Object {
+      "unique": Array [],
+      "updatable": Array [
+        "status",
+        "contactInfo",
+      ],
+    },
+    "extends": "DomainEntity",
+    "name": "Delivery",
+    "properties": Object {
+      "contactInfo": DomainObjectProperty {
+        "nullable": false,
+        "of": DomainObjectProperty {
+          "nullable": false,
+          "required": true,
+          "type": "STRING",
+        },
+        "required": true,
+        "type": "ARRAY",
+      },
+      "destination": DomainObjectProperty {
+        "nullable": false,
+        "of": DomainObjectMetadata {
+          "decorations": Object {
+            "unique": null,
+            "updatable": null,
+          },
+          "extends": "DomainValueObject",
+          "name": "Address",
+          "properties": Object {
+            "city": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "STRING",
+            },
+            "postal": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "STRING",
+            },
+            "state": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "STRING",
+            },
+            "street": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "STRING",
+            },
+            "suite": DomainObjectProperty {
+              "nullable": true,
+              "required": true,
+              "type": "STRING",
+            },
+          },
+        },
+        "required": true,
+        "type": "REFERENCE",
+      },
+      "id": DomainObjectProperty {
+        "nullable": false,
+        "required": false,
+        "type": "NUMBER",
+      },
+      "packages": DomainObjectProperty {
+        "nullable": false,
+        "of": DomainObjectProperty {
+          "nullable": false,
+          "of": DomainObjectMetadata {
+            "decorations": Object {
+              "unique": Array [
+                "trackingNumber",
+              ],
+              "updatable": null,
+            },
+            "extends": "DomainEntity",
+            "name": "Package",
+            "properties": Object {
+              "id": DomainObjectProperty {
+                "nullable": false,
+                "required": false,
+                "type": "NUMBER",
+              },
+              "trackingNumber": DomainObjectProperty {
+                "nullable": false,
+                "required": true,
+                "type": "STRING",
+              },
+              "uuid": DomainObjectProperty {
+                "nullable": false,
+                "required": false,
+                "type": "STRING",
+              },
+              "weight": DomainObjectProperty {
+                "nullable": false,
+                "required": true,
+                "type": "NUMBER",
+              },
+            },
+          },
+          "required": true,
+          "type": "REFERENCE",
+        },
+        "required": true,
+        "type": "ARRAY",
+      },
+      "status": DomainObjectProperty {
+        "nullable": false,
+        "of": Array [
+          "SCHEDULED",
+          "IN_PROGRESS",
+          "DELIVERED",
+          "FAILED",
+          "CANCELED",
+        ],
+        "required": true,
+        "type": "ENUM",
+      },
+      "uuid": DomainObjectProperty {
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+      "van": DomainObjectProperty {
+        "nullable": false,
+        "of": DomainObjectMetadata {
+          "decorations": Object {
+            "unique": Array [
+              "vin",
+            ],
+            "updatable": Array [
+              "milage",
+            ],
+          },
+          "extends": "DomainEntity",
+          "name": "DeliveryVan",
+          "properties": Object {
+            "id": DomainObjectProperty {
+              "nullable": false,
+              "required": false,
+              "type": "NUMBER",
+            },
+            "make": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "STRING",
+            },
+            "milage": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "NUMBER",
+            },
+            "model": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "STRING",
+            },
+            "uuid": DomainObjectProperty {
+              "nullable": false,
+              "required": false,
+              "type": "STRING",
+            },
+            "vin": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "STRING",
+            },
+            "year": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "NUMBER",
+            },
+          },
+        },
+        "required": true,
+        "type": "REFERENCE",
+      },
+    },
+  },
+]
+`;
+
+exports[`introspect should be possible to introspect the Address file 1`] = `
+Array [
+  DomainObjectMetadata {
+    "decorations": Object {
+      "unique": null,
+      "updatable": null,
+    },
+    "extends": "DomainValueObject",
+    "name": "Address",
+    "properties": Object {
+      "city": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "postal": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "state": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "street": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "suite": DomainObjectProperty {
+        "nullable": true,
+        "required": true,
+        "type": "STRING",
+      },
+    },
+  },
+]
+`;
+
+exports[`introspect should be possible to introspect the Delivery file 1`] = `
+Array [
+  DomainObjectMetadata {
+    "decorations": Object {
+      "unique": null,
+      "updatable": null,
+    },
+    "extends": "DomainValueObject",
+    "name": "Address",
+    "properties": Object {
+      "city": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "postal": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "state": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "street": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "suite": DomainObjectProperty {
+        "nullable": true,
+        "required": true,
+        "type": "STRING",
+      },
+    },
+  },
+  DomainObjectMetadata {
+    "decorations": Object {
+      "unique": Array [
+        "vin",
+      ],
+      "updatable": Array [
+        "milage",
+      ],
+    },
+    "extends": "DomainEntity",
+    "name": "DeliveryVan",
+    "properties": Object {
+      "id": DomainObjectProperty {
+        "nullable": false,
+        "required": false,
+        "type": "NUMBER",
+      },
+      "make": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "milage": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+      "model": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "uuid": DomainObjectProperty {
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+      "vin": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "year": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+    },
+  },
+  DomainObjectMetadata {
+    "decorations": Object {
+      "unique": Array [
+        "trackingNumber",
+      ],
+      "updatable": null,
+    },
+    "extends": "DomainEntity",
+    "name": "Package",
+    "properties": Object {
+      "id": DomainObjectProperty {
+        "nullable": false,
+        "required": false,
+        "type": "NUMBER",
+      },
+      "trackingNumber": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "uuid": DomainObjectProperty {
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+      "weight": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+    },
+  },
+  DomainObjectMetadata {
+    "decorations": Object {
+      "unique": Array [],
+      "updatable": Array [
+        "status",
+        "contactInfo",
+      ],
+    },
+    "extends": "DomainEntity",
+    "name": "Delivery",
+    "properties": Object {
+      "contactInfo": DomainObjectProperty {
+        "nullable": false,
+        "of": DomainObjectProperty {
+          "nullable": false,
+          "required": true,
+          "type": "STRING",
+        },
+        "required": true,
+        "type": "ARRAY",
+      },
+      "destination": DomainObjectProperty {
+        "nullable": false,
+        "of": DomainObjectMetadata {
+          "decorations": Object {
+            "unique": null,
+            "updatable": null,
+          },
+          "extends": "DomainValueObject",
+          "name": "Address",
+          "properties": Object {
+            "city": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "STRING",
+            },
+            "postal": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "STRING",
+            },
+            "state": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "STRING",
+            },
+            "street": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "STRING",
+            },
+            "suite": DomainObjectProperty {
+              "nullable": true,
+              "required": true,
+              "type": "STRING",
+            },
+          },
+        },
+        "required": true,
+        "type": "REFERENCE",
+      },
+      "id": DomainObjectProperty {
+        "nullable": false,
+        "required": false,
+        "type": "NUMBER",
+      },
+      "packages": DomainObjectProperty {
+        "nullable": false,
+        "of": DomainObjectProperty {
+          "nullable": false,
+          "of": DomainObjectMetadata {
+            "decorations": Object {
+              "unique": Array [
+                "trackingNumber",
+              ],
+              "updatable": null,
+            },
+            "extends": "DomainEntity",
+            "name": "Package",
+            "properties": Object {
+              "id": DomainObjectProperty {
+                "nullable": false,
+                "required": false,
+                "type": "NUMBER",
+              },
+              "trackingNumber": DomainObjectProperty {
+                "nullable": false,
+                "required": true,
+                "type": "STRING",
+              },
+              "uuid": DomainObjectProperty {
+                "nullable": false,
+                "required": false,
+                "type": "STRING",
+              },
+              "weight": DomainObjectProperty {
+                "nullable": false,
+                "required": true,
+                "type": "NUMBER",
+              },
+            },
+          },
+          "required": true,
+          "type": "REFERENCE",
+        },
+        "required": true,
+        "type": "ARRAY",
+      },
+      "status": DomainObjectProperty {
+        "nullable": false,
+        "of": Array [
+          "SCHEDULED",
+          "IN_PROGRESS",
+          "DELIVERED",
+          "FAILED",
+          "CANCELED",
+        ],
+        "required": true,
+        "type": "ENUM",
+      },
+      "uuid": DomainObjectProperty {
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+      "van": DomainObjectProperty {
+        "nullable": false,
+        "of": DomainObjectMetadata {
+          "decorations": Object {
+            "unique": Array [
+              "vin",
+            ],
+            "updatable": Array [
+              "milage",
+            ],
+          },
+          "extends": "DomainEntity",
+          "name": "DeliveryVan",
+          "properties": Object {
+            "id": DomainObjectProperty {
+              "nullable": false,
+              "required": false,
+              "type": "NUMBER",
+            },
+            "make": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "STRING",
+            },
+            "milage": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "NUMBER",
+            },
+            "model": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "STRING",
+            },
+            "uuid": DomainObjectProperty {
+              "nullable": false,
+              "required": false,
+              "type": "STRING",
+            },
+            "vin": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "STRING",
+            },
+            "year": DomainObjectProperty {
+              "nullable": false,
+              "required": true,
+              "type": "NUMBER",
+            },
+          },
+        },
+        "required": true,
+        "type": "REFERENCE",
+      },
+    },
+  },
+]
+`;
+
+exports[`introspect should be possible to introspect the DeliveryVan file 1`] = `
+Array [
+  DomainObjectMetadata {
+    "decorations": Object {
+      "unique": Array [
+        "vin",
+      ],
+      "updatable": Array [
+        "milage",
+      ],
+    },
+    "extends": "DomainEntity",
+    "name": "DeliveryVan",
+    "properties": Object {
+      "id": DomainObjectProperty {
+        "nullable": false,
+        "required": false,
+        "type": "NUMBER",
+      },
+      "make": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "milage": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+      "model": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "uuid": DomainObjectProperty {
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+      "vin": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "year": DomainObjectProperty {
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+    },
+  },
+]
+`;

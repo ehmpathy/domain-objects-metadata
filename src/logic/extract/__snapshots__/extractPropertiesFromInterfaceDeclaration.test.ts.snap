@@ -1,42 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface that references another interface 1`] = `
-Object {
-  "destination": DomainObjectProperty {
-    "nullable": false,
-    "of": "Address",
-    "required": true,
-    "type": "REFERENCE",
-  },
-  "id": DomainObjectProperty {
-    "nullable": false,
-    "required": false,
-    "type": "NUMBER",
-  },
-  "items": DomainObjectProperty {
-    "nullable": false,
-    "of": DomainObjectProperty {
-      "nullable": false,
-      "of": "Item",
-      "required": true,
-      "type": "REFERENCE",
-    },
-    "required": true,
-    "type": "ARRAY",
-  },
-  "status": DomainObjectProperty {
-    "nullable": false,
-    "required": true,
-    "type": "STRING",
-  },
-  "uuid": DomainObjectProperty {
-    "nullable": false,
-    "required": false,
-    "type": "STRING",
-  },
-}
-`;
-
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface that references another interface or an array of interfaces 1`] = `
 Object {
   "destination": DomainObjectProperty {
@@ -130,6 +93,32 @@ Object {
     "nullable": false,
     "required": true,
     "type": "STRING",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with an enum 1`] = `
+Object {
+  "amount": DomainObjectProperty {
+    "nullable": false,
+    "required": true,
+    "type": "NUMBER",
+  },
+  "currency": DomainObjectProperty {
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+  "externalId": DomainObjectProperty {
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+  "status": DomainObjectProperty {
+    "nullable": false,
+    "of": "PaymentStatus",
+    "required": true,
+    "type": "REFERENCE",
   },
 }
 `;

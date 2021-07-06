@@ -58,8 +58,8 @@ which looks like
     postal: { type: 'string', required: true }
   },
   decorations: {
-    unique: ['street', 'suite', 'city', 'state', 'postal'], // value-object => uniquely identified by value of all properties
-    updatable: [], // value-object => no lifecycle => no properties are updatable
+    unique: null,
+    updatable: null,
   }
 }
 ```
