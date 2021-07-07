@@ -29,5 +29,6 @@ module.exports = {
 
   verbose: true, // Indicates whether each individual test should be reported during the run
 
+  setupFiles: ['core-js'], // enables .flat; https://stackoverflow.com/a/59285424/3068233
   setupFilesAfterEnv: ['./jest.integration.env.js'],
 };
