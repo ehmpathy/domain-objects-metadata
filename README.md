@@ -49,7 +49,7 @@ which looks like
 ```ts
 {
   name: 'Address',
-  extends:  DomainValueObject,
+  extends:  'DomainValueObject',
   properties: {
     street: { type: 'string', required: true },
     suite: { type: 'string', nullable: true, required: true },
@@ -105,7 +105,7 @@ which looks like
 ```ts
 {
   name: 'DeliveryVan',
-  extends:  DomainEntity,
+  extends:  'DomainEntity',
   properties: {
     id: { type: 'number', required: false },
     uuid: { type: 'string', required: false },
@@ -174,7 +174,7 @@ which looks like
 ```ts
 {
   name: 'Delivery',
-  extends:  DomainEntity,
+  extends:  'DomainEntity',
   properties: {
     id: { type: 'number', required: false },
     uuid: { type: 'string', required: false },
