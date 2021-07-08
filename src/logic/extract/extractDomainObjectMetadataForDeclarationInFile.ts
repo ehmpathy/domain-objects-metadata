@@ -1,6 +1,6 @@
 import { ClassDeclaration, isInterfaceDeclaration, SourceFile, SyntaxKind } from 'typescript';
 
-import { DomainObjectMetadata, DomainObjectVariant } from '../../domain/objects/DomainObjectMetadata';
+import { DomainObjectMetadata, DomainObjectVariant } from '../../domain';
 import { extractClassExtendsWhat } from './extractClassExtendsWhat';
 import { extractPropertiesFromInterfaceDeclaration } from './extractPropertiesFromInterfaceDeclaration';
 import { extractRelevantStaticPropertiesFromClassDeclaration } from './extractRelevantStaticPropertiesFromClassDeclaration';

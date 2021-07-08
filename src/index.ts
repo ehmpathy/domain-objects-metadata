@@ -1,9 +1,3 @@
-export {
-  DomainObjectMetadata,
-  DomainObjectProperty,
-  DomainObjectPropertyType,
-  DomainObjectVariant,
-  isOfDomainObjectVariant,
-} from './domain/objects/DomainObjectMetadata';
+export { DomainObjectMetadata, DomainObjectProperty, DomainObjectPropertyType, DomainObjectVariant, isOfDomainObjectVariant } from './domain';
 
 export { introspect } from './logic/introspect';

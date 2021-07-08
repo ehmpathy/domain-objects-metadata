@@ -1,5 +1,5 @@
 import { InterfaceDeclaration, isArrayTypeNode, isTypeReferenceNode, Node, SyntaxKind, TypeElement } from 'typescript';
-import { DomainObjectProperty, DomainObjectPropertyType } from '../../domain/objects/DomainObjectMetadata';
+import { DomainObjectProperty, DomainObjectPropertyType } from '../../domain';
 
 interface ASTInterfacePropertyType extends Node {
   name: { escapedText: string };

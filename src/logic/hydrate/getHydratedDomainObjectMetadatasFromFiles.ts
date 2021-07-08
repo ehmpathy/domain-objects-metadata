@@ -1,10 +1,5 @@
 import { isClassDeclaration, isEnumDeclaration, SourceFile } from 'typescript';
-import {
-  DomainObjectMetadata,
-  DomainObjectMetadataReference,
-  DomainObjectProperty,
-  DomainObjectPropertyType,
-} from '../../domain/objects/DomainObjectMetadata';
+import { DomainObjectMetadata, DomainObjectMetadataReference, DomainObjectProperty, DomainObjectPropertyType } from '../../domain';
 import { extractDomainObjectMetadataForDeclarationInFile } from '../extract/extractDomainObjectMetadataForDeclarationInFile';
 import { extractEnumMetadataFromEnumDeclaration } from '../extract/extractEnumMetadataFromEnumDeclaration';
 import { isAClassDecorationWhichExtendsDomainObject } from '../extract/isAClassDeclarationWhichExtendsDomainObject';

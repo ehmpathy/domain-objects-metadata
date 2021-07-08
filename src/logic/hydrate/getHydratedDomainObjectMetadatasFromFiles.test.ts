@@ -1,5 +1,5 @@
 import ts from 'typescript';
-import { DomainObjectPropertyType } from '../../domain/objects/DomainObjectMetadata';
+import { DomainObjectPropertyType } from '../../domain';
 import { getHydratedDomainObjectMetadatasFromFiles } from './getHydratedDomainObjectMetadatasFromFiles';
 
 describe('getHydratedDomainObjectMetadatasFromFiles', () => {

@@ -1,5 +1,5 @@
 import ts, { isInterfaceDeclaration } from 'typescript';
-import { DomainObjectPropertyType } from '../../domain/objects/DomainObjectMetadata';
+import { DomainObjectPropertyType } from '../../domain';
 import { extractPropertiesFromInterfaceDeclaration } from './extractPropertiesFromInterfaceDeclaration';
 
 describe('extractPropertiesFromInterfaceDeclaration', () => {

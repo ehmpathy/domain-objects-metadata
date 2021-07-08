@@ -1,5 +1,5 @@
 import { ClassDeclaration } from 'typescript';
-import { isOfDomainObjectVariant } from '../../domain/objects/DomainObjectMetadata';
+import { isOfDomainObjectVariant } from '../../domain';
 import { extractClassExtendsWhat } from './extractClassExtendsWhat';
 
 export const isAClassDecorationWhichExtendsDomainObject = (declaration: ClassDeclaration) => {
