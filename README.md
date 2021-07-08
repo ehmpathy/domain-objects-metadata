@@ -178,14 +178,38 @@ which looks like
   properties: {
     id: { type: 'number', required: false },
     uuid: { type: 'string', required: false },
-    van: { type: 'reference', of: {...metadata of DeliveryVan...}, required: true }, // notice how the metadata is nested
-    destination: { type: 'reference', of: {...metadata of Address...}, required: true },
-    contactInfo: { type: 'array', of: { type: 'string', required: true }, required: true }, // notice how the array is represented
-    packages: { type: 'array', of: { type: 'reference', of: {...metadata of Package...}, required: true}, required: true }, // both cases
-    status: { type: 'enum', of: ['SCHEDULED', 'IN_PROGRESS', ...], required: true }, // notice how the options of the enum are referenced
+    van: {
+      type: 'reference', // notice how the nested reference is represented
+      of: { name: 'DeliveryVan', extends: 'DomainEntity' },
+      required: true,
+    },
+    destination: {
+      type: 'reference',
+      of: { name: 'Address', extends: 'DomainValueObject' },
+      required: true,
+    },
+    contactInfo: {
+      type: 'array', // notice how the array is represented
+      of: { type: 'string', required: true },
+      required: true,
+    },
+    packages: {
+      type: 'array', // notice how the above two cases compose together; array of references
+      of: {
+        type: 'reference',
+        of: { name: 'Package', extends: 'DomainEntity' },
+        required: true,
+      },
+      required: true,
+    },
+    status: {
+      type: 'enum', // notice how the options of the enum are referenced
+      of: ['SCHEDULED', 'IN_PROGRESS', ...],
+      required: true,
+    },
   },
   decorations: {
-    unique: [''],
+    unique: [],
     updatable: ['status', 'contactInfo']
   }
 }
