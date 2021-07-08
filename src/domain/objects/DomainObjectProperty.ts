@@ -1,4 +1,5 @@
 import { DomainObject } from 'domain-objects';
+import Joi from 'joi';
 
 import { DomainObjectMetadataReference } from './DomainObjectMetadataReference';
 
@@ -10,6 +11,16 @@ export enum DomainObjectPropertyType {
   REFERENCE = 'REFERENCE',
   ENUM = 'ENUM',
 }
+
+const schema = Joi.object().keys({
+  type: Joi.string()
+    .valid(...Object.values(DomainObjectPropertyType))
+    .required(),
+  of: Joi.any().optional(),
+  required: Joi.boolean().optional(),
+  nullable: Joi.boolean().optional(),
+});
+
 export interface DomainObjectProperty {
   type: DomainObjectPropertyType;
   of?:
@@ -20,4 +31,6 @@ export interface DomainObjectProperty {
   required?: boolean;
   nullable?: boolean;
 }
-export class DomainObjectProperty extends DomainObject<DomainObjectProperty> implements DomainObjectProperty {}
+export class DomainObjectProperty extends DomainObject<DomainObjectProperty> implements DomainObjectProperty {
+  public static schema = schema;
+}
