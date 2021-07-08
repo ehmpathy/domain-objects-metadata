@@ -1,5 +1,10 @@
 import { isClassDeclaration, isEnumDeclaration, SourceFile } from 'typescript';
-import { DomainObjectMetadata, DomainObjectProperty, DomainObjectPropertyType } from '../../domain/objects/DomainObjectMetadata';
+import {
+  DomainObjectMetadata,
+  DomainObjectMetadataReference,
+  DomainObjectProperty,
+  DomainObjectPropertyType,
+} from '../../domain/objects/DomainObjectMetadata';
 import { extractDomainObjectMetadataForDeclarationInFile } from '../extract/extractDomainObjectMetadataForDeclarationInFile';
 import { extractEnumMetadataFromEnumDeclaration } from '../extract/extractEnumMetadataFromEnumDeclaration';
 import { isAClassDecorationWhichExtendsDomainObject } from '../extract/isAClassDeclarationWhichExtendsDomainObject';
@@ -42,7 +47,7 @@ const ensurePropertyIsHydrated = ({
   if (foundReferencedDomainObject)
     return new DomainObjectProperty({
       ...definition,
-      of: foundReferencedDomainObject,
+      of: new DomainObjectMetadataReference({ name: foundReferencedDomainObject.name, extends: foundReferencedDomainObject.extends }), // only expose the "name" and "extends" on the nested object metadata
     });
 
   // try to see if its referencing an enum

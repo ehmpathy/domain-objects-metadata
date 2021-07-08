@@ -16,6 +16,7 @@ describe('getHydratedDomainObjectMetadatasFromFiles', () => {
     const metadatas = getHydratedDomainObjectMetadatasFromFiles(files);
     // console.log(JSON.stringify(metadatas, null, 2));
 
+    // check that it has everything we expected
     expect(metadatas.length).toEqual(3); // shuld have got both the source and the references
     expect(metadatas[2].name).toEqual('Order');
     expect(metadatas[2].properties.destination).toMatchObject({ type: DomainObjectPropertyType.REFERENCE, of: { name: 'Address' } }); // nested metadata
@@ -24,6 +25,11 @@ describe('getHydratedDomainObjectMetadatasFromFiles', () => {
       of: { type: DomainObjectPropertyType.REFERENCE, of: { name: 'Item' } }, // nested metadata in an array
     });
 
+    // ensure: the nested referenced metadata should not include the full reference. (i.e., no properties / decorations on it)
+    expect(metadatas[2].properties.destination.of).not.toHaveProperty('properties');
+    expect(metadatas[2].properties.destination.of).not.toHaveProperty('decorations');
+
+    // log an example
     expect(metadatas).toMatchSnapshot();
   });
   it('should return metadata from files which needs hydration of nested enum', () => {

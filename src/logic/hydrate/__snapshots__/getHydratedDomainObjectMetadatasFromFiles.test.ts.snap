@@ -88,40 +88,9 @@ Array [
     "properties": Object {
       "destination": DomainObjectProperty {
         "nullable": false,
-        "of": DomainObjectMetadata {
-          "decorations": Object {
-            "unique": null,
-            "updatable": null,
-          },
+        "of": DomainObjectMetadataReference {
           "extends": "DomainValueObject",
           "name": "Address",
-          "properties": Object {
-            "city": DomainObjectProperty {
-              "nullable": false,
-              "required": true,
-              "type": "STRING",
-            },
-            "postal": DomainObjectProperty {
-              "nullable": false,
-              "required": true,
-              "type": "STRING",
-            },
-            "state": DomainObjectProperty {
-              "nullable": false,
-              "required": true,
-              "type": "STRING",
-            },
-            "street": DomainObjectProperty {
-              "nullable": false,
-              "required": true,
-              "type": "STRING",
-            },
-            "suite": DomainObjectProperty {
-              "nullable": true,
-              "required": true,
-              "type": "STRING",
-            },
-          },
         },
         "required": true,
         "type": "REFERENCE",
@@ -135,46 +104,9 @@ Array [
         "nullable": false,
         "of": DomainObjectProperty {
           "nullable": false,
-          "of": DomainObjectMetadata {
-            "decorations": Object {
-              "unique": Array [
-                "upc",
-              ],
-              "updatable": Array [
-                "colors",
-                "quantity",
-                "description",
-              ],
-            },
+          "of": DomainObjectMetadataReference {
             "extends": "DomainEntity",
             "name": "Item",
-            "properties": Object {
-              "colors": DomainObjectProperty {
-                "nullable": false,
-                "of": DomainObjectProperty {
-                  "nullable": false,
-                  "required": true,
-                  "type": "STRING",
-                },
-                "required": true,
-                "type": "ARRAY",
-              },
-              "description": DomainObjectProperty {
-                "nullable": false,
-                "required": true,
-                "type": "STRING",
-              },
-              "price": DomainObjectProperty {
-                "nullable": false,
-                "required": true,
-                "type": "NUMBER",
-              },
-              "upc": DomainObjectProperty {
-                "nullable": false,
-                "required": true,
-                "type": "STRING",
-              },
-            },
           },
           "required": true,
           "type": "REFERENCE",
