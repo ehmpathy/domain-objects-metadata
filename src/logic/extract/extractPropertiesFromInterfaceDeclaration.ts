@@ -75,13 +75,19 @@ const extractPropertyDefinitionFromNormalizedMemberTypeDefinition = ({
     });
 
   // handle the nested type reference
-  if (isTypeReferenceNode(primaryType))
+  if (isTypeReferenceNode(primaryType)) {
+    // handle date references
+    if ((primaryType.typeName as any).escapedText === 'Date')
+      return new DomainObjectProperty({ type: DomainObjectPropertyType.DATE, nullable, required });
+
+    // handle generic references (e.g., enums or domain-object-references)
     return new DomainObjectProperty({
       type: DomainObjectPropertyType.REFERENCE,
       of: (primaryType.typeName as any).escapedText, // note: this is a string
       nullable,
       required,
     });
+  }
 
   // throw an error otherwise
   throw new Error(`could not extract property definition from interface member declaration. see ${interfaceName}.${propertyName}`);

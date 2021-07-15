@@ -7,6 +7,7 @@ export enum DomainObjectPropertyType {
   STRING = 'STRING',
   NUMBER = 'NUMBER',
   BOOLEAN = 'BOOLEAN',
+  DATE = 'DATE',
   ARRAY = 'ARRAY',
   REFERENCE = 'REFERENCE',
   ENUM = 'ENUM',

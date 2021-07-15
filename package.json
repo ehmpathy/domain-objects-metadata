@@ -60,7 +60,7 @@
     "uuid": "^3.3.3"
   },
   "dependencies": {
-    "domain-objects": "^0.6.2",
+    "domain-objects": "^0.7.1",
     "joi": "^17.4.0",
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",

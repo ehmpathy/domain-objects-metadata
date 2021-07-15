@@ -37,6 +37,31 @@ Object {
 }
 `;
 
+exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with a date type 1`] = `
+Object {
+  "id": DomainObjectProperty {
+    "nullable": false,
+    "required": false,
+    "type": "NUMBER",
+  },
+  "occurredAt": DomainObjectProperty {
+    "nullable": false,
+    "required": true,
+    "type": "DATE",
+  },
+  "packageUuid": DomainObjectProperty {
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+  "uuid": DomainObjectProperty {
+    "nullable": false,
+    "required": false,
+    "type": "STRING",
+  },
+}
+`;
+
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with all of the primitive types we support: number, string, boolean w/ required and optional combination 1`] = `
 Object {
   "gateNumber": DomainObjectProperty {

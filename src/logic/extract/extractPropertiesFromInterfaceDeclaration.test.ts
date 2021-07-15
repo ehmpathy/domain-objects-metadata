@@ -84,4 +84,17 @@ describe('extractPropertiesFromInterfaceDeclaration', () => {
     // save an example
     expect(properties).toMatchSnapshot();
   });
+  it('should be able to extract properties from an interface with a date type', () => {
+    const program = ts.createProgram([`${__dirname}/../__test_assets__/DeliveredEvent.ts`], {});
+    const file = program.getSourceFiles().find((thisFile) => thisFile.fileName.includes('/DeliveredEvent.ts'))!; // grab the right file
+    const interfaceDeclaration = file.statements.find(isInterfaceDeclaration)!;
+    const properties = extractPropertiesFromInterfaceDeclaration(interfaceDeclaration);
+    // console.log(JSON.stringify(properties, null, 2));
+
+    // prove we got the enum defined
+    expect(properties.occurredAt).toMatchObject({ type: DomainObjectPropertyType.DATE });
+
+    // save an example
+    expect(properties).toMatchSnapshot();
+  });
 });
