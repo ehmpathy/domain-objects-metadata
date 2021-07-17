@@ -11,26 +11,31 @@ Array [
     "name": "Address",
     "properties": Object {
       "city": DomainObjectPropertyMetadata {
+        "name": "city",
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
       "postal": DomainObjectPropertyMetadata {
+        "name": "postal",
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
       "state": DomainObjectPropertyMetadata {
+        "name": "state",
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
       "street": DomainObjectPropertyMetadata {
+        "name": "street",
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
       "suite": DomainObjectPropertyMetadata {
+        "name": "suite",
         "nullable": true,
         "required": true,
         "type": "STRING",
@@ -52,8 +57,9 @@ Array [
     "name": "Item",
     "properties": Object {
       "colors": DomainObjectPropertyMetadata {
+        "name": "colors",
         "nullable": false,
-        "of": DomainObjectPropertyMetadata {
+        "of": Object {
           "nullable": false,
           "required": true,
           "type": "STRING",
@@ -62,16 +68,19 @@ Array [
         "type": "ARRAY",
       },
       "description": DomainObjectPropertyMetadata {
+        "name": "description",
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
       "price": DomainObjectPropertyMetadata {
+        "name": "price",
         "nullable": false,
         "required": true,
         "type": "NUMBER",
       },
       "upc": DomainObjectPropertyMetadata {
+        "name": "upc",
         "nullable": false,
         "required": true,
         "type": "STRING",
@@ -87,6 +96,7 @@ Array [
     "name": "Order",
     "properties": Object {
       "destination": DomainObjectPropertyMetadata {
+        "name": "destination",
         "nullable": false,
         "of": DomainObjectReferenceMetadata {
           "extends": "DomainValueObject",
@@ -96,13 +106,15 @@ Array [
         "type": "REFERENCE",
       },
       "id": DomainObjectPropertyMetadata {
+        "name": "id",
         "nullable": false,
         "required": false,
         "type": "NUMBER",
       },
       "items": DomainObjectPropertyMetadata {
+        "name": "items",
         "nullable": false,
-        "of": DomainObjectPropertyMetadata {
+        "of": Object {
           "nullable": false,
           "of": DomainObjectReferenceMetadata {
             "extends": "DomainEntity",
@@ -115,11 +127,13 @@ Array [
         "type": "ARRAY",
       },
       "status": DomainObjectPropertyMetadata {
+        "name": "status",
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
       "uuid": DomainObjectPropertyMetadata {
+        "name": "uuid",
         "nullable": false,
         "required": false,
         "type": "STRING",
@@ -140,26 +154,31 @@ Array [
     "name": "Address",
     "properties": Object {
       "city": DomainObjectPropertyMetadata {
+        "name": "city",
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
       "postal": DomainObjectPropertyMetadata {
+        "name": "postal",
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
       "state": DomainObjectPropertyMetadata {
+        "name": "state",
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
       "street": DomainObjectPropertyMetadata {
+        "name": "street",
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
       "suite": DomainObjectPropertyMetadata {
+        "name": "suite",
         "nullable": true,
         "required": true,
         "type": "STRING",
@@ -186,21 +205,25 @@ Array [
     "name": "Payment",
     "properties": Object {
       "amount": DomainObjectPropertyMetadata {
+        "name": "amount",
         "nullable": false,
         "required": true,
         "type": "NUMBER",
       },
       "currency": DomainObjectPropertyMetadata {
+        "name": "currency",
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
       "externalId": DomainObjectPropertyMetadata {
+        "name": "externalId",
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
       "status": DomainObjectPropertyMetadata {
+        "name": "status",
         "nullable": false,
         "of": Array [
           "PENDING",

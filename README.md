@@ -51,11 +51,11 @@ which looks like
   name: 'Address',
   extends:  'DomainValueObject',
   properties: {
-    street: { type: 'string', required: true },
-    suite: { type: 'string', nullable: true, required: true },
-    city: { type: 'string', required: true },
-    state: { type: 'string', required: true },
-    postal: { type: 'string', required: true }
+    street: { name: 'street', type: 'string', required: true },
+    suite: { name: 'suite', type: 'string', nullable: true, required: true },
+    city: { name: 'city', type: 'string', required: true },
+    state: { name: 'state', type: 'string', required: true },
+    postal: { name: 'postal', type: 'string', required: true }
   },
   decorations: {
     unique: null,
@@ -107,13 +107,13 @@ which looks like
   name: 'DeliveryVan',
   extends:  'DomainEntity',
   properties: {
-    id: { type: 'number', required: false },
-    uuid: { type: 'string', required: false },
-    vin: { type: 'string', required: true },
-    make: { type: 'string', required: true },
-    model: { type: 'string', required: true },
-    year: { type: 'number', required: true },
-    milage: { type: 'number', required: true },
+    id: { name: 'id', type: 'number', required: false },
+    uuid: { name: 'uuid', type: 'string', required: false },
+    vin: { name: 'vin', type: 'string', required: true },
+    make: { name: 'make', type: 'string', required: true },
+    model: { name: 'model', type: 'string', required: true },
+    year: { name: 'year', type: 'number', required: true },
+    milage: { name: 'milage', type: 'number', required: true },
   },
   decorations: {
     unique: ['vin'],
@@ -176,24 +176,28 @@ which looks like
   name: 'Delivery',
   extends:  'DomainEntity',
   properties: {
-    id: { type: 'number', required: false },
-    uuid: { type: 'string', required: false },
+    id: { name: 'id', type: 'number', required: false },
+    uuid: { name: 'uuid', type: 'string', required: false },
     van: {
+      name: 'van',
       type: 'reference', // notice how the nested reference is represented
       of: { name: 'DeliveryVan', extends: 'DomainEntity' },
       required: true,
     },
     destination: {
+      name: 'destination',
       type: 'reference',
       of: { name: 'Address', extends: 'DomainValueObject' },
       required: true,
     },
     contactInfo: {
+      name: 'contactInfo',
       type: 'array', // notice how the array is represented
       of: { type: 'string', required: true },
       required: true,
     },
     packages: {
+      name: 'packages',
       type: 'array', // notice how the above two cases compose together; array of references
       of: {
         type: 'reference',
@@ -203,6 +207,7 @@ which looks like
       required: true,
     },
     status: {
+      name: 'status',
       type: 'enum', // notice how the options of the enum are referenced
       of: ['SCHEDULED', 'IN_PROGRESS', ...],
       required: true,

@@ -1,4 +1,6 @@
+import omit from 'lodash.omit';
 import { InterfaceDeclaration, isArrayTypeNode, isTypeReferenceNode, Node, SyntaxKind, TypeElement } from 'typescript';
+
 import { DomainObjectPropertyMetadata, DomainObjectPropertyType } from '../../domain';
 
 interface ASTInterfacePropertyType extends Node {
@@ -56,23 +58,27 @@ const extractPropertyDefinitionFromNormalizedMemberTypeDefinition = ({
 }): DomainObjectPropertyMetadata => {
   // handle the simple cases first
   if (primaryType.kind === SyntaxKind.StringKeyword)
-    return new DomainObjectPropertyMetadata({ type: DomainObjectPropertyType.STRING, nullable, required });
+    return new DomainObjectPropertyMetadata({ name: propertyName, type: DomainObjectPropertyType.STRING, nullable, required });
   if (primaryType.kind === SyntaxKind.NumberKeyword)
-    return new DomainObjectPropertyMetadata({ type: DomainObjectPropertyType.NUMBER, nullable, required });
+    return new DomainObjectPropertyMetadata({ name: propertyName, type: DomainObjectPropertyType.NUMBER, nullable, required });
   if (primaryType.kind === SyntaxKind.BooleanKeyword)
-    return new DomainObjectPropertyMetadata({ type: DomainObjectPropertyType.BOOLEAN, nullable, required });
+    return new DomainObjectPropertyMetadata({ name: propertyName, type: DomainObjectPropertyType.BOOLEAN, nullable, required });
 
   // handle the array case
   if (isArrayTypeNode(primaryType))
     return new DomainObjectPropertyMetadata({
+      name: propertyName,
       type: DomainObjectPropertyType.ARRAY,
-      of: extractPropertyDefinitionFromNormalizedMemberTypeDefinition({
-        primaryType: primaryType.elementType,
-        nullable: false, // elements of an array should not be null, nulls should be filtered out
-        required: true, // elements of an array should not be undefined, undefineds should be filtered out
-        propertyName,
-        interfaceName,
-      }),
+      of: omit(
+        extractPropertyDefinitionFromNormalizedMemberTypeDefinition({
+          primaryType: primaryType.elementType,
+          nullable: false, // elements of an array should not be null, nulls should be filtered out
+          required: true, // elements of an array should not be undefined, undefineds should be filtered out
+          propertyName,
+          interfaceName,
+        }),
+        'name',
+      ),
       nullable,
       required,
     });
@@ -81,10 +87,11 @@ const extractPropertyDefinitionFromNormalizedMemberTypeDefinition = ({
   if (isTypeReferenceNode(primaryType)) {
     // handle date references
     if ((primaryType.typeName as any).escapedText === 'Date')
-      return new DomainObjectPropertyMetadata({ type: DomainObjectPropertyType.DATE, nullable, required });
+      return new DomainObjectPropertyMetadata({ name: propertyName, type: DomainObjectPropertyType.DATE, nullable, required });
 
     // handle generic references (e.g., enums or domain-object-references)
     return new DomainObjectPropertyMetadata({
+      name: propertyName,
       type: DomainObjectPropertyType.REFERENCE,
       of: (primaryType.typeName as any).escapedText, // note: this is a string
       nullable,
@@ -102,7 +109,7 @@ const extractPropertyFromDomainObjectInterfaceMemberDeclaration = ({
 }: {
   memberDeclaration: TypeElement;
   interfaceName: string;
-}): { name: string; definition: DomainObjectPropertyMetadata } => {
+}): DomainObjectPropertyMetadata => {
   // grab the name
   const propertyName = (memberDeclaration.name as any).escapedText;
 
@@ -112,10 +119,8 @@ const extractPropertyFromDomainObjectInterfaceMemberDeclaration = ({
   // grab the property based on the normalized type data now
   const definition = extractPropertyDefinitionFromNormalizedMemberTypeDefinition({ primaryType, nullable, required, interfaceName, propertyName });
 
-  return {
-    name: propertyName,
-    definition,
-  };
+  // and return it
+  return definition;
 };
 
 export const extractPropertiesFromInterfaceDeclaration = (interfaceDeclaration: InterfaceDeclaration) => {
@@ -127,7 +132,7 @@ export const extractPropertiesFromInterfaceDeclaration = (interfaceDeclaration: 
   );
   const propertiesObject: { [index: string]: DomainObjectPropertyMetadata } = {};
   properties.forEach((property) => {
-    propertiesObject[property.name] = property.definition;
+    propertiesObject[property.name] = property;
   });
   return propertiesObject;
 };

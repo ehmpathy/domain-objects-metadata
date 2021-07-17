@@ -3,6 +3,7 @@ import { DomainObjectPropertyMetadata, DomainObjectPropertyType } from './Domain
 describe('DomainObjectPropertyMetadata', () => {
   it('should be able to instantiate', () => {
     const property = new DomainObjectPropertyMetadata({
+      name: 'cool thing',
       type: DomainObjectPropertyType.STRING,
       required: true,
       nullable: true,

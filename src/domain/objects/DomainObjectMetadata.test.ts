@@ -9,16 +9,19 @@ describe('DomainObjectReferenceMetadata', () => {
       extends: DomainObjectVariant.DOMAIN_ENTITY,
       properties: {
         id: new DomainObjectPropertyMetadata({
+          name: 'id',
           type: DomainObjectPropertyType.NUMBER,
           nullable: false,
           required: false,
         }),
         uuid: new DomainObjectPropertyMetadata({
+          name: 'uuid',
           type: DomainObjectPropertyType.STRING,
           nullable: false,
           required: false,
         }),
         serialNumber: new DomainObjectPropertyMetadata({
+          name: 'serialNumber',
           type: DomainObjectPropertyType.STRING,
           nullable: false,
           required: true,

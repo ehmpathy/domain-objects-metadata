@@ -1,3 +1,4 @@
+import omit from 'lodash.omit';
 import { isClassDeclaration, isEnumDeclaration, SourceFile } from 'typescript';
 import { DomainObjectMetadata, DomainObjectReferenceMetadata, DomainObjectPropertyMetadata, DomainObjectPropertyType } from '../../domain';
 import { extractDomainObjectMetadataForDeclarationInFile } from '../extract/extractDomainObjectMetadataForDeclarationInFile';
@@ -22,13 +23,16 @@ const ensurePropertyIsHydrated = ({
   if (definition.type === DomainObjectPropertyType.ARRAY)
     return new DomainObjectPropertyMetadata({
       ...definition,
-      of: ensurePropertyIsHydrated({
-        domainObjectName,
-        propertyName,
-        propertyDefinition: definition.of as DomainObjectPropertyMetadata, // since arrays have nested property as "of",
-        domainObjectMetadatas,
-        enumMetadatas,
-      }),
+      of: omit(
+        ensurePropertyIsHydrated({
+          domainObjectName,
+          propertyName,
+          propertyDefinition: definition.of as DomainObjectPropertyMetadata, // since arrays have nested property as "of",
+          domainObjectMetadatas,
+          enumMetadatas,
+        }),
+        'name', // make sure to remove the nested name that comes back when we hydrate a reference property
+      ),
     });
 
   // otherwise, if not a REFERENCE property, then its already hydrated
@@ -42,6 +46,7 @@ const ensurePropertyIsHydrated = ({
   if (foundReferencedDomainObject)
     return new DomainObjectPropertyMetadata({
       ...definition,
+      name: propertyName, // this is not already on the `definition` if it was nested in an array, so make sure we set it
       of: new DomainObjectReferenceMetadata({ name: foundReferencedDomainObject.name, extends: foundReferencedDomainObject.extends }), // only expose the "name" and "extends" on the nested object metadata
     });
 
