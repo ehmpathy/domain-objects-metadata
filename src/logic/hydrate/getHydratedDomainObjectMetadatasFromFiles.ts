@@ -1,5 +1,5 @@
 import { isClassDeclaration, isEnumDeclaration, SourceFile } from 'typescript';
-import { DomainObjectMetadata, DomainObjectMetadataReference, DomainObjectProperty, DomainObjectPropertyType } from '../../domain';
+import { DomainObjectMetadata, DomainObjectReferenceMetadata, DomainObjectPropertyMetadata, DomainObjectPropertyType } from '../../domain';
 import { extractDomainObjectMetadataForDeclarationInFile } from '../extract/extractDomainObjectMetadataForDeclarationInFile';
 import { extractEnumMetadataFromEnumDeclaration } from '../extract/extractEnumMetadataFromEnumDeclaration';
 import { isAClassDecorationWhichExtendsDomainObject } from '../extract/isAClassDeclarationWhichExtendsDomainObject';
@@ -14,18 +14,18 @@ const ensurePropertyIsHydrated = ({
 }: {
   domainObjectName: string;
   propertyName: string;
-  propertyDefinition: DomainObjectProperty;
+  propertyDefinition: DomainObjectPropertyMetadata;
   domainObjectMetadatas: DomainObjectMetadata[];
   enumMetadatas: { name: string; options: string[] }[];
-}): DomainObjectProperty => {
+}): DomainObjectPropertyMetadata => {
   // handle the special case of arrays first; arrays are special because their `of` property is a property definition of its own
   if (definition.type === DomainObjectPropertyType.ARRAY)
-    return new DomainObjectProperty({
+    return new DomainObjectPropertyMetadata({
       ...definition,
       of: ensurePropertyIsHydrated({
         domainObjectName,
         propertyName,
-        propertyDefinition: definition.of as DomainObjectProperty, // since arrays have nested property as "of",
+        propertyDefinition: definition.of as DomainObjectPropertyMetadata, // since arrays have nested property as "of",
         domainObjectMetadatas,
         enumMetadatas,
       }),
@@ -40,15 +40,15 @@ const ensurePropertyIsHydrated = ({
   // try to see if its referencing a domain object
   const foundReferencedDomainObject = domainObjectMetadatas.find((metadata) => metadata.name === referencedName);
   if (foundReferencedDomainObject)
-    return new DomainObjectProperty({
+    return new DomainObjectPropertyMetadata({
       ...definition,
-      of: new DomainObjectMetadataReference({ name: foundReferencedDomainObject.name, extends: foundReferencedDomainObject.extends }), // only expose the "name" and "extends" on the nested object metadata
+      of: new DomainObjectReferenceMetadata({ name: foundReferencedDomainObject.name, extends: foundReferencedDomainObject.extends }), // only expose the "name" and "extends" on the nested object metadata
     });
 
   // try to see if its referencing an enum
   const foundReferencedEnum = enumMetadatas.find((metadata) => metadata.name === referencedName);
   if (foundReferencedEnum)
-    return new DomainObjectProperty({
+    return new DomainObjectPropertyMetadata({
       ...definition,
       type: DomainObjectPropertyType.ENUM, // update the name to "enum"
       of: foundReferencedEnum.options,

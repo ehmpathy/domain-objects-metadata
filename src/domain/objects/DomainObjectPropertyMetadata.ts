@@ -1,7 +1,7 @@
 import { DomainObject } from 'domain-objects';
 import Joi from 'joi';
 
-import { DomainObjectMetadataReference } from './DomainObjectMetadataReference';
+import { DomainObjectReferenceMetadata } from './DomainObjectReferenceMetadata';
 
 export enum DomainObjectPropertyType {
   STRING = 'STRING',
@@ -22,16 +22,16 @@ const schema = Joi.object().keys({
   nullable: Joi.boolean().optional(),
 });
 
-export interface DomainObjectProperty {
+export interface DomainObjectPropertyMetadata {
   type: DomainObjectPropertyType;
   of?:
-    | DomainObjectMetadataReference // if referencing another domain object
-    | DomainObjectProperty // if its an array, this holds the type of objects in the array
+    | DomainObjectReferenceMetadata // if referencing another domain object
+    | DomainObjectPropertyMetadata // if its an array, this holds the type of objects in the array
     | string[] // if its an enum, this holds the options of the enum
     | string; // before being hydrated, this holds the name of the referenced type for references
   required?: boolean;
   nullable?: boolean;
 }
-export class DomainObjectProperty extends DomainObject<DomainObjectProperty> implements DomainObjectProperty {
+export class DomainObjectPropertyMetadata extends DomainObject<DomainObjectPropertyMetadata> implements DomainObjectPropertyMetadata {
   public static schema = schema;
 }

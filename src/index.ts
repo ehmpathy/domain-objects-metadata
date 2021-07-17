@@ -1,7 +1,7 @@
 export {
   DomainObjectMetadata,
-  DomainObjectMetadataReference,
-  DomainObjectProperty,
+  DomainObjectReferenceMetadata,
+  DomainObjectPropertyMetadata,
   DomainObjectPropertyType,
   DomainObjectVariant,
   isOfDomainObjectVariant,

@@ -15,9 +15,9 @@ DomainObjectMetadata {
   "extends": "DomainEntity",
   "name": "Item",
   "properties": Object {
-    "colors": DomainObjectProperty {
+    "colors": DomainObjectPropertyMetadata {
       "nullable": false,
-      "of": DomainObjectProperty {
+      "of": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
@@ -25,17 +25,17 @@ DomainObjectMetadata {
       "required": true,
       "type": "ARRAY",
     },
-    "description": DomainObjectProperty {
+    "description": DomainObjectPropertyMetadata {
       "nullable": false,
       "required": true,
       "type": "STRING",
     },
-    "price": DomainObjectProperty {
+    "price": DomainObjectPropertyMetadata {
       "nullable": false,
       "required": true,
       "type": "NUMBER",
     },
-    "upc": DomainObjectProperty {
+    "upc": DomainObjectPropertyMetadata {
       "nullable": false,
       "required": true,
       "type": "STRING",
@@ -58,27 +58,27 @@ DomainObjectMetadata {
   "extends": "DomainEntity",
   "name": "LoadingDock",
   "properties": Object {
-    "gateNumber": DomainObjectProperty {
+    "gateNumber": DomainObjectPropertyMetadata {
       "nullable": false,
       "required": true,
       "type": "NUMBER",
     },
-    "id": DomainObjectProperty {
+    "id": DomainObjectPropertyMetadata {
       "nullable": false,
       "required": false,
       "type": "NUMBER",
     },
-    "operational": DomainObjectProperty {
+    "operational": DomainObjectPropertyMetadata {
       "nullable": false,
       "required": true,
       "type": "BOOLEAN",
     },
-    "phoneNumber": DomainObjectProperty {
+    "phoneNumber": DomainObjectPropertyMetadata {
       "nullable": true,
       "required": true,
       "type": "STRING",
     },
-    "uuid": DomainObjectProperty {
+    "uuid": DomainObjectPropertyMetadata {
       "nullable": false,
       "required": false,
       "type": "STRING",
@@ -96,27 +96,27 @@ DomainObjectMetadata {
   "extends": "DomainValueObject",
   "name": "Address",
   "properties": Object {
-    "city": DomainObjectProperty {
+    "city": DomainObjectPropertyMetadata {
       "nullable": false,
       "required": true,
       "type": "STRING",
     },
-    "postal": DomainObjectProperty {
+    "postal": DomainObjectPropertyMetadata {
       "nullable": false,
       "required": true,
       "type": "STRING",
     },
-    "state": DomainObjectProperty {
+    "state": DomainObjectPropertyMetadata {
       "nullable": false,
       "required": true,
       "type": "STRING",
     },
-    "street": DomainObjectProperty {
+    "street": DomainObjectPropertyMetadata {
       "nullable": false,
       "required": true,
       "type": "STRING",
     },
-    "suite": DomainObjectProperty {
+    "suite": DomainObjectPropertyMetadata {
       "nullable": true,
       "required": true,
       "type": "STRING",

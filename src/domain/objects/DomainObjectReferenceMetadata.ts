@@ -9,10 +9,10 @@ const schema = Joi.object().keys({
     .required(),
 });
 
-export interface DomainObjectMetadataReference {
+export interface DomainObjectReferenceMetadata {
   name: string;
   extends: DomainObjectVariant;
 }
-export class DomainObjectMetadataReference extends DomainObject<DomainObjectMetadataReference> implements DomainObjectMetadataReference {
+export class DomainObjectReferenceMetadata extends DomainObject<DomainObjectReferenceMetadata> implements DomainObjectReferenceMetadata {
   public static schema = schema;
 }

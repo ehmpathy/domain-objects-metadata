@@ -1,6 +1,6 @@
 import { DomainObject } from 'domain-objects';
 import Joi from 'joi';
-import { DomainObjectProperty } from './DomainObjectProperty';
+import { DomainObjectPropertyMetadata } from './DomainObjectPropertyMetadata';
 import { DomainObjectVariant } from '../constants';
 
 const schema = Joi.object().keys({
@@ -8,7 +8,7 @@ const schema = Joi.object().keys({
   extends: Joi.string()
     .valid(...Object.values(DomainObjectVariant))
     .required(),
-  properties: Joi.object().pattern(Joi.string(), DomainObjectProperty.schema),
+  properties: Joi.object().pattern(Joi.string(), DomainObjectPropertyMetadata.schema),
   decorations: Joi.object().keys({
     unique: Joi.array().items(Joi.string()).allow(null).required(),
     updatable: Joi.array().items(Joi.string()).allow(null).required(),
@@ -19,7 +19,7 @@ export interface DomainObjectMetadata {
   name: string;
   extends: DomainObjectVariant;
   properties: {
-    [index: string]: DomainObjectProperty;
+    [index: string]: DomainObjectPropertyMetadata;
   };
   decorations: {
     unique: string[] | null;

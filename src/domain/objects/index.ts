@@ -1,3 +1,3 @@
 export * from './DomainObjectMetadata';
-export * from './DomainObjectMetadataReference';
-export * from './DomainObjectProperty';
+export * from './DomainObjectReferenceMetadata';
+export * from './DomainObjectPropertyMetadata';

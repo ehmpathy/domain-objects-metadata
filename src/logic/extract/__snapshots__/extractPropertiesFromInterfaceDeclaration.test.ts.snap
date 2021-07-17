@@ -2,20 +2,20 @@
 
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface that references another interface or an array of interfaces 1`] = `
 Object {
-  "destination": DomainObjectProperty {
+  "destination": DomainObjectPropertyMetadata {
     "nullable": false,
     "of": "Address",
     "required": true,
     "type": "REFERENCE",
   },
-  "id": DomainObjectProperty {
+  "id": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": false,
     "type": "NUMBER",
   },
-  "items": DomainObjectProperty {
+  "items": DomainObjectPropertyMetadata {
     "nullable": false,
-    "of": DomainObjectProperty {
+    "of": DomainObjectPropertyMetadata {
       "nullable": false,
       "of": "Item",
       "required": true,
@@ -24,12 +24,12 @@ Object {
     "required": true,
     "type": "ARRAY",
   },
-  "status": DomainObjectProperty {
+  "status": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": true,
     "type": "STRING",
   },
-  "uuid": DomainObjectProperty {
+  "uuid": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": false,
     "type": "STRING",
@@ -39,22 +39,22 @@ Object {
 
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with a date type 1`] = `
 Object {
-  "id": DomainObjectProperty {
+  "id": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": false,
     "type": "NUMBER",
   },
-  "occurredAt": DomainObjectProperty {
+  "occurredAt": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": true,
     "type": "DATE",
   },
-  "packageUuid": DomainObjectProperty {
+  "packageUuid": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": true,
     "type": "STRING",
   },
-  "uuid": DomainObjectProperty {
+  "uuid": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": false,
     "type": "STRING",
@@ -64,27 +64,27 @@ Object {
 
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with all of the primitive types we support: number, string, boolean w/ required and optional combination 1`] = `
 Object {
-  "gateNumber": DomainObjectProperty {
+  "gateNumber": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": true,
     "type": "NUMBER",
   },
-  "id": DomainObjectProperty {
+  "id": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": false,
     "type": "NUMBER",
   },
-  "operational": DomainObjectProperty {
+  "operational": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": true,
     "type": "BOOLEAN",
   },
-  "phoneNumber": DomainObjectProperty {
+  "phoneNumber": DomainObjectPropertyMetadata {
     "nullable": true,
     "required": true,
     "type": "STRING",
   },
-  "uuid": DomainObjectProperty {
+  "uuid": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": false,
     "type": "STRING",
@@ -94,9 +94,9 @@ Object {
 
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with an array property 1`] = `
 Object {
-  "colors": DomainObjectProperty {
+  "colors": DomainObjectPropertyMetadata {
     "nullable": false,
-    "of": DomainObjectProperty {
+    "of": DomainObjectPropertyMetadata {
       "nullable": false,
       "required": true,
       "type": "STRING",
@@ -104,17 +104,17 @@ Object {
     "required": true,
     "type": "ARRAY",
   },
-  "description": DomainObjectProperty {
+  "description": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": true,
     "type": "STRING",
   },
-  "price": DomainObjectProperty {
+  "price": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": true,
     "type": "NUMBER",
   },
-  "upc": DomainObjectProperty {
+  "upc": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": true,
     "type": "STRING",
@@ -124,22 +124,22 @@ Object {
 
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with an enum 1`] = `
 Object {
-  "amount": DomainObjectProperty {
+  "amount": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": true,
     "type": "NUMBER",
   },
-  "currency": DomainObjectProperty {
+  "currency": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": true,
     "type": "STRING",
   },
-  "externalId": DomainObjectProperty {
+  "externalId": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": true,
     "type": "STRING",
   },
-  "status": DomainObjectProperty {
+  "status": DomainObjectPropertyMetadata {
     "nullable": false,
     "of": "PaymentStatus",
     "required": true,
@@ -150,27 +150,27 @@ Object {
 
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from our Address interface. all strings 1`] = `
 Object {
-  "city": DomainObjectProperty {
+  "city": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": true,
     "type": "STRING",
   },
-  "postal": DomainObjectProperty {
+  "postal": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": true,
     "type": "STRING",
   },
-  "state": DomainObjectProperty {
+  "state": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": true,
     "type": "STRING",
   },
-  "street": DomainObjectProperty {
+  "street": DomainObjectPropertyMetadata {
     "nullable": false,
     "required": true,
     "type": "STRING",
   },
-  "suite": DomainObjectProperty {
+  "suite": DomainObjectPropertyMetadata {
     "nullable": true,
     "required": true,
     "type": "STRING",

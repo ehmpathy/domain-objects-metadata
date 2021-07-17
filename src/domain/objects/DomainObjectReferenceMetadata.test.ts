@@ -1,9 +1,9 @@
 import { DomainObjectVariant } from '../constants';
-import { DomainObjectMetadataReference } from './DomainObjectMetadataReference';
+import { DomainObjectReferenceMetadata } from './DomainObjectReferenceMetadata';
 
-describe('DomainObjectMetadataReference', () => {
+describe('DomainObjectReferenceMetadata', () => {
   it('should be able to instantiate', () => {
-    const property = new DomainObjectMetadataReference({
+    const property = new DomainObjectReferenceMetadata({
       name: 'Rocketship',
       extends: DomainObjectVariant.DOMAIN_ENTITY,
     });

@@ -10,27 +10,27 @@ Array [
     "extends": "DomainValueObject",
     "name": "Address",
     "properties": Object {
-      "city": DomainObjectProperty {
+      "city": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "postal": DomainObjectProperty {
+      "postal": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "state": DomainObjectProperty {
+      "state": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "street": DomainObjectProperty {
+      "street": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "suite": DomainObjectProperty {
+      "suite": DomainObjectPropertyMetadata {
         "nullable": true,
         "required": true,
         "type": "STRING",
@@ -51,9 +51,9 @@ Array [
     "extends": "DomainEntity",
     "name": "Item",
     "properties": Object {
-      "colors": DomainObjectProperty {
+      "colors": DomainObjectPropertyMetadata {
         "nullable": false,
-        "of": DomainObjectProperty {
+        "of": DomainObjectPropertyMetadata {
           "nullable": false,
           "required": true,
           "type": "STRING",
@@ -61,17 +61,17 @@ Array [
         "required": true,
         "type": "ARRAY",
       },
-      "description": DomainObjectProperty {
+      "description": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "price": DomainObjectProperty {
+      "price": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "NUMBER",
       },
-      "upc": DomainObjectProperty {
+      "upc": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
@@ -86,25 +86,25 @@ Array [
     "extends": "DomainEntity",
     "name": "Order",
     "properties": Object {
-      "destination": DomainObjectProperty {
+      "destination": DomainObjectPropertyMetadata {
         "nullable": false,
-        "of": DomainObjectMetadataReference {
+        "of": DomainObjectReferenceMetadata {
           "extends": "DomainValueObject",
           "name": "Address",
         },
         "required": true,
         "type": "REFERENCE",
       },
-      "id": DomainObjectProperty {
+      "id": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": false,
         "type": "NUMBER",
       },
-      "items": DomainObjectProperty {
+      "items": DomainObjectPropertyMetadata {
         "nullable": false,
-        "of": DomainObjectProperty {
+        "of": DomainObjectPropertyMetadata {
           "nullable": false,
-          "of": DomainObjectMetadataReference {
+          "of": DomainObjectReferenceMetadata {
             "extends": "DomainEntity",
             "name": "Item",
           },
@@ -114,12 +114,12 @@ Array [
         "required": true,
         "type": "ARRAY",
       },
-      "status": DomainObjectProperty {
+      "status": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "uuid": DomainObjectProperty {
+      "uuid": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": false,
         "type": "STRING",
@@ -139,27 +139,27 @@ Array [
     "extends": "DomainValueObject",
     "name": "Address",
     "properties": Object {
-      "city": DomainObjectProperty {
+      "city": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "postal": DomainObjectProperty {
+      "postal": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "state": DomainObjectProperty {
+      "state": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "street": DomainObjectProperty {
+      "street": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "suite": DomainObjectProperty {
+      "suite": DomainObjectPropertyMetadata {
         "nullable": true,
         "required": true,
         "type": "STRING",
@@ -185,22 +185,22 @@ Array [
     "extends": "DomainEntity",
     "name": "Payment",
     "properties": Object {
-      "amount": DomainObjectProperty {
+      "amount": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "NUMBER",
       },
-      "currency": DomainObjectProperty {
+      "currency": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "externalId": DomainObjectProperty {
+      "externalId": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "status": DomainObjectProperty {
+      "status": DomainObjectPropertyMetadata {
         "nullable": false,
         "of": Array [
           "PENDING",

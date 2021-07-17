@@ -10,27 +10,27 @@ Array [
     "extends": "DomainValueObject",
     "name": "Address",
     "properties": Object {
-      "city": DomainObjectProperty {
+      "city": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "postal": DomainObjectProperty {
+      "postal": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "state": DomainObjectProperty {
+      "state": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "street": DomainObjectProperty {
+      "street": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "suite": DomainObjectProperty {
+      "suite": DomainObjectPropertyMetadata {
         "nullable": true,
         "required": true,
         "type": "STRING",
@@ -49,37 +49,37 @@ Array [
     "extends": "DomainEntity",
     "name": "DeliveryVan",
     "properties": Object {
-      "id": DomainObjectProperty {
+      "id": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": false,
         "type": "NUMBER",
       },
-      "make": DomainObjectProperty {
+      "make": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "milage": DomainObjectProperty {
+      "milage": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "NUMBER",
       },
-      "model": DomainObjectProperty {
+      "model": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "uuid": DomainObjectProperty {
+      "uuid": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": false,
         "type": "STRING",
       },
-      "vin": DomainObjectProperty {
+      "vin": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "year": DomainObjectProperty {
+      "year": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "NUMBER",
@@ -96,22 +96,22 @@ Array [
     "extends": "DomainEntity",
     "name": "Package",
     "properties": Object {
-      "id": DomainObjectProperty {
+      "id": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": false,
         "type": "NUMBER",
       },
-      "trackingNumber": DomainObjectProperty {
+      "trackingNumber": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "uuid": DomainObjectProperty {
+      "uuid": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": false,
         "type": "STRING",
       },
-      "weight": DomainObjectProperty {
+      "weight": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "NUMBER",
@@ -129,9 +129,9 @@ Array [
     "extends": "DomainEntity",
     "name": "Delivery",
     "properties": Object {
-      "contactInfo": DomainObjectProperty {
+      "contactInfo": DomainObjectPropertyMetadata {
         "nullable": false,
-        "of": DomainObjectProperty {
+        "of": DomainObjectPropertyMetadata {
           "nullable": false,
           "required": true,
           "type": "STRING",
@@ -139,25 +139,25 @@ Array [
         "required": true,
         "type": "ARRAY",
       },
-      "destination": DomainObjectProperty {
+      "destination": DomainObjectPropertyMetadata {
         "nullable": false,
-        "of": DomainObjectMetadataReference {
+        "of": DomainObjectReferenceMetadata {
           "extends": "DomainValueObject",
           "name": "Address",
         },
         "required": true,
         "type": "REFERENCE",
       },
-      "id": DomainObjectProperty {
+      "id": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": false,
         "type": "NUMBER",
       },
-      "packages": DomainObjectProperty {
+      "packages": DomainObjectPropertyMetadata {
         "nullable": false,
-        "of": DomainObjectProperty {
+        "of": DomainObjectPropertyMetadata {
           "nullable": false,
-          "of": DomainObjectMetadataReference {
+          "of": DomainObjectReferenceMetadata {
             "extends": "DomainEntity",
             "name": "Package",
           },
@@ -167,7 +167,7 @@ Array [
         "required": true,
         "type": "ARRAY",
       },
-      "status": DomainObjectProperty {
+      "status": DomainObjectPropertyMetadata {
         "nullable": false,
         "of": Array [
           "SCHEDULED",
@@ -179,14 +179,14 @@ Array [
         "required": true,
         "type": "ENUM",
       },
-      "uuid": DomainObjectProperty {
+      "uuid": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": false,
         "type": "STRING",
       },
-      "van": DomainObjectProperty {
+      "van": DomainObjectPropertyMetadata {
         "nullable": false,
-        "of": DomainObjectMetadataReference {
+        "of": DomainObjectReferenceMetadata {
           "extends": "DomainEntity",
           "name": "DeliveryVan",
         },
@@ -208,27 +208,27 @@ Array [
     "extends": "DomainValueObject",
     "name": "Address",
     "properties": Object {
-      "city": DomainObjectProperty {
+      "city": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "postal": DomainObjectProperty {
+      "postal": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "state": DomainObjectProperty {
+      "state": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "street": DomainObjectProperty {
+      "street": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "suite": DomainObjectProperty {
+      "suite": DomainObjectPropertyMetadata {
         "nullable": true,
         "required": true,
         "type": "STRING",
@@ -248,27 +248,27 @@ Array [
     "extends": "DomainValueObject",
     "name": "Address",
     "properties": Object {
-      "city": DomainObjectProperty {
+      "city": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "postal": DomainObjectProperty {
+      "postal": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "state": DomainObjectProperty {
+      "state": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "street": DomainObjectProperty {
+      "street": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "suite": DomainObjectProperty {
+      "suite": DomainObjectPropertyMetadata {
         "nullable": true,
         "required": true,
         "type": "STRING",
@@ -287,37 +287,37 @@ Array [
     "extends": "DomainEntity",
     "name": "DeliveryVan",
     "properties": Object {
-      "id": DomainObjectProperty {
+      "id": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": false,
         "type": "NUMBER",
       },
-      "make": DomainObjectProperty {
+      "make": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "milage": DomainObjectProperty {
+      "milage": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "NUMBER",
       },
-      "model": DomainObjectProperty {
+      "model": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "uuid": DomainObjectProperty {
+      "uuid": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": false,
         "type": "STRING",
       },
-      "vin": DomainObjectProperty {
+      "vin": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "year": DomainObjectProperty {
+      "year": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "NUMBER",
@@ -334,22 +334,22 @@ Array [
     "extends": "DomainEntity",
     "name": "Package",
     "properties": Object {
-      "id": DomainObjectProperty {
+      "id": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": false,
         "type": "NUMBER",
       },
-      "trackingNumber": DomainObjectProperty {
+      "trackingNumber": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "uuid": DomainObjectProperty {
+      "uuid": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": false,
         "type": "STRING",
       },
-      "weight": DomainObjectProperty {
+      "weight": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "NUMBER",
@@ -367,9 +367,9 @@ Array [
     "extends": "DomainEntity",
     "name": "Delivery",
     "properties": Object {
-      "contactInfo": DomainObjectProperty {
+      "contactInfo": DomainObjectPropertyMetadata {
         "nullable": false,
-        "of": DomainObjectProperty {
+        "of": DomainObjectPropertyMetadata {
           "nullable": false,
           "required": true,
           "type": "STRING",
@@ -377,25 +377,25 @@ Array [
         "required": true,
         "type": "ARRAY",
       },
-      "destination": DomainObjectProperty {
+      "destination": DomainObjectPropertyMetadata {
         "nullable": false,
-        "of": DomainObjectMetadataReference {
+        "of": DomainObjectReferenceMetadata {
           "extends": "DomainValueObject",
           "name": "Address",
         },
         "required": true,
         "type": "REFERENCE",
       },
-      "id": DomainObjectProperty {
+      "id": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": false,
         "type": "NUMBER",
       },
-      "packages": DomainObjectProperty {
+      "packages": DomainObjectPropertyMetadata {
         "nullable": false,
-        "of": DomainObjectProperty {
+        "of": DomainObjectPropertyMetadata {
           "nullable": false,
-          "of": DomainObjectMetadataReference {
+          "of": DomainObjectReferenceMetadata {
             "extends": "DomainEntity",
             "name": "Package",
           },
@@ -405,7 +405,7 @@ Array [
         "required": true,
         "type": "ARRAY",
       },
-      "status": DomainObjectProperty {
+      "status": DomainObjectPropertyMetadata {
         "nullable": false,
         "of": Array [
           "SCHEDULED",
@@ -417,14 +417,14 @@ Array [
         "required": true,
         "type": "ENUM",
       },
-      "uuid": DomainObjectProperty {
+      "uuid": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": false,
         "type": "STRING",
       },
-      "van": DomainObjectProperty {
+      "van": DomainObjectPropertyMetadata {
         "nullable": false,
-        "of": DomainObjectMetadataReference {
+        "of": DomainObjectReferenceMetadata {
           "extends": "DomainEntity",
           "name": "DeliveryVan",
         },
@@ -450,37 +450,37 @@ Array [
     "extends": "DomainEntity",
     "name": "DeliveryVan",
     "properties": Object {
-      "id": DomainObjectProperty {
+      "id": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": false,
         "type": "NUMBER",
       },
-      "make": DomainObjectProperty {
+      "make": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "milage": DomainObjectProperty {
+      "milage": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "NUMBER",
       },
-      "model": DomainObjectProperty {
+      "model": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "uuid": DomainObjectProperty {
+      "uuid": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": false,
         "type": "STRING",
       },
-      "vin": DomainObjectProperty {
+      "vin": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "STRING",
       },
-      "year": DomainObjectProperty {
+      "year": DomainObjectPropertyMetadata {
         "nullable": false,
         "required": true,
         "type": "NUMBER",

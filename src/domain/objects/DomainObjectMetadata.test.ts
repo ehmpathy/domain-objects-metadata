@@ -1,24 +1,24 @@
 import { DomainObjectMetadata } from '.';
 import { DomainObjectVariant } from '../constants';
-import { DomainObjectProperty, DomainObjectPropertyType } from './DomainObjectProperty';
+import { DomainObjectPropertyMetadata, DomainObjectPropertyType } from './DomainObjectPropertyMetadata';
 
-describe('DomainObjectMetadataReference', () => {
+describe('DomainObjectReferenceMetadata', () => {
   it('should be able to instantiate', () => {
     const property = new DomainObjectMetadata({
       name: 'Rocketship',
       extends: DomainObjectVariant.DOMAIN_ENTITY,
       properties: {
-        id: new DomainObjectProperty({
+        id: new DomainObjectPropertyMetadata({
           type: DomainObjectPropertyType.NUMBER,
           nullable: false,
           required: false,
         }),
-        uuid: new DomainObjectProperty({
+        uuid: new DomainObjectPropertyMetadata({
           type: DomainObjectPropertyType.STRING,
           nullable: false,
           required: false,
         }),
-        serialNumber: new DomainObjectProperty({
+        serialNumber: new DomainObjectPropertyMetadata({
           type: DomainObjectPropertyType.STRING,
           nullable: false,
           required: true,

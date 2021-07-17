@@ -1,8 +1,8 @@
-import { DomainObjectProperty, DomainObjectPropertyType } from './DomainObjectProperty';
+import { DomainObjectPropertyMetadata, DomainObjectPropertyType } from './DomainObjectPropertyMetadata';
 
-describe('DomainObjectProperty', () => {
+describe('DomainObjectPropertyMetadata', () => {
   it('should be able to instantiate', () => {
-    const property = new DomainObjectProperty({
+    const property = new DomainObjectPropertyMetadata({
       type: DomainObjectPropertyType.STRING,
       required: true,
       nullable: true,

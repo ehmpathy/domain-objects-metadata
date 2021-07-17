@@ -1,5 +1,5 @@
 import { InterfaceDeclaration, isArrayTypeNode, isTypeReferenceNode, Node, SyntaxKind, TypeElement } from 'typescript';
-import { DomainObjectProperty, DomainObjectPropertyType } from '../../domain';
+import { DomainObjectPropertyMetadata, DomainObjectPropertyType } from '../../domain';
 
 interface ASTInterfacePropertyType extends Node {
   name: { escapedText: string };
@@ -53,15 +53,18 @@ const extractPropertyDefinitionFromNormalizedMemberTypeDefinition = ({
   required: boolean;
   propertyName: string;
   interfaceName: string;
-}): DomainObjectProperty => {
+}): DomainObjectPropertyMetadata => {
   // handle the simple cases first
-  if (primaryType.kind === SyntaxKind.StringKeyword) return new DomainObjectProperty({ type: DomainObjectPropertyType.STRING, nullable, required });
-  if (primaryType.kind === SyntaxKind.NumberKeyword) return new DomainObjectProperty({ type: DomainObjectPropertyType.NUMBER, nullable, required });
-  if (primaryType.kind === SyntaxKind.BooleanKeyword) return new DomainObjectProperty({ type: DomainObjectPropertyType.BOOLEAN, nullable, required });
+  if (primaryType.kind === SyntaxKind.StringKeyword)
+    return new DomainObjectPropertyMetadata({ type: DomainObjectPropertyType.STRING, nullable, required });
+  if (primaryType.kind === SyntaxKind.NumberKeyword)
+    return new DomainObjectPropertyMetadata({ type: DomainObjectPropertyType.NUMBER, nullable, required });
+  if (primaryType.kind === SyntaxKind.BooleanKeyword)
+    return new DomainObjectPropertyMetadata({ type: DomainObjectPropertyType.BOOLEAN, nullable, required });
 
   // handle the array case
   if (isArrayTypeNode(primaryType))
-    return new DomainObjectProperty({
+    return new DomainObjectPropertyMetadata({
       type: DomainObjectPropertyType.ARRAY,
       of: extractPropertyDefinitionFromNormalizedMemberTypeDefinition({
         primaryType: primaryType.elementType,
@@ -78,10 +81,10 @@ const extractPropertyDefinitionFromNormalizedMemberTypeDefinition = ({
   if (isTypeReferenceNode(primaryType)) {
     // handle date references
     if ((primaryType.typeName as any).escapedText === 'Date')
-      return new DomainObjectProperty({ type: DomainObjectPropertyType.DATE, nullable, required });
+      return new DomainObjectPropertyMetadata({ type: DomainObjectPropertyType.DATE, nullable, required });
 
     // handle generic references (e.g., enums or domain-object-references)
-    return new DomainObjectProperty({
+    return new DomainObjectPropertyMetadata({
       type: DomainObjectPropertyType.REFERENCE,
       of: (primaryType.typeName as any).escapedText, // note: this is a string
       nullable,
@@ -99,7 +102,7 @@ const extractPropertyFromDomainObjectInterfaceMemberDeclaration = ({
 }: {
   memberDeclaration: TypeElement;
   interfaceName: string;
-}): { name: string; definition: DomainObjectProperty } => {
+}): { name: string; definition: DomainObjectPropertyMetadata } => {
   // grab the name
   const propertyName = (memberDeclaration.name as any).escapedText;
 
@@ -122,7 +125,7 @@ export const extractPropertiesFromInterfaceDeclaration = (interfaceDeclaration: 
       interfaceName: interfaceDeclaration.name.text,
     }),
   );
-  const propertiesObject: { [index: string]: DomainObjectProperty } = {};
+  const propertiesObject: { [index: string]: DomainObjectPropertyMetadata } = {};
   properties.forEach((property) => {
     propertiesObject[property.name] = property.definition;
   });
