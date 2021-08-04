@@ -1,6 +1,6 @@
 {
   "name": "domain-objects-metadata",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Extract domain information from your domain-object definitions using type introspection.",
   "author": "UladKasach @uladkasach",
   "license": "MIT",
