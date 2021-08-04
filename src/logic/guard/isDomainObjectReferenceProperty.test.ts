@@ -1,4 +1,5 @@
 import { DomainObjectPropertyMetadata, DomainObjectPropertyType, DomainObjectReferenceMetadata, DomainObjectVariant } from '../..';
+import { isDomainObjectArrayProperty } from './isDomainObjectArrayProperty';
 import { isDomainObjectReferenceProperty } from './isDomainObjectReferenceProperty';
 
 describe('isDomainObjectReferenceProperty', () => {
@@ -22,5 +23,20 @@ describe('isDomainObjectReferenceProperty', () => {
     });
     const isAReference = isDomainObjectReferenceProperty(property);
     expect(isAReference).toEqual(false);
+  });
+  it('should allow checking if the ".of" of an array property is a reference property', () => {
+    const property = new DomainObjectPropertyMetadata({
+      name: 'geocode',
+      type: DomainObjectPropertyType.ARRAY,
+      of: {
+        type: DomainObjectPropertyType.REFERENCE,
+        of: new DomainObjectReferenceMetadata({
+          extends: DomainObjectVariant.DOMAIN_VALUE_OBJECT,
+          name: 'Geocode',
+        }),
+      },
+    });
+    const isAnArrayReference = isDomainObjectArrayProperty(property) && isDomainObjectReferenceProperty(property.of);
+    expect(isAnArrayReference).toEqual(true);
   });
 });
