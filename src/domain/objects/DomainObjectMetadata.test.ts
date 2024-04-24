@@ -1,6 +1,9 @@
 import { DomainObjectMetadata } from '.';
 import { DomainObjectVariant } from '../constants';
-import { DomainObjectPropertyMetadata, DomainObjectPropertyType } from './DomainObjectPropertyMetadata';
+import {
+  DomainObjectPropertyMetadata,
+  DomainObjectPropertyType,
+} from './DomainObjectPropertyMetadata';
 
 describe('DomainObjectReferenceMetadata', () => {
   it('should be able to instantiate', () => {

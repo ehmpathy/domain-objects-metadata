@@ -1,4 +1,5 @@
 import { DomainEntity } from 'domain-objects';
+
 import { Address } from './Address';
 import { DeliveryVan } from './DeliveryVan';
 

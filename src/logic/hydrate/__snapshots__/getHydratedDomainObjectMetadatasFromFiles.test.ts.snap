@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files w/ has lots of imports and needs hydration of nested domain objects 1`] = `
-Array [
+[
   DomainObjectMetadata {
-    "decorations": Object {
+    "decorations": {
       "unique": null,
       "updatable": null,
     },
     "extends": "DomainValueObject",
     "name": "Address",
-    "properties": Object {
+    "properties": {
       "city": DomainObjectPropertyMetadata {
         "name": "city",
         "nullable": false,
@@ -43,11 +43,11 @@ Array [
     },
   },
   DomainObjectMetadata {
-    "decorations": Object {
-      "unique": Array [
+    "decorations": {
+      "unique": [
         "upc",
       ],
-      "updatable": Array [
+      "updatable": [
         "colors",
         "quantity",
         "description",
@@ -55,11 +55,11 @@ Array [
     },
     "extends": "DomainEntity",
     "name": "Item",
-    "properties": Object {
+    "properties": {
       "colors": DomainObjectPropertyMetadata {
         "name": "colors",
         "nullable": false,
-        "of": Object {
+        "of": {
           "nullable": false,
           "required": true,
           "type": "STRING",
@@ -88,13 +88,13 @@ Array [
     },
   },
   DomainObjectMetadata {
-    "decorations": Object {
-      "unique": Array [],
-      "updatable": Array [],
+    "decorations": {
+      "unique": [],
+      "updatable": [],
     },
     "extends": "DomainEntity",
     "name": "Order",
-    "properties": Object {
+    "properties": {
       "destination": DomainObjectPropertyMetadata {
         "name": "destination",
         "nullable": false,
@@ -114,7 +114,7 @@ Array [
       "items": DomainObjectPropertyMetadata {
         "name": "items",
         "nullable": false,
-        "of": Object {
+        "of": {
           "nullable": false,
           "of": DomainObjectReferenceMetadata {
             "extends": "DomainEntity",
@@ -144,15 +144,15 @@ Array [
 `;
 
 exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files w/ no need for hydration 1`] = `
-Array [
+[
   DomainObjectMetadata {
-    "decorations": Object {
+    "decorations": {
       "unique": null,
       "updatable": null,
     },
     "extends": "DomainValueObject",
     "name": "Address",
-    "properties": Object {
+    "properties": {
       "city": DomainObjectPropertyMetadata {
         "name": "city",
         "nullable": false,
@@ -189,13 +189,13 @@ Array [
 `;
 
 exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which needs hydration of nested enum 1`] = `
-Array [
+[
   DomainObjectMetadata {
-    "decorations": Object {
-      "unique": Array [
+    "decorations": {
+      "unique": [
         "externalId",
       ],
-      "updatable": Array [
+      "updatable": [
         "status",
         "amount",
         "currency",
@@ -203,7 +203,7 @@ Array [
     },
     "extends": "DomainEntity",
     "name": "Payment",
-    "properties": Object {
+    "properties": {
       "amount": DomainObjectPropertyMetadata {
         "name": "amount",
         "nullable": false,
@@ -225,7 +225,7 @@ Array [
       "status": DomainObjectPropertyMetadata {
         "name": "status",
         "nullable": false,
-        "of": Array [
+        "of": [
           "PENDING",
           "COMPLETED",
           "CANCELED",

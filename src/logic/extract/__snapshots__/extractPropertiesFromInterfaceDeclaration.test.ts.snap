@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface that references another interface or an array of interfaces 1`] = `
-Object {
+{
   "destination": DomainObjectPropertyMetadata {
     "name": "destination",
     "nullable": false,
@@ -18,7 +18,7 @@ Object {
   "items": DomainObjectPropertyMetadata {
     "name": "items",
     "nullable": false,
-    "of": Object {
+    "of": {
       "nullable": false,
       "of": "Item",
       "required": true,
@@ -43,7 +43,7 @@ Object {
 `;
 
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with a date type 1`] = `
-Object {
+{
   "id": DomainObjectPropertyMetadata {
     "name": "id",
     "nullable": false,
@@ -72,7 +72,7 @@ Object {
 `;
 
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with all of the primitive types we support: number, string, boolean w/ required and optional combination 1`] = `
-Object {
+{
   "gateNumber": DomainObjectPropertyMetadata {
     "name": "gateNumber",
     "nullable": false,
@@ -107,11 +107,11 @@ Object {
 `;
 
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with an array property 1`] = `
-Object {
+{
   "colors": DomainObjectPropertyMetadata {
     "name": "colors",
     "nullable": false,
-    "of": Object {
+    "of": {
       "nullable": false,
       "required": true,
       "type": "STRING",
@@ -141,7 +141,7 @@ Object {
 `;
 
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with an enum 1`] = `
-Object {
+{
   "amount": DomainObjectPropertyMetadata {
     "name": "amount",
     "nullable": false,
@@ -171,7 +171,7 @@ Object {
 `;
 
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from our Address interface. all strings 1`] = `
-Object {
+{
   "city": DomainObjectPropertyMetadata {
     "name": "city",
     "nullable": false,

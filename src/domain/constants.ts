@@ -1,4 +1,4 @@
-import { createIsOfEnum } from 'simple-type-guards';
+import { createIsOfEnum } from 'type-fns';
 
 export enum DomainObjectVariant {
   DOMAIN_OBJECT = 'DomainObject',

@@ -1,4 +1,7 @@
-import { DomainObjectPropertyMetadata, DomainObjectPropertyType } from './DomainObjectPropertyMetadata';
+import {
+  DomainObjectPropertyMetadata,
+  DomainObjectPropertyType,
+} from './DomainObjectPropertyMetadata';
 
 describe('DomainObjectPropertyMetadata', () => {
   it('should be able to instantiate', () => {

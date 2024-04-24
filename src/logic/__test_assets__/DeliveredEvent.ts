@@ -6,6 +6,9 @@ export interface DeliveredEvent {
   packageUuid: string;
   occurredAt: Date;
 }
-export class DeliveredEvent extends DomainEvent<DeliveredEvent> implements DeliveredEvent {
+export class DeliveredEvent
+  extends DomainEvent<DeliveredEvent>
+  implements DeliveredEvent
+{
   public static unique = ['packageUuid'];
 }

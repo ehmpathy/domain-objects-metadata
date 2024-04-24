@@ -34,6 +34,9 @@ export interface DomainObjectPropertyMetadata {
   required?: boolean;
   nullable?: boolean;
 }
-export class DomainObjectPropertyMetadata extends DomainObject<DomainObjectPropertyMetadata> implements DomainObjectPropertyMetadata {
+export class DomainObjectPropertyMetadata
+  extends DomainObject<DomainObjectPropertyMetadata>
+  implements DomainObjectPropertyMetadata
+{
   public static schema = schema;
 }

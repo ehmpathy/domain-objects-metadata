@@ -5,7 +5,14 @@ export const getDeclarationOfClassOverview = (classDec: ClassDeclaration) => {
   return {
     name: classDec.name?.escapedText,
     heritage: classDec.heritageClauses
-      ?.map((clause) => clause.types.map((type) => `${SyntaxKind[clause.token]}:${(type.expression as any).escapedText}`))
+      ?.map((clause) =>
+        clause.types.map(
+          (type) =>
+            `${SyntaxKind[clause.token]}:${
+              (type.expression as any).escapedText
+            }`,
+        ),
+      )
       .flat(),
   };
 };

@@ -1,6 +1,7 @@
 import ts from 'typescript';
 
-const isFileInNodeModules = (file: ts.SourceFile) => file.fileName.includes('/node_modules/');
+const isFileInNodeModules = (file: ts.SourceFile) =>
+  file.fileName.includes('/node_modules/');
 
 export const getProgramOverview = (program: ts.Program) => {
   // consider each file
@@ -15,7 +16,10 @@ export const getProgramOverview = (program: ts.Program) => {
   });
   const nodeModuleFiles = fileOverviewsAll.filter((file) => file.inNodeModules);
   const fileOverviews = {
-    nodeModuleFiles: [...nodeModuleFiles.slice(0, 3), `...and ${nodeModuleFiles.length - 3} more...`], // only show the first 5
+    nodeModuleFiles: [
+      ...nodeModuleFiles.slice(0, 3),
+      `...and ${nodeModuleFiles.length - 3} more...`,
+    ], // only show the first 5
     directFiles: fileOverviewsAll.filter((file) => !file.inNodeModules),
   };
 

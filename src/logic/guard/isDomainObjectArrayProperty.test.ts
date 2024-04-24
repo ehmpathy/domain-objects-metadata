@@ -10,7 +10,8 @@ describe('isDomainObjectArrayProperty', () => {
     });
     const isAnArray = isDomainObjectArrayProperty(property);
     expect(isAnArray).toEqual(true);
-    if (isDomainObjectArrayProperty(property)) expect(property.of.type).toEqual(DomainObjectPropertyType.NUMBER); // see how we can just use 'of' here
+    if (isDomainObjectArrayProperty(property))
+      expect(property.of.type).toEqual(DomainObjectPropertyType.NUMBER); // see how we can just use 'of' here
   });
   it('should return false for non arrays', () => {
     const property = new DomainObjectPropertyMetadata({

@@ -1,6 +1,13 @@
+import { UnexpectedCodePathError } from '@ehmpathy/error-fns';
 import omit from 'lodash.omit';
 import { isClassDeclaration, isEnumDeclaration, SourceFile } from 'typescript';
-import { DomainObjectMetadata, DomainObjectReferenceMetadata, DomainObjectPropertyMetadata, DomainObjectPropertyType } from '../../domain';
+
+import {
+  DomainObjectMetadata,
+  DomainObjectReferenceMetadata,
+  DomainObjectPropertyMetadata,
+  DomainObjectPropertyType,
+} from '../../domain';
 import { extractDomainObjectMetadataForDeclarationInFile } from '../extract/extractDomainObjectMetadataForDeclarationInFile';
 import { extractEnumMetadataFromEnumDeclaration } from '../extract/extractEnumMetadataFromEnumDeclaration';
 import { isAClassDecorationWhichExtendsDomainObject } from '../extract/isAClassDeclarationWhichExtendsDomainObject';
@@ -42,16 +49,23 @@ const ensurePropertyIsHydrated = ({
   const referencedName = definition.of as string; // reference properties define this as `string` before they're hydrated
 
   // try to see if its referencing a domain object
-  const foundReferencedDomainObject = domainObjectMetadatas.find((metadata) => metadata.name === referencedName);
+  const foundReferencedDomainObject = domainObjectMetadatas.find(
+    (metadata) => metadata.name === referencedName,
+  );
   if (foundReferencedDomainObject)
     return new DomainObjectPropertyMetadata({
       ...definition,
       name: propertyName, // this is not already on the `definition` if it was nested in an array, so make sure we set it
-      of: new DomainObjectReferenceMetadata({ name: foundReferencedDomainObject.name, extends: foundReferencedDomainObject.extends }), // only expose the "name" and "extends" on the nested object metadata
+      of: new DomainObjectReferenceMetadata({
+        name: foundReferencedDomainObject.name,
+        extends: foundReferencedDomainObject.extends,
+      }), // only expose the "name" and "extends" on the nested object metadata
     });
 
   // try to see if its referencing an enum
-  const foundReferencedEnum = enumMetadatas.find((metadata) => metadata.name === referencedName);
+  const foundReferencedEnum = enumMetadatas.find(
+    (metadata) => metadata.name === referencedName,
+  );
   if (foundReferencedEnum)
     return new DomainObjectPropertyMetadata({
       ...definition,
@@ -60,17 +74,26 @@ const ensurePropertyIsHydrated = ({
     });
 
   // if this is neither, throw an error since we can't figure out what its referencing
-  throw new Error(
+  throw new UnexpectedCodePathError(
     `could not hydrate a property who references another type. no domain object or enum found with that referenced name. see \`${domainObjectName}.${propertyName}: ${referencedName}\``,
   );
 };
 
-export const getHydratedDomainObjectMetadatasFromFiles = (files: SourceFile[]) => {
+export const getHydratedDomainObjectMetadatasFromFiles = (
+  files: SourceFile[],
+) => {
   // lookup all the unhydrated metadatas for all domain object declarations
   const domainObjectMetadatas = files
     .map((file) => {
-      const domainObjectDeclarations = file.statements.filter(isClassDeclaration).filter(isAClassDecorationWhichExtendsDomainObject);
-      return domainObjectDeclarations.map((classDeclaration) => extractDomainObjectMetadataForDeclarationInFile({ classDeclaration, file }));
+      const domainObjectDeclarations = file.statements
+        .filter(isClassDeclaration)
+        .filter(isAClassDecorationWhichExtendsDomainObject);
+      return domainObjectDeclarations.map((classDeclaration) =>
+        extractDomainObjectMetadataForDeclarationInFile({
+          classDeclaration,
+          file,
+        }),
+      );
     })
     .flat();
 
@@ -83,25 +106,27 @@ export const getHydratedDomainObjectMetadatasFromFiles = (files: SourceFile[]) =
     .flat();
 
   // hydrate every type `reference` property in `domainObjectMetadata`
-  const hydratedDomainObjectMetadatas = domainObjectMetadatas.map((metadata) => {
-    return new DomainObjectMetadata({
-      ...metadata,
-      properties: Object.fromEntries(
-        Object.entries(metadata.properties).map(([name, definition]) => {
-          return [
-            name,
-            ensurePropertyIsHydrated({
-              domainObjectName: metadata.name,
-              propertyName: name,
-              propertyDefinition: definition,
-              domainObjectMetadatas,
-              enumMetadatas,
-            }),
-          ];
-        }),
-      ),
-    });
-  });
+  const hydratedDomainObjectMetadatas = domainObjectMetadatas.map(
+    (metadata) => {
+      return new DomainObjectMetadata({
+        ...metadata,
+        properties: Object.fromEntries(
+          Object.entries(metadata.properties).map(([name, definition]) => {
+            return [
+              name,
+              ensurePropertyIsHydrated({
+                domainObjectName: metadata.name,
+                propertyName: name,
+                propertyDefinition: definition,
+                domainObjectMetadatas,
+                enumMetadatas,
+              }),
+            ];
+          }),
+        ),
+      });
+    },
+  );
 
   // and return the hydrated object metadatas
   return hydratedDomainObjectMetadatas;

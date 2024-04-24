@@ -1,4 +1,9 @@
-import { DomainObjectPropertyMetadata, DomainObjectPropertyType, DomainObjectReferenceMetadata, DomainObjectVariant } from '../..';
+import {
+  DomainObjectPropertyMetadata,
+  DomainObjectPropertyType,
+  DomainObjectReferenceMetadata,
+  DomainObjectVariant,
+} from '../..';
 import { isDomainObjectArrayProperty } from './isDomainObjectArrayProperty';
 import { isDomainObjectReferenceProperty } from './isDomainObjectReferenceProperty';
 
@@ -14,7 +19,8 @@ describe('isDomainObjectReferenceProperty', () => {
     });
     const isAReference = isDomainObjectReferenceProperty(property);
     expect(isAReference).toEqual(true);
-    if (isDomainObjectReferenceProperty(property)) expect(property.of.name).toEqual('Geocode'); // see how we can just use 'of' here
+    if (isDomainObjectReferenceProperty(property))
+      expect(property.of.name).toEqual('Geocode'); // see how we can just use 'of' here
   });
   it('should return false for non references', () => {
     const property = new DomainObjectPropertyMetadata({
@@ -36,7 +42,9 @@ describe('isDomainObjectReferenceProperty', () => {
         }),
       },
     });
-    const isAnArrayReference = isDomainObjectArrayProperty(property) && isDomainObjectReferenceProperty(property.of);
+    const isAnArrayReference =
+      isDomainObjectArrayProperty(property) &&
+      isDomainObjectReferenceProperty(property.of);
     expect(isAnArrayReference).toEqual(true);
   });
 });

@@ -1,7 +1,18 @@
+import { BadRequestError, UnexpectedCodePathError } from '@ehmpathy/error-fns';
 import omit from 'lodash.omit';
-import { InterfaceDeclaration, isArrayTypeNode, isTypeReferenceNode, Node, SyntaxKind, TypeElement } from 'typescript';
+import {
+  InterfaceDeclaration,
+  isArrayTypeNode,
+  isTypeReferenceNode,
+  Node,
+  SyntaxKind,
+  TypeElement,
+} from 'typescript';
 
-import { DomainObjectPropertyMetadata, DomainObjectPropertyType } from '../../domain';
+import {
+  DomainObjectPropertyMetadata,
+  DomainObjectPropertyType,
+} from '../../domain';
 
 interface ASTInterfacePropertyType extends Node {
   name: { escapedText: string };
@@ -18,7 +29,11 @@ const extractPrimaryTypeFromMemberDeclaration = ({
   memberDeclaration: TypeElement;
   propertyName: string;
   interfaceName: string;
-}): { primaryType: ASTInterfacePropertyType; nullable: boolean; required: boolean } => {
+}): {
+  primaryType: ASTInterfacePropertyType;
+  nullable: boolean;
+  required: boolean;
+} => {
   // grab the first level type on the membership declaration
   const rootType: ASTInterfacePropertyType = (memberDeclaration as any).type;
 
@@ -26,20 +41,34 @@ const extractPrimaryTypeFromMemberDeclaration = ({
   const required = !memberDeclaration.questionToken;
 
   // if its not a union, then its not nullable and the firstLevelType is the primary type
-  if (rootType.kind !== SyntaxKind.UnionType) return { primaryType: rootType, required, nullable: false };
+  if (rootType.kind !== SyntaxKind.UnionType)
+    return { primaryType: rootType, required, nullable: false };
 
   // if it is a union, then look at the subtypes.
   const subTypes = rootType.types;
-  if (!subTypes) throw new Error(`root type is a UnionType but does not have subtypes. this is unexpected. see ${interfaceName}.${propertyName}`);
+  if (!subTypes)
+    throw new UnexpectedCodePathError(
+      `root type is a UnionType but does not have subtypes. this is unexpected. see ${interfaceName}.${propertyName}`,
+    );
 
   // it should only have two, and one of them will be the `NullKeyword` type
   const hasMoreThanTwoSubtypes = subTypes.length > 2;
-  const oneOfTheSubtypesIsNotNull = !subTypes.some((type) => type.kind === SyntaxKind.NullKeyword);
+  const oneOfTheSubtypesIsNotNull = !subTypes.some(
+    (type) =>
+      type.kind === SyntaxKind.NullKeyword ||
+      (type.kind === SyntaxKind.LiteralType &&
+        (type as any).literal.kind === SyntaxKind.NullKeyword),
+  );
   if (hasMoreThanTwoSubtypes || oneOfTheSubtypesIsNotNull)
-    throw new Error(
+    throw new BadRequestError(
       `domain object property types can only have one primary type. they can be nullable or optional, but they can not be 'string | number', for example. not satisfied by ${interfaceName}.${propertyName} `,
+      {
+        subTypes,
+      },
     );
-  const typeOtherThanNull = subTypes.find((type) => type.kind !== SyntaxKind.NullKeyword)!;
+  const typeOtherThanNull = subTypes.find(
+    (type) => type.kind !== SyntaxKind.NullKeyword,
+  )!;
   return { primaryType: typeOtherThanNull, nullable: true, required };
 };
 
@@ -58,11 +87,26 @@ const extractPropertyDefinitionFromNormalizedMemberTypeDefinition = ({
 }): DomainObjectPropertyMetadata => {
   // handle the simple cases first
   if (primaryType.kind === SyntaxKind.StringKeyword)
-    return new DomainObjectPropertyMetadata({ name: propertyName, type: DomainObjectPropertyType.STRING, nullable, required });
+    return new DomainObjectPropertyMetadata({
+      name: propertyName,
+      type: DomainObjectPropertyType.STRING,
+      nullable,
+      required,
+    });
   if (primaryType.kind === SyntaxKind.NumberKeyword)
-    return new DomainObjectPropertyMetadata({ name: propertyName, type: DomainObjectPropertyType.NUMBER, nullable, required });
+    return new DomainObjectPropertyMetadata({
+      name: propertyName,
+      type: DomainObjectPropertyType.NUMBER,
+      nullable,
+      required,
+    });
   if (primaryType.kind === SyntaxKind.BooleanKeyword)
-    return new DomainObjectPropertyMetadata({ name: propertyName, type: DomainObjectPropertyType.BOOLEAN, nullable, required });
+    return new DomainObjectPropertyMetadata({
+      name: propertyName,
+      type: DomainObjectPropertyType.BOOLEAN,
+      nullable,
+      required,
+    });
 
   // handle the array case
   if (isArrayTypeNode(primaryType))
@@ -87,7 +131,12 @@ const extractPropertyDefinitionFromNormalizedMemberTypeDefinition = ({
   if (isTypeReferenceNode(primaryType)) {
     // handle date references
     if ((primaryType.typeName as any).escapedText === 'Date')
-      return new DomainObjectPropertyMetadata({ name: propertyName, type: DomainObjectPropertyType.DATE, nullable, required });
+      return new DomainObjectPropertyMetadata({
+        name: propertyName,
+        type: DomainObjectPropertyType.DATE,
+        nullable,
+        required,
+      });
 
     // handle generic references (e.g., enums or domain-object-references)
     return new DomainObjectPropertyMetadata({
@@ -100,7 +149,9 @@ const extractPropertyDefinitionFromNormalizedMemberTypeDefinition = ({
   }
 
   // throw an error otherwise
-  throw new Error(`could not extract property definition from interface member declaration. see ${interfaceName}.${propertyName}`);
+  throw new UnexpectedCodePathError(
+    `could not extract property definition from interface member declaration. see ${interfaceName}.${propertyName}`,
+  );
 };
 
 const extractPropertyFromDomainObjectInterfaceMemberDeclaration = ({
@@ -114,23 +165,38 @@ const extractPropertyFromDomainObjectInterfaceMemberDeclaration = ({
   const propertyName = (memberDeclaration.name as any).escapedText;
 
   // normalize the type data on the member declaration
-  const { primaryType, nullable, required } = extractPrimaryTypeFromMemberDeclaration({ memberDeclaration, propertyName, interfaceName });
+  const { primaryType, nullable, required } =
+    extractPrimaryTypeFromMemberDeclaration({
+      memberDeclaration,
+      propertyName,
+      interfaceName,
+    });
 
   // grab the property based on the normalized type data now
-  const definition = extractPropertyDefinitionFromNormalizedMemberTypeDefinition({ primaryType, nullable, required, interfaceName, propertyName });
+  const definition =
+    extractPropertyDefinitionFromNormalizedMemberTypeDefinition({
+      primaryType,
+      nullable,
+      required,
+      interfaceName,
+      propertyName,
+    });
 
   // and return it
   return definition;
 };
 
-export const extractPropertiesFromInterfaceDeclaration = (interfaceDeclaration: InterfaceDeclaration) => {
+export const extractPropertiesFromInterfaceDeclaration = (
+  interfaceDeclaration: InterfaceDeclaration,
+) => {
   const properties = interfaceDeclaration.members.map((memberDeclaration) =>
     extractPropertyFromDomainObjectInterfaceMemberDeclaration({
       memberDeclaration,
       interfaceName: interfaceDeclaration.name.text,
     }),
   );
-  const propertiesObject: { [index: string]: DomainObjectPropertyMetadata } = {};
+  const propertiesObject: { [index: string]: DomainObjectPropertyMetadata } =
+    {};
   properties.forEach((property) => {
     propertiesObject[property.name] = property;
   });

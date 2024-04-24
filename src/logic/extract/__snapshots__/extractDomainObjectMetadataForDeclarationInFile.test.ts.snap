@@ -2,11 +2,11 @@
 
 exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for a more complicated entity 1`] = `
 DomainObjectMetadata {
-  "decorations": Object {
-    "unique": Array [
+  "decorations": {
+    "unique": [
       "upc",
     ],
-    "updatable": Array [
+    "updatable": [
       "colors",
       "quantity",
       "description",
@@ -14,11 +14,11 @@ DomainObjectMetadata {
   },
   "extends": "DomainEntity",
   "name": "Item",
-  "properties": Object {
+  "properties": {
     "colors": DomainObjectPropertyMetadata {
       "name": "colors",
       "nullable": false,
-      "of": Object {
+      "of": {
         "nullable": false,
         "required": true,
         "type": "STRING",
@@ -50,18 +50,18 @@ DomainObjectMetadata {
 
 exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for a simple entity 1`] = `
 DomainObjectMetadata {
-  "decorations": Object {
-    "unique": Array [
+  "decorations": {
+    "unique": [
       "gate",
     ],
-    "updatable": Array [
+    "updatable": [
       "operational",
       "phoneNumber",
     ],
   },
   "extends": "DomainEntity",
   "name": "LoadingDock",
-  "properties": Object {
+  "properties": {
     "gateNumber": DomainObjectPropertyMetadata {
       "name": "gateNumber",
       "nullable": false,
@@ -98,13 +98,13 @@ DomainObjectMetadata {
 
 exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for simple value object 1`] = `
 DomainObjectMetadata {
-  "decorations": Object {
+  "decorations": {
     "unique": null,
     "updatable": null,
   },
   "extends": "DomainValueObject",
   "name": "Address",
-  "properties": Object {
+  "properties": {
     "city": DomainObjectPropertyMetadata {
       "name": "city",
       "nullable": false,

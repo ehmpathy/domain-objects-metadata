@@ -7,7 +7,10 @@ export interface LoadingDock {
   phoneNumber: string | null;
   operational: boolean;
 }
-export class LoadingDock extends DomainEntity<LoadingDock> implements LoadingDock {
+export class LoadingDock
+  extends DomainEntity<LoadingDock>
+  implements LoadingDock
+{
   public static unique = ['gate'];
   public static updatable = ['operational', 'phoneNumber'];
 }

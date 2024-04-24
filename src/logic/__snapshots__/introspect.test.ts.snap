@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`introspect should be possible to introspect all of those files at the same time 1`] = `
-Array [
+[
   DomainObjectMetadata {
-    "decorations": Object {
+    "decorations": {
       "unique": null,
       "updatable": null,
     },
     "extends": "DomainValueObject",
     "name": "Address",
-    "properties": Object {
+    "properties": {
       "city": DomainObjectPropertyMetadata {
         "name": "city",
         "nullable": false,
@@ -43,17 +43,17 @@ Array [
     },
   },
   DomainObjectMetadata {
-    "decorations": Object {
-      "unique": Array [
+    "decorations": {
+      "unique": [
         "vin",
       ],
-      "updatable": Array [
+      "updatable": [
         "milage",
       ],
     },
     "extends": "DomainEntity",
     "name": "DeliveryVan",
-    "properties": Object {
+    "properties": {
       "id": DomainObjectPropertyMetadata {
         "name": "id",
         "nullable": false,
@@ -99,15 +99,15 @@ Array [
     },
   },
   DomainObjectMetadata {
-    "decorations": Object {
-      "unique": Array [
+    "decorations": {
+      "unique": [
         "trackingNumber",
       ],
       "updatable": null,
     },
     "extends": "DomainEntity",
     "name": "Package",
-    "properties": Object {
+    "properties": {
       "id": DomainObjectPropertyMetadata {
         "name": "id",
         "nullable": false,
@@ -135,20 +135,20 @@ Array [
     },
   },
   DomainObjectMetadata {
-    "decorations": Object {
-      "unique": Array [],
-      "updatable": Array [
+    "decorations": {
+      "unique": [],
+      "updatable": [
         "status",
         "contactInfo",
       ],
     },
     "extends": "DomainEntity",
     "name": "Delivery",
-    "properties": Object {
+    "properties": {
       "contactInfo": DomainObjectPropertyMetadata {
         "name": "contactInfo",
         "nullable": false,
-        "of": Object {
+        "of": {
           "nullable": false,
           "required": true,
           "type": "STRING",
@@ -175,7 +175,7 @@ Array [
       "packages": DomainObjectPropertyMetadata {
         "name": "packages",
         "nullable": false,
-        "of": Object {
+        "of": {
           "nullable": false,
           "of": DomainObjectReferenceMetadata {
             "extends": "DomainEntity",
@@ -190,7 +190,7 @@ Array [
       "status": DomainObjectPropertyMetadata {
         "name": "status",
         "nullable": false,
-        "of": Array [
+        "of": [
           "SCHEDULED",
           "IN_PROGRESS",
           "DELIVERED",
@@ -222,15 +222,15 @@ Array [
 `;
 
 exports[`introspect should be possible to introspect the Address file 1`] = `
-Array [
+[
   DomainObjectMetadata {
-    "decorations": Object {
+    "decorations": {
       "unique": null,
       "updatable": null,
     },
     "extends": "DomainValueObject",
     "name": "Address",
-    "properties": Object {
+    "properties": {
       "city": DomainObjectPropertyMetadata {
         "name": "city",
         "nullable": false,
@@ -267,15 +267,15 @@ Array [
 `;
 
 exports[`introspect should be possible to introspect the Delivery file 1`] = `
-Array [
+[
   DomainObjectMetadata {
-    "decorations": Object {
+    "decorations": {
       "unique": null,
       "updatable": null,
     },
     "extends": "DomainValueObject",
     "name": "Address",
-    "properties": Object {
+    "properties": {
       "city": DomainObjectPropertyMetadata {
         "name": "city",
         "nullable": false,
@@ -309,17 +309,17 @@ Array [
     },
   },
   DomainObjectMetadata {
-    "decorations": Object {
-      "unique": Array [
+    "decorations": {
+      "unique": [
         "vin",
       ],
-      "updatable": Array [
+      "updatable": [
         "milage",
       ],
     },
     "extends": "DomainEntity",
     "name": "DeliveryVan",
-    "properties": Object {
+    "properties": {
       "id": DomainObjectPropertyMetadata {
         "name": "id",
         "nullable": false,
@@ -365,15 +365,15 @@ Array [
     },
   },
   DomainObjectMetadata {
-    "decorations": Object {
-      "unique": Array [
+    "decorations": {
+      "unique": [
         "trackingNumber",
       ],
       "updatable": null,
     },
     "extends": "DomainEntity",
     "name": "Package",
-    "properties": Object {
+    "properties": {
       "id": DomainObjectPropertyMetadata {
         "name": "id",
         "nullable": false,
@@ -401,20 +401,20 @@ Array [
     },
   },
   DomainObjectMetadata {
-    "decorations": Object {
-      "unique": Array [],
-      "updatable": Array [
+    "decorations": {
+      "unique": [],
+      "updatable": [
         "status",
         "contactInfo",
       ],
     },
     "extends": "DomainEntity",
     "name": "Delivery",
-    "properties": Object {
+    "properties": {
       "contactInfo": DomainObjectPropertyMetadata {
         "name": "contactInfo",
         "nullable": false,
-        "of": Object {
+        "of": {
           "nullable": false,
           "required": true,
           "type": "STRING",
@@ -441,7 +441,7 @@ Array [
       "packages": DomainObjectPropertyMetadata {
         "name": "packages",
         "nullable": false,
-        "of": Object {
+        "of": {
           "nullable": false,
           "of": DomainObjectReferenceMetadata {
             "extends": "DomainEntity",
@@ -456,7 +456,7 @@ Array [
       "status": DomainObjectPropertyMetadata {
         "name": "status",
         "nullable": false,
-        "of": Array [
+        "of": [
           "SCHEDULED",
           "IN_PROGRESS",
           "DELIVERED",
@@ -488,19 +488,19 @@ Array [
 `;
 
 exports[`introspect should be possible to introspect the DeliveryVan file 1`] = `
-Array [
+[
   DomainObjectMetadata {
-    "decorations": Object {
-      "unique": Array [
+    "decorations": {
+      "unique": [
         "vin",
       ],
-      "updatable": Array [
+      "updatable": [
         "milage",
       ],
     },
     "extends": "DomainEntity",
     "name": "DeliveryVan",
-    "properties": Object {
+    "properties": {
       "id": DomainObjectPropertyMetadata {
         "name": "id",
         "nullable": false,
