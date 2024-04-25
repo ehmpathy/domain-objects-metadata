@@ -15,7 +15,7 @@ export enum DomainObjectPropertyType {
 }
 
 const schema = Joi.object().keys({
-  name: Joi.string().required(),
+  name: Joi.string().optional(), // may be omitted, if used in "of" // todo: create a separate type for this
   type: Joi.string()
     .valid(...Object.values(DomainObjectPropertyType))
     .required(),

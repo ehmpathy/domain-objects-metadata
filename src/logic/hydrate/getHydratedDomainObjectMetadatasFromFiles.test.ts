@@ -88,4 +88,22 @@ describe('getHydratedDomainObjectMetadatasFromFiles', () => {
     );
     expect(metadatas).toMatchSnapshot();
   });
+  it('should return metadata from files which needs hydration of nested enum array', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../__test_assets__/AgentRole.ts`],
+      {},
+    );
+    const files = program
+      .getSourceFiles()
+      .filter((file) => !file.fileName.includes('/node_modules/')); // skip the node modules
+    const metadatas = getHydratedDomainObjectMetadatasFromFiles(files);
+
+    expect(metadatas[0]?.properties.permissions?.type).toEqual(
+      DomainObjectPropertyType.ARRAY,
+    );
+    expect((metadatas[0]?.properties.permissions?.of as any).type).toEqual(
+      DomainObjectPropertyType.ENUM,
+    );
+    expect(metadatas).toMatchSnapshot();
+  });
 });

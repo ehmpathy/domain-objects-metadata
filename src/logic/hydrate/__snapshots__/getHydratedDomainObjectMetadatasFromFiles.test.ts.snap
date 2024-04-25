@@ -238,6 +238,60 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
 ]
 `;
 
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which needs hydration of nested enum array 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "unique": [
+        "exid",
+      ],
+      "updatable": [
+        "name",
+        "description",
+        "permissions",
+      ],
+    },
+    "extends": "DomainEntity",
+    "name": "AgentRole",
+    "properties": {
+      "description": DomainObjectPropertyMetadata {
+        "name": "description",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "exid": DomainObjectPropertyMetadata {
+        "name": "exid",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "name": DomainObjectPropertyMetadata {
+        "name": "name",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "permissions": DomainObjectPropertyMetadata {
+        "name": "permissions",
+        "nullable": false,
+        "of": {
+          "nullable": false,
+          "of": [
+            "data:get:shipment:*",
+            "data:set:shipment:*",
+          ],
+          "required": true,
+          "type": "ENUM",
+        },
+        "required": true,
+        "type": "ARRAY",
+      },
+    },
+  },
+]
+`;
+
 exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which needs hydration of nested type alias 1`] = `
 [
   DomainObjectMetadata {
