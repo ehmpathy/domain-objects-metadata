@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.3](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.4.2...v0.4.3) (2024-04-25)
+
+
+### Bug Fixes
+
+* **extract:** enable extraction of type-alias reference property metadata ([ab0c998](https://github.com/ehmpathy/domain-objects-metadata/commit/ab0c99888e9114d0ba6da48f8217dd6dfd8121bc)), closes [#1](https://github.com/ehmpathy/domain-objects-metadata/issues/1)
+* **extract:** ensure array of enum is supported without schema error ([f406157](https://github.com/ehmpathy/domain-objects-metadata/commit/f406157451f1d73e00354245396a9c1a429a08ca))
+
 ## [0.4.2](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.4.1...v0.4.2) (2024-04-24)
 
 
