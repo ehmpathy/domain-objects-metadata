@@ -57,7 +57,7 @@ export const extractDomainObjectMetadataForDeclarationInFile = ({
     );
   if (!interfaceDeclaration)
     throw new BadRequestError(
-      `domain object class-declarations must be in the same file as their 'implements' interface-declarations. not satisfied for ${name}`,
+      `domain object class-declarations must be in the same file as their 'implements' interface-declarations. not satisfied for domain object with ${name}. please make sure that export interface and export class are in the same file`,
     );
 
   // extract the properties of the class, defined on the interface

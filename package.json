@@ -54,10 +54,10 @@
   },
   "dependencies": {
     "@ehmpathy/error-fns": "1.0.2",
-    "domain-objects": "0.10.3",
+    "domain-objects": "^0.13.2",
     "joi": "17.4.0",
     "lodash.omit": "^4.5.0",
-    "type-fns": "0.8.1",
+    "type-fns": "^0.9.1",
     "typescript": "^3.8.3",
     "uuid": "9.0.0"
   },

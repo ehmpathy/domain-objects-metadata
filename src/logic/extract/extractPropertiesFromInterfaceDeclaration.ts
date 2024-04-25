@@ -13,6 +13,7 @@ import {
   DomainObjectPropertyMetadata,
   DomainObjectPropertyType,
 } from '../../domain';
+import { extractPrimitiveTypeFromAstNodeDeclaration } from './extractPrimitiveTypeFromAstNodeDeclaration';
 
 interface ASTInterfacePropertyType extends Node {
   name: { escapedText: string };
@@ -86,24 +87,13 @@ const extractPropertyDefinitionFromNormalizedMemberTypeDefinition = ({
   interfaceName: string;
 }): DomainObjectPropertyMetadata => {
   // handle the simple cases first
-  if (primaryType.kind === SyntaxKind.StringKeyword)
+  const primitiveType = extractPrimitiveTypeFromAstNodeDeclaration({
+    declaration: primaryType,
+  });
+  if (primitiveType)
     return new DomainObjectPropertyMetadata({
       name: propertyName,
-      type: DomainObjectPropertyType.STRING,
-      nullable,
-      required,
-    });
-  if (primaryType.kind === SyntaxKind.NumberKeyword)
-    return new DomainObjectPropertyMetadata({
-      name: propertyName,
-      type: DomainObjectPropertyType.NUMBER,
-      nullable,
-      required,
-    });
-  if (primaryType.kind === SyntaxKind.BooleanKeyword)
-    return new DomainObjectPropertyMetadata({
-      name: propertyName,
-      type: DomainObjectPropertyType.BOOLEAN,
+      type: primitiveType,
       nullable,
       required,
     });
@@ -138,7 +128,7 @@ const extractPropertyDefinitionFromNormalizedMemberTypeDefinition = ({
         required,
       });
 
-    // handle generic references (e.g., enums or domain-object-references)
+    // handle generic references (e.g., alias, enum, or domain-object-references)
     return new DomainObjectPropertyMetadata({
       name: propertyName,
       type: DomainObjectPropertyType.REFERENCE,

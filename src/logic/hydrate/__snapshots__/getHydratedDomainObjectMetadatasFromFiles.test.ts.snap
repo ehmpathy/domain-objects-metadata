@@ -237,3 +237,69 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   },
 ]
 `;
+
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which needs hydration of nested type alias 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "unique": [
+        "onDate",
+      ],
+      "updatable": [],
+    },
+    "extends": "DomainEvent",
+    "name": "PerformanceReport",
+    "properties": {
+      "conversions": DomainObjectPropertyMetadata {
+        "name": "conversions",
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+      "cost": DomainObjectPropertyMetadata {
+        "name": "cost",
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+      "createdAt": DomainObjectPropertyMetadata {
+        "name": "createdAt",
+        "nullable": false,
+        "required": false,
+        "type": "DATE",
+      },
+      "engagements": DomainObjectPropertyMetadata {
+        "name": "engagements",
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+      "exposures": DomainObjectPropertyMetadata {
+        "name": "exposures",
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+      "id": DomainObjectPropertyMetadata {
+        "name": "id",
+        "nullable": false,
+        "required": false,
+        "type": "NUMBER",
+      },
+      "onDate": DomainObjectPropertyMetadata {
+        "name": "onDate",
+        "nullable": false,
+        "of": "StandardDate",
+        "required": true,
+        "type": "STRING",
+      },
+      "uuid": DomainObjectPropertyMetadata {
+        "name": "uuid",
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+    },
+  },
+]
+`;

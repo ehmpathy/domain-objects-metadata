@@ -1,6 +1,12 @@
 import { UnexpectedCodePathError } from '@ehmpathy/error-fns';
 import omit from 'lodash.omit';
-import { isClassDeclaration, isEnumDeclaration, SourceFile } from 'typescript';
+import { isPresent } from 'type-fns';
+import {
+  isClassDeclaration,
+  isEnumDeclaration,
+  isTypeAliasDeclaration,
+  SourceFile,
+} from 'typescript';
 
 import {
   DomainObjectMetadata,
@@ -8,6 +14,7 @@ import {
   DomainObjectPropertyMetadata,
   DomainObjectPropertyType,
 } from '../../domain';
+import { extractAliasMetadataFromAliasDeclaration } from '../extract/extractAliasMetadataFromAliasDeclaration';
 import { extractDomainObjectMetadataForDeclarationInFile } from '../extract/extractDomainObjectMetadataForDeclarationInFile';
 import { extractEnumMetadataFromEnumDeclaration } from '../extract/extractEnumMetadataFromEnumDeclaration';
 import { isAClassDecorationWhichExtendsDomainObject } from '../extract/isAClassDeclarationWhichExtendsDomainObject';
@@ -19,12 +26,14 @@ const ensurePropertyIsHydrated = ({
   propertyDefinition: definition,
   domainObjectMetadatas,
   enumMetadatas,
+  aliasMetadatas,
 }: {
   domainObjectName: string;
   propertyName: string;
   propertyDefinition: DomainObjectPropertyMetadata;
   domainObjectMetadatas: DomainObjectMetadata[];
   enumMetadatas: { name: string; options: string[] }[];
+  aliasMetadatas: { name: string; primitive: DomainObjectPropertyType }[];
 }): DomainObjectPropertyMetadata => {
   // handle the special case of arrays first; arrays are special because their `of` property is a property definition of its own
   if (definition.type === DomainObjectPropertyType.ARRAY)
@@ -37,6 +46,7 @@ const ensurePropertyIsHydrated = ({
           propertyDefinition: definition.of as DomainObjectPropertyMetadata, // since arrays have nested property as "of",
           domainObjectMetadatas,
           enumMetadatas,
+          aliasMetadatas,
         }),
         'name', // make sure to remove the nested name that comes back when we hydrate a reference property
       ),
@@ -73,6 +83,16 @@ const ensurePropertyIsHydrated = ({
       of: foundReferencedEnum.options,
     });
 
+  // try to see if its referencing a type alias
+  const foundReferencedTypeAlias = aliasMetadatas.find(
+    (metadata) => metadata.name === referencedName,
+  );
+  if (foundReferencedTypeAlias)
+    return new DomainObjectPropertyMetadata({
+      ...definition,
+      type: foundReferencedTypeAlias.primitive,
+    });
+
   // if this is neither, throw an error since we can't figure out what its referencing
   throw new UnexpectedCodePathError(
     `could not hydrate a property who references another type. no domain object or enum found with that referenced name. see \`${domainObjectName}.${propertyName}: ${referencedName}\``,
@@ -105,6 +125,32 @@ export const getHydratedDomainObjectMetadatasFromFiles = (
     })
     .flat();
 
+  // lookup all the typealias metadatas for all of the typealiases referenced by our domain object declarations
+  const referencedAliasNames: string[] = domainObjectMetadatas
+    .map((dobjMetadata) =>
+      Object.values(dobjMetadata.properties).map((propertyMetadata) =>
+        typeof propertyMetadata.of === 'string'
+          ? // can only be an alias if "of" is type of string
+            propertyMetadata.of
+          : null,
+      ),
+    )
+    .flat()
+    .filter(isPresent);
+  const aliasMetadatas = files
+    .map((file) => {
+      const aliasDeclarationsAll = file.statements.filter(
+        isTypeAliasDeclaration,
+      );
+      const aliasDeclarationsWeCareAbout = aliasDeclarationsAll.filter(
+        (declaration) => referencedAliasNames.includes(declaration.name.text),
+      );
+      return aliasDeclarationsWeCareAbout.map(
+        extractAliasMetadataFromAliasDeclaration,
+      );
+    })
+    .flat();
+
   // hydrate every type `reference` property in `domainObjectMetadata`
   const hydratedDomainObjectMetadatas = domainObjectMetadatas.map(
     (metadata) => {
@@ -120,6 +166,7 @@ export const getHydratedDomainObjectMetadatasFromFiles = (
                 propertyDefinition: definition,
                 domainObjectMetadatas,
                 enumMetadatas,
+                aliasMetadatas,
               }),
             ];
           }),

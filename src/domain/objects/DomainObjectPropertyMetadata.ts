@@ -11,6 +11,7 @@ export enum DomainObjectPropertyType {
   ARRAY = 'ARRAY',
   REFERENCE = 'REFERENCE',
   ENUM = 'ENUM',
+  ALIAS = 'ALIAS',
 }
 
 const schema = Joi.object().keys({

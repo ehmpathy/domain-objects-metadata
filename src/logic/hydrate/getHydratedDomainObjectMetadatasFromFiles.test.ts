@@ -72,4 +72,20 @@ describe('getHydratedDomainObjectMetadatasFromFiles', () => {
 
     expect(metadatas).toMatchSnapshot();
   });
+  it('should return metadata from files which needs hydration of nested type alias', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../__test_assets__/PerformanceReport.ts`],
+      {},
+    );
+    const files = program
+      .getSourceFiles()
+      .filter((file) => !file.fileName.includes('/node_modules/')); // skip the node modules
+    const metadatas = getHydratedDomainObjectMetadatasFromFiles(files);
+    console.log(JSON.stringify(metadatas, null, 2));
+
+    expect(metadatas[0]?.properties.onDate?.type).toEqual(
+      DomainObjectPropertyType.STRING,
+    );
+    expect(metadatas).toMatchSnapshot();
+  });
 });
