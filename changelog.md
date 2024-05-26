@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.5.0...v0.5.1) (2024-05-26)
+
+
+### Bug Fixes
+
+* **statics:** support static unique as const ([ad23a31](https://github.com/ehmpathy/domain-objects-metadata/commit/ad23a3177c4f6afad28e8f08475f32b229355ac0))
+
 ## [0.5.0](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.4.3...v0.5.0) (2024-05-26)
 
 
