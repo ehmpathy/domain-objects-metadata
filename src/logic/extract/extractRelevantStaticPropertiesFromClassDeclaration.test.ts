@@ -20,7 +20,7 @@ describe('extractRelevantStaticPropertiesFromClassDeclaration', () => {
       updatable: ['status', 'amount', 'currency'],
     });
   });
-  it('should be able to get the unique and updatable properties of a DomainValueObject', () => {
+  it('should be able to get the unique and updatable properties of a DomainLiteral', () => {
     const program = ts.createProgram(
       [`${__dirname}/../__test_assets__/Address.ts`],
       {},

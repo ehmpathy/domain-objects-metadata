@@ -7,7 +7,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
       "unique": null,
       "updatable": null,
     },
-    "extends": "DomainValueObject",
+    "extends": "DomainLiteral",
     "name": "Address",
     "properties": {
       "city": DomainObjectPropertyMetadata {
@@ -99,7 +99,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
         "name": "destination",
         "nullable": false,
         "of": DomainObjectReferenceMetadata {
-          "extends": "DomainValueObject",
+          "extends": "DomainLiteral",
           "name": "Address",
         },
         "required": true,
@@ -150,7 +150,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
       "unique": null,
       "updatable": null,
     },
-    "extends": "DomainValueObject",
+    "extends": "DomainLiteral",
     "name": "Address",
     "properties": {
       "city": DomainObjectPropertyMetadata {

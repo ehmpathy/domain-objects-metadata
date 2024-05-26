@@ -3,7 +3,7 @@ import ts, { isClassDeclaration } from 'typescript';
 import { extractDomainObjectMetadataForDeclarationInFile } from './extractDomainObjectMetadataForDeclarationInFile';
 
 describe('extractDomainObjectMetadataForDeclarationInFile', () => {
-  it('should be able to extract domain object metadata for simple value object', () => {
+  it('should be able to extract domain object metadata for simple literal', () => {
     const program = ts.createProgram(
       [`${__dirname}/../__test_assets__/Address.ts`],
       {},

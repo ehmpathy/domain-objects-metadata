@@ -17,14 +17,14 @@ npm install --save domain-objects-metadata
 
 # Usage Examples
 
-### metadata of a value object
+### metadata of a literal
 
 say you've defined an `Address` as one of the objects in your domain
 
 ```ts
 // src/domain/objects/Address.ts
 
-import { DomainValueObject } from 'domain-objects';
+import { DomainLiteral } from 'domain-objects';
 
 interface Address {
   street: string;
@@ -33,7 +33,7 @@ interface Address {
   state: string;
   postal: string;
 }
-class Address extends DomainValueObject<Address> implements Address {}
+class Address extends DomainLiteral<Address> implements Address {}
 ```
 
 you can introspect the file that its defined in to get its metadata
@@ -49,7 +49,7 @@ which looks like
 ```ts
 {
   name: 'Address',
-  extends:  'DomainValueObject',
+  extends:  'DomainLiteral',
   properties: {
     street: { name: 'street', type: 'string', required: true },
     suite: { name: 'suite', type: 'string', nullable: true, required: true },
@@ -187,7 +187,7 @@ which looks like
     destination: {
       name: 'destination',
       type: 'reference',
-      of: { name: 'Address', extends: 'DomainValueObject' },
+      of: { name: 'Address', extends: 'DomainLiteral' },
       required: true,
     },
     contactInfo: {

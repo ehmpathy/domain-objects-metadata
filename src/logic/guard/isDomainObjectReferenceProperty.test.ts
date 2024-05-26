@@ -13,7 +13,7 @@ describe('isDomainObjectReferenceProperty', () => {
       name: 'geocode',
       type: DomainObjectPropertyType.REFERENCE,
       of: new DomainObjectReferenceMetadata({
-        extends: DomainObjectVariant.DOMAIN_VALUE_OBJECT,
+        extends: DomainObjectVariant.DOMAIN_LITERAL,
         name: 'Geocode',
       }),
     });
@@ -37,7 +37,7 @@ describe('isDomainObjectReferenceProperty', () => {
       of: {
         type: DomainObjectPropertyType.REFERENCE,
         of: new DomainObjectReferenceMetadata({
-          extends: DomainObjectVariant.DOMAIN_VALUE_OBJECT,
+          extends: DomainObjectVariant.DOMAIN_LITERAL,
           name: 'Geocode',
         }),
       },

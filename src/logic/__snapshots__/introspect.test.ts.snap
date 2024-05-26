@@ -7,7 +7,7 @@ exports[`introspect should be possible to introspect all of those files at the s
       "unique": null,
       "updatable": null,
     },
-    "extends": "DomainValueObject",
+    "extends": "DomainLiteral",
     "name": "Address",
     "properties": {
       "city": DomainObjectPropertyMetadata {
@@ -160,7 +160,7 @@ exports[`introspect should be possible to introspect all of those files at the s
         "name": "destination",
         "nullable": false,
         "of": DomainObjectReferenceMetadata {
-          "extends": "DomainValueObject",
+          "extends": "DomainLiteral",
           "name": "Address",
         },
         "required": true,
@@ -228,7 +228,7 @@ exports[`introspect should be possible to introspect the Address file 1`] = `
       "unique": null,
       "updatable": null,
     },
-    "extends": "DomainValueObject",
+    "extends": "DomainLiteral",
     "name": "Address",
     "properties": {
       "city": DomainObjectPropertyMetadata {
@@ -273,7 +273,7 @@ exports[`introspect should be possible to introspect the Delivery file 1`] = `
       "unique": null,
       "updatable": null,
     },
-    "extends": "DomainValueObject",
+    "extends": "DomainLiteral",
     "name": "Address",
     "properties": {
       "city": DomainObjectPropertyMetadata {
@@ -426,7 +426,7 @@ exports[`introspect should be possible to introspect the Delivery file 1`] = `
         "name": "destination",
         "nullable": false,
         "of": DomainObjectReferenceMetadata {
-          "extends": "DomainValueObject",
+          "extends": "DomainLiteral",
           "name": "Address",
         },
         "required": true,
