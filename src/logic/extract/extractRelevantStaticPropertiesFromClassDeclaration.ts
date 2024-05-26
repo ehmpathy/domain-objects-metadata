@@ -1,8 +1,14 @@
 import { ClassDeclaration, ClassElement } from 'typescript';
 
 const getInitialValueOfStaticProperty = (staticProperty: ClassElement) => {
-  const initialValues = (staticProperty as any).initializer.elements
-    .filter((element: any) => element.text)
+  // extract the elements of the array
+  const initializer = (staticProperty as any).initializer;
+  const elements =
+    initializer.type?.typeName?.escapedText === 'const'
+      ? initializer.expression?.elements
+      : initializer.elements;
+  const initialValues = elements
+    ?.filter((element: any) => element.text)
     .map((element: any) => element.text);
   return initialValues;
 };
