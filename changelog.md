@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.4.3...v0.5.0) (2024-05-26)
+
+
+### Features
+
+* **terms:** domain-value-object to domain-literal, for intuition++ ([#4](https://github.com/ehmpathy/domain-objects-metadata/issues/4)) ([d2f1ad0](https://github.com/ehmpathy/domain-objects-metadata/commit/d2f1ad0684c587cbe9e3b59b7d88a99e8b32613a))
+
 ## [0.4.3](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.4.2...v0.4.3) (2024-04-25)
 
 
