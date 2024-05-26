@@ -1,4 +1,4 @@
-import { DomainValueObject } from 'domain-objects';
+import { DomainLiteral } from 'domain-objects';
 
 export interface Address {
   street: string;
@@ -7,4 +7,4 @@ export interface Address {
   state: string;
   postal: string;
 }
-export class Address extends DomainValueObject<Address> implements Address {}
+export class Address extends DomainLiteral<Address> implements Address {}

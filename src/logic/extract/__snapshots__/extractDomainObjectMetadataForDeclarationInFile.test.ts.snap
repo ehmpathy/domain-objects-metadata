@@ -96,13 +96,13 @@ DomainObjectMetadata {
 }
 `;
 
-exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for simple value object 1`] = `
+exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for simple literal 1`] = `
 DomainObjectMetadata {
   "decorations": {
     "unique": null,
     "updatable": null,
   },
-  "extends": "DomainValueObject",
+  "extends": "DomainLiteral",
   "name": "Address",
   "properties": {
     "city": DomainObjectPropertyMetadata {
