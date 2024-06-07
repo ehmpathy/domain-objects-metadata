@@ -1,6 +1,7 @@
 import ts from 'typescript';
 
 import { DomainObjectPropertyType } from '../../domain';
+import { extractRelevantProgramSourceFiles } from '../extractRelevantProgramSourceFiles';
 import { getHydratedDomainObjectMetadatasFromFiles } from './getHydratedDomainObjectMetadatasFromFiles';
 
 describe('getHydratedDomainObjectMetadatasFromFiles', () => {
@@ -104,6 +105,29 @@ describe('getHydratedDomainObjectMetadatasFromFiles', () => {
     expect((metadatas[0]?.properties.permissions?.of as any).type).toEqual(
       DomainObjectPropertyType.ENUM,
     );
+    expect(metadatas).toMatchSnapshot();
+  });
+  it('should return metadata from files which needs hydration of enum from a package import', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../__test_assets__/AsyncTaskDoCoolStuff.ts`],
+      {},
+    );
+    const files = extractRelevantProgramSourceFiles(program.getSourceFiles());
+    const metadatas = getHydratedDomainObjectMetadatasFromFiles(files);
+    // console.log(JSON.stringify(metadatas, null, 2));
+
+    expect(metadatas[0]?.properties.status?.type).toEqual(
+      DomainObjectPropertyType.ENUM,
+    );
+    expect(metadatas[0]?.properties.status?.of).toEqual([
+      'HALTED',
+      'SCHEDULED',
+      'QUEUED',
+      'ATTEMPTED',
+      'FULFILLED',
+      'FAILED',
+      'CANCELED',
+    ]);
     expect(metadatas).toMatchSnapshot();
   });
 });

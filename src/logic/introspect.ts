@@ -1,6 +1,7 @@
 import ts from 'typescript';
 
 import { DomainObjectMetadata } from '../domain';
+import { extractRelevantProgramSourceFiles } from './extractRelevantProgramSourceFiles';
 import { getHydratedDomainObjectMetadatasFromFiles } from './hydrate/getHydratedDomainObjectMetadatasFromFiles';
 
 export const introspect = (
@@ -14,10 +15,8 @@ export const introspect = (
   // create a "program" instance: a collection of source files
   const program = ts.createProgram(filePathsToIntrospect, {});
 
-  // filter out all of the `/node_modules/` files, since we dont care to look at those
-  const files = program
-    .getSourceFiles()
-    .filter((file) => !file.fileName.includes('/node_modules/'));
+  // filter out irrelevant source files
+  const files = extractRelevantProgramSourceFiles(program.getSourceFiles());
 
   // now get hydrated domain object metadatas from that file
   return getHydratedDomainObjectMetadatasFromFiles(files);

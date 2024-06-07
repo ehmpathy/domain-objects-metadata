@@ -100,7 +100,7 @@ const ensurePropertyIsHydrated = ({
 };
 
 export const getHydratedDomainObjectMetadatasFromFiles = (
-  files: SourceFile[],
+  files: readonly SourceFile[],
 ) => {
   // lookup all the unhydrated metadatas for all domain object declarations
   const domainObjectMetadatas = files

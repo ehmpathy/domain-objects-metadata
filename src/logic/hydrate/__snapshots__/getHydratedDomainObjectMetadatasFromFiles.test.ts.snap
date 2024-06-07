@@ -188,6 +188,62 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
 ]
 `;
 
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which needs hydration of enum from a package import 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "unique": [
+        "targetExid",
+      ],
+      "updatable": null,
+    },
+    "extends": "DomainEntity",
+    "name": "AsyncTaskDoCoolStuff",
+    "properties": {
+      "createdAt": DomainObjectPropertyMetadata {
+        "name": "createdAt",
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+      "status": DomainObjectPropertyMetadata {
+        "name": "status",
+        "nullable": false,
+        "of": [
+          "HALTED",
+          "SCHEDULED",
+          "QUEUED",
+          "ATTEMPTED",
+          "FULFILLED",
+          "FAILED",
+          "CANCELED",
+        ],
+        "required": true,
+        "type": "ENUM",
+      },
+      "targetExid": DomainObjectPropertyMetadata {
+        "name": "targetExid",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "updatedAt": DomainObjectPropertyMetadata {
+        "name": "updatedAt",
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+      "uuid": DomainObjectPropertyMetadata {
+        "name": "uuid",
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+    },
+  },
+]
+`;
+
 exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which needs hydration of nested enum 1`] = `
 [
   DomainObjectMetadata {
