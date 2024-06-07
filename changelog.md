@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.1](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.7.0...v0.7.1) (2024-06-07)
+
+
+### Bug Fixes
+
+* **lint:** add return type on a new file ([eea389e](https://github.com/ehmpathy/domain-objects-metadata/commit/eea389ea8a0f2bd9a8674d6ec06d98f92860cc99))
+* **test:** remove outdated snapshot ([6dc690b](https://github.com/ehmpathy/domain-objects-metadata/commit/6dc690b1a6b268accc58a3ea03e6387f938abb42))
+
 ## [0.7.0](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.6.0...v0.7.0) (2024-06-07)
 
 
