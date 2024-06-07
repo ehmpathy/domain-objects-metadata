@@ -119,11 +119,41 @@ const extractPropertyDefinitionFromNormalizedMemberTypeDefinition = ({
 
   // handle the nested type reference
   if (isTypeReferenceNode(primaryType)) {
+    // extract the reference name
+    const referencedName = (primaryType.typeName as any).escapedText;
+
     // handle date references
-    if ((primaryType.typeName as any).escapedText === 'Date')
+    if (referencedName === 'Date')
       return new DomainObjectPropertyMetadata({
         name: propertyName,
         type: DomainObjectPropertyType.DATE,
+        nullable,
+        required,
+      });
+
+    // handle Literalize<Enum> references // todo: think through how we can support future aliases like these via plugins, instead of hardcoded defs
+    if (referencedName === 'Literalize') {
+      const possibleEnumName = (primaryType.typeArguments?.[0] as any)?.typeName
+        ?.escapedText;
+      const hasEnumArgumentLikely =
+        primaryType.typeArguments?.length === 1 &&
+        primaryType.typeArguments[0]?.kind === SyntaxKind.TypeReference &&
+        possibleEnumName;
+      if (hasEnumArgumentLikely)
+        return new DomainObjectPropertyMetadata({
+          name: propertyName,
+          type: DomainObjectPropertyType.REFERENCE,
+          of: possibleEnumName,
+          nullable,
+          required,
+        });
+    }
+
+    // handle UniDateTime and UniDate references // todo: think through how we can support future aliases like these via plugins, instead of hardcoded defs
+    if (referencedName === 'UniDateTime' || referencedName === 'UniDate')
+      return new DomainObjectPropertyMetadata({
+        name: propertyName,
+        type: DomainObjectPropertyType.STRING,
         nullable,
         required,
       });

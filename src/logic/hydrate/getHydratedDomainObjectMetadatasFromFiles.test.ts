@@ -82,7 +82,7 @@ describe('getHydratedDomainObjectMetadatasFromFiles', () => {
       .getSourceFiles()
       .filter((file) => !file.fileName.includes('/node_modules/')); // skip the node modules
     const metadatas = getHydratedDomainObjectMetadatasFromFiles(files);
-    console.log(JSON.stringify(metadatas, null, 2));
+    // console.log(JSON.stringify(metadatas, null, 2));
 
     expect(metadatas[0]?.properties.onDate?.type).toEqual(
       DomainObjectPropertyType.STRING,
@@ -107,7 +107,7 @@ describe('getHydratedDomainObjectMetadatasFromFiles', () => {
     );
     expect(metadatas).toMatchSnapshot();
   });
-  it('should return metadata from files which needs hydration of enum from a package import', () => {
+  it('should return metadata from files which needs hydration of enum from another package', () => {
     const program = ts.createProgram(
       [`${__dirname}/../__test_assets__/AsyncTaskDoCoolStuff.ts`],
       {},
@@ -128,6 +128,40 @@ describe('getHydratedDomainObjectMetadatasFromFiles', () => {
       'FAILED',
       'CANCELED',
     ]);
+    expect(metadatas).toMatchSnapshot();
+  });
+  it('should return metadata from files which reference a generic type modifier from a package plugin, Literalize', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../__test_assets__/Nutrient.ts`],
+      {},
+    );
+    const files = extractRelevantProgramSourceFiles(program.getSourceFiles());
+    const metadatas = getHydratedDomainObjectMetadatasFromFiles(files);
+    // console.log(JSON.stringify(metadatas, null, 2));
+
+    expect(metadatas[0]?.properties.variant?.type).toEqual(
+      DomainObjectPropertyType.ENUM,
+    );
+    expect(metadatas[0]?.properties.variant?.of).toEqual([
+      'PROTEIN',
+      'VITAMIN',
+      'MINERAL',
+      'CARBOHYDRATE',
+    ]);
+    expect(metadatas).toMatchSnapshot();
+  });
+  it('should return metadata from files which reference a generic type modifier from a package plugin, UniDateTime', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../__test_assets__/NutrientResearchPublicationEvent.ts`],
+      {},
+    );
+    const files = extractRelevantProgramSourceFiles(program.getSourceFiles());
+    const metadatas = getHydratedDomainObjectMetadatasFromFiles(files);
+    console.log(JSON.stringify(metadatas, null, 2));
+
+    expect(metadatas[1]?.properties.occurredAt?.type).toEqual(
+      DomainObjectPropertyType.STRING,
+    );
     expect(metadatas).toMatchSnapshot();
   });
 });

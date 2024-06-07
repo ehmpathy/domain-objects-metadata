@@ -188,7 +188,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
 ]
 `;
 
-exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which needs hydration of enum from a package import 1`] = `
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which needs hydration of enum from another package 1`] = `
 [
   DomainObjectMetadata {
     "decorations": {
@@ -408,6 +408,146 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
         "nullable": false,
         "required": false,
         "type": "STRING",
+      },
+    },
+  },
+]
+`;
+
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which reference a generic type modifier from a package plugin, Literalize 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "unique": null,
+      "updatable": null,
+    },
+    "extends": "DomainLiteral",
+    "name": "Nutrient",
+    "properties": {
+      "value": DomainObjectPropertyMetadata {
+        "name": "value",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "variant": DomainObjectPropertyMetadata {
+        "name": "variant",
+        "nullable": false,
+        "of": [
+          "PROTEIN",
+          "VITAMIN",
+          "MINERAL",
+          "CARBOHYDRATE",
+        ],
+        "required": true,
+        "type": "ENUM",
+      },
+    },
+  },
+]
+`;
+
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which reference a generic type modifier from a package plugin, UniDateTime 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "unique": null,
+      "updatable": null,
+    },
+    "extends": "DomainLiteral",
+    "name": "Nutrient",
+    "properties": {
+      "value": DomainObjectPropertyMetadata {
+        "name": "value",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "variant": DomainObjectPropertyMetadata {
+        "name": "variant",
+        "nullable": false,
+        "of": [
+          "PROTEIN",
+          "VITAMIN",
+          "MINERAL",
+          "CARBOHYDRATE",
+        ],
+        "required": true,
+        "type": "ENUM",
+      },
+    },
+  },
+  DomainObjectMetadata {
+    "decorations": {
+      "unique": [
+        "nutrient",
+        "exid",
+        "occurredAt",
+      ],
+      "updatable": null,
+    },
+    "extends": "DomainEvent",
+    "name": "NutrientResearchPublicationEvent",
+    "properties": {
+      "authors": DomainObjectPropertyMetadata {
+        "name": "authors",
+        "nullable": false,
+        "of": {
+          "nullable": false,
+          "required": true,
+          "type": "STRING",
+        },
+        "required": true,
+        "type": "ARRAY",
+      },
+      "nutrient": DomainObjectPropertyMetadata {
+        "name": "nutrient",
+        "nullable": false,
+        "of": DomainObjectReferenceMetadata {
+          "extends": "DomainLiteral",
+          "name": "Nutrient",
+        },
+        "required": true,
+        "type": "REFERENCE",
+      },
+      "occurredAt": DomainObjectPropertyMetadata {
+        "name": "occurredAt",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+    },
+  },
+]
+`;
+
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which reference a generic type modifier from another package 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "unique": null,
+      "updatable": null,
+    },
+    "extends": "DomainLiteral",
+    "name": "Nutrient",
+    "properties": {
+      "value": DomainObjectPropertyMetadata {
+        "name": "value",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "variant": DomainObjectPropertyMetadata {
+        "name": "variant",
+        "nullable": false,
+        "of": [
+          "PROTEIN",
+          "VITAMIN",
+          "MINERAL",
+          "CARBOHYDRATE",
+        ],
+        "required": true,
+        "type": "ENUM",
       },
     },
   },

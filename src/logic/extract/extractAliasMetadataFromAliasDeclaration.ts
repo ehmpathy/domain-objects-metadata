@@ -1,6 +1,6 @@
 import { UnexpectedCodePathError } from '@ehmpathy/error-fns';
 import { isPresent } from 'type-fns';
-import { EnumDeclaration, TypeAliasDeclaration } from 'typescript';
+import { EnumDeclaration, SyntaxKind, TypeAliasDeclaration } from 'typescript';
 
 import { extractPrimitiveTypeFromAstNodeDeclaration } from './extractPrimitiveTypeFromAstNodeDeclaration';
 

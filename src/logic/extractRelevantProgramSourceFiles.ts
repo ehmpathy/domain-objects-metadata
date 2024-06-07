@@ -1,5 +1,7 @@
 import { SourceFile } from 'typescript';
 
+const ALLOWLIST = ['simple-async-tasks', 'type-fns'];
+
 /**
  * .what = narrows the list of program source files to the ones we care about
  * .why =
@@ -14,5 +16,8 @@ export const extractRelevantProgramSourceFiles = (
   files.filter(
     (file) =>
       !file.fileName.includes('/node_modules/') ||
-      file.fileName.includes('simple-async-tasks'), // todo: remove this allowlist by having inputs come from a .ts export which explicitly declares the dobjs to analyze
+      ALLOWLIST.some((allowed) =>
+        // todo: remove this allowlist by having inputs come from a .ts export which explicitly declares the dobjs to analyze
+        file.fileName.includes(`/node_modules/${allowed}`),
+      ),
   );
