@@ -12,7 +12,7 @@ const ALLOWLIST = ['simple-async-tasks', 'type-fns'];
  */
 export const extractRelevantProgramSourceFiles = (
   files: readonly SourceFile[],
-) =>
+): SourceFile[] =>
   files.filter(
     (file) =>
       !file.fileName.includes('/node_modules/') ||
