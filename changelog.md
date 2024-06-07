@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.6.0...v0.7.0) (2024-06-07)
+
+
+### Features
+
+* **aliases:** support type aliases for allowlist types; plan for plugins ([891e2fa](https://github.com/ehmpathy/domain-objects-metadata/commit/891e2fa38d41037f0ceb2721d365af398e176250))
+
 ## [0.6.0](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.5.1...v0.6.0) (2024-06-07)
 
 
