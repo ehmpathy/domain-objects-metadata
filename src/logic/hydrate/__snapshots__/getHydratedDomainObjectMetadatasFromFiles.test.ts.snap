@@ -520,36 +520,3 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   },
 ]
 `;
-
-exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which reference a generic type modifier from another package 1`] = `
-[
-  DomainObjectMetadata {
-    "decorations": {
-      "unique": null,
-      "updatable": null,
-    },
-    "extends": "DomainLiteral",
-    "name": "Nutrient",
-    "properties": {
-      "value": DomainObjectPropertyMetadata {
-        "name": "value",
-        "nullable": false,
-        "required": true,
-        "type": "STRING",
-      },
-      "variant": DomainObjectPropertyMetadata {
-        "name": "variant",
-        "nullable": false,
-        "of": [
-          "PROTEIN",
-          "VITAMIN",
-          "MINERAL",
-          "CARBOHYDRATE",
-        ],
-        "required": true,
-        "type": "ENUM",
-      },
-    },
-  },
-]
-`;
