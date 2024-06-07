@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.5.1...v0.6.0) (2024-06-07)
+
+
+### Features
+
+* **refs:** support type refs from allowlist packages; plan for plugins ([de2530f](https://github.com/ehmpathy/domain-objects-metadata/commit/de2530f6693d3f8a06e5abd116e37b84e25ea9dd))
+
 ## [0.5.1](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.5.0...v0.5.1) (2024-05-26)
 
 
