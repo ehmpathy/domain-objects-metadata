@@ -14,6 +14,8 @@ const schema = Joi.object().keys({
     DomainObjectPropertyMetadata.schema,
   ),
   decorations: Joi.object().keys({
+    alias: Joi.string().allow(null).required(),
+    primary: Joi.array().items(Joi.string()).allow(null).required(),
     unique: Joi.array().items(Joi.string()).allow(null).required(),
     updatable: Joi.array().items(Joi.string()).allow(null).required(),
   }),
@@ -26,6 +28,8 @@ export interface DomainObjectMetadata {
     [index: string]: DomainObjectPropertyMetadata;
   };
   decorations: {
+    alias: string | null;
+    primary: string[] | null;
     unique: string[] | null;
     updatable: string[] | null;
   };

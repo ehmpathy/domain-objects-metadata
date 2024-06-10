@@ -17,6 +17,7 @@ describe('extractRelevantStaticPropertiesFromClassDeclaration', () => {
     // console.log(options);
     expect(options).toEqual({
       alias: null,
+      primary: null,
       unique: ['externalId'],
       updatable: ['status', 'amount', 'currency'],
     });
@@ -35,11 +36,12 @@ describe('extractRelevantStaticPropertiesFromClassDeclaration', () => {
     // console.log(options);
     expect(options).toEqual({
       alias: null,
+      primary: null,
       unique: null,
       updatable: null,
     });
   });
-  it('should be able to get the unique and updatable properties of a DomainEntity with unique key as const', () => {
+  it('should be able to get the primary, unique, and updatable properties of a DomainEntity with primary and unique keys as const', () => {
     const program = ts.createProgram(
       [`${__dirname}/../__test_assets__/SeaTurtle.ts`],
       {},
@@ -53,6 +55,7 @@ describe('extractRelevantStaticPropertiesFromClassDeclaration', () => {
     // console.log(options);
     expect(options).toEqual({
       alias: null,
+      primary: ['uuid'],
       unique: ['seawaterSecurityNumber'],
       updatable: ['name'],
     });
@@ -72,6 +75,7 @@ describe('extractRelevantStaticPropertiesFromClassDeclaration', () => {
       extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
     expect(options).toEqual({
       alias: 'task',
+      primary: null,
       unique: ['targetExid'],
       updatable: null,
     });

@@ -157,7 +157,7 @@ describe('getHydratedDomainObjectMetadatasFromFiles', () => {
     );
     const files = extractRelevantProgramSourceFiles(program.getSourceFiles());
     const metadatas = getHydratedDomainObjectMetadatasFromFiles(files);
-    console.log(JSON.stringify(metadatas, null, 2));
+    // console.log(JSON.stringify(metadatas, null, 2));
 
     expect(metadatas[1]?.properties.occurredAt?.type).toEqual(
       DomainObjectPropertyType.STRING,

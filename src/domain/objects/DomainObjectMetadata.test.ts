@@ -31,6 +31,8 @@ describe('DomainObjectReferenceMetadata', () => {
         }),
       },
       decorations: {
+        alias: null,
+        primary: null,
         unique: ['serialNumber'],
         updatable: null,
       },

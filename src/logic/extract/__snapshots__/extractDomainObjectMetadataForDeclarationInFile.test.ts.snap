@@ -3,6 +3,8 @@
 exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for a more complicated entity 1`] = `
 DomainObjectMetadata {
   "decorations": {
+    "alias": null,
+    "primary": null,
     "unique": [
       "upc",
     ],
@@ -51,6 +53,8 @@ DomainObjectMetadata {
 exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for a simple entity 1`] = `
 DomainObjectMetadata {
   "decorations": {
+    "alias": null,
+    "primary": null,
     "unique": [
       "gate",
     ],
@@ -99,6 +103,8 @@ DomainObjectMetadata {
 exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for simple literal 1`] = `
 DomainObjectMetadata {
   "decorations": {
+    "alias": null,
+    "primary": null,
     "unique": null,
     "updatable": null,
   },

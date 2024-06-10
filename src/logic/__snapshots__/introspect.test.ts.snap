@@ -4,6 +4,8 @@ exports[`introspect should be possible to introspect all of those files at the s
 [
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": null,
       "updatable": null,
     },
@@ -44,6 +46,8 @@ exports[`introspect should be possible to introspect all of those files at the s
   },
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": [
         "vin",
       ],
@@ -100,6 +104,8 @@ exports[`introspect should be possible to introspect all of those files at the s
   },
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": [
         "trackingNumber",
       ],
@@ -136,6 +142,8 @@ exports[`introspect should be possible to introspect all of those files at the s
   },
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": [],
       "updatable": [
         "status",
@@ -225,6 +233,8 @@ exports[`introspect should be possible to introspect the Address file 1`] = `
 [
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": null,
       "updatable": null,
     },
@@ -270,6 +280,8 @@ exports[`introspect should be possible to introspect the Delivery file 1`] = `
 [
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": null,
       "updatable": null,
     },
@@ -310,6 +322,8 @@ exports[`introspect should be possible to introspect the Delivery file 1`] = `
   },
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": [
         "vin",
       ],
@@ -366,6 +380,8 @@ exports[`introspect should be possible to introspect the Delivery file 1`] = `
   },
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": [
         "trackingNumber",
       ],
@@ -402,6 +418,8 @@ exports[`introspect should be possible to introspect the Delivery file 1`] = `
   },
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": [],
       "updatable": [
         "status",
@@ -491,6 +509,8 @@ exports[`introspect should be possible to introspect the DeliveryVan file 1`] = 
 [
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": [
         "vin",
       ],

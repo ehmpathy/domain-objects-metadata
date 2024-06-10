@@ -4,6 +4,8 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
 [
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": null,
       "updatable": null,
     },
@@ -44,6 +46,8 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   },
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": [
         "upc",
       ],
@@ -89,6 +93,8 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   },
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": [],
       "updatable": [],
     },
@@ -147,6 +153,8 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
 [
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": null,
       "updatable": null,
     },
@@ -192,6 +200,8 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
 [
   DomainObjectMetadata {
     "decorations": {
+      "alias": "task",
+      "primary": null,
       "unique": [
         "targetExid",
       ],
@@ -248,6 +258,8 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
 [
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": [
         "externalId",
       ],
@@ -298,6 +310,8 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
 [
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": [
         "exid",
       ],
@@ -352,6 +366,8 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
 [
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": [
         "onDate",
       ],
@@ -418,6 +434,8 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
 [
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": null,
       "updatable": null,
     },
@@ -451,6 +469,8 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
 [
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": null,
       "updatable": null,
     },
@@ -479,6 +499,8 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   },
   DomainObjectMetadata {
     "decorations": {
+      "alias": null,
+      "primary": null,
       "unique": [
         "nutrient",
         "exid",

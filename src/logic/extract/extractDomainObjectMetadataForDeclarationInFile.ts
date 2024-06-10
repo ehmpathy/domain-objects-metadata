@@ -70,6 +70,8 @@ export const extractDomainObjectMetadataForDeclarationInFile = ({
 
   // define the decorations of this domain-object
   const decorations = {
+    alias: relevantStaticProperties.alias,
+    primary: relevantStaticProperties.primary,
     unique: relevantStaticProperties.unique,
     updatable: relevantStaticProperties.updatable,
   };

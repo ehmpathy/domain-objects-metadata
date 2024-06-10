@@ -34,6 +34,7 @@ export const extractRelevantStaticPropertiesFromClassDeclaration = (
   classDeclaration: ClassDeclaration,
 ): {
   alias: string | null;
+  primary: string[] | null;
   unique: string[] | null;
   updatable: string[] | null;
 } => {
@@ -44,6 +45,15 @@ export const extractRelevantStaticPropertiesFromClassDeclaration = (
   });
   const alias = aliasPropertyDeclaration
     ? getInitialValueOfStaticProperty(aliasPropertyDeclaration)
+    : null;
+
+  // grab values of primary
+  const primaryPropertyDeclaration = getStaticPropertyDeclarationByName({
+    classDeclaration,
+    name: 'primary',
+  });
+  const primary = primaryPropertyDeclaration
+    ? getInitialValueOfStaticProperty(primaryPropertyDeclaration)
     : null;
 
   // grab values of unique
@@ -67,6 +77,7 @@ export const extractRelevantStaticPropertiesFromClassDeclaration = (
   // return them
   return {
     alias,
+    primary,
     unique,
     updatable,
   };
