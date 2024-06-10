@@ -16,6 +16,7 @@ describe('extractRelevantStaticPropertiesFromClassDeclaration', () => {
       extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
     // console.log(options);
     expect(options).toEqual({
+      alias: null,
       unique: ['externalId'],
       updatable: ['status', 'amount', 'currency'],
     });
@@ -32,7 +33,11 @@ describe('extractRelevantStaticPropertiesFromClassDeclaration', () => {
     const options =
       extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
     // console.log(options);
-    expect(options).toEqual({ unique: null, updatable: null });
+    expect(options).toEqual({
+      alias: null,
+      unique: null,
+      updatable: null,
+    });
   });
   it('should be able to get the unique and updatable properties of a DomainEntity with unique key as const', () => {
     const program = ts.createProgram(
@@ -47,8 +52,28 @@ describe('extractRelevantStaticPropertiesFromClassDeclaration', () => {
       extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
     // console.log(options);
     expect(options).toEqual({
+      alias: null,
       unique: ['seawaterSecurityNumber'],
       updatable: ['name'],
+    });
+  });
+  it('should be able to get the alias, unique, and updatable properties of a DomainEntity with an alias', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../__test_assets__/AsyncTaskDoCoolStuff.ts`],
+      {},
+    );
+    const file = program
+      .getSourceFiles()
+      .find((thisFile) =>
+        thisFile.fileName.includes('/AsyncTaskDoCoolStuff.ts'),
+      )!; // grab the right file
+    const classDeclaration = file.statements.find(isClassDeclaration)!;
+    const options =
+      extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
+    expect(options).toEqual({
+      alias: 'task',
+      unique: ['targetExid'],
+      updatable: null,
     });
   });
 });

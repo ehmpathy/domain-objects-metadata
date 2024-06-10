@@ -1,8 +1,13 @@
-import { ClassDeclaration, ClassElement } from 'typescript';
+import { ClassDeclaration, ClassElement, SyntaxKind } from 'typescript';
 
 const getInitialValueOfStaticProperty = (staticProperty: ClassElement) => {
   // extract the elements of the array
   const initializer = (staticProperty as any).initializer;
+
+  // if its a string, extract the value
+  if (initializer.kind === SyntaxKind.StringLiteral) return initializer.text;
+
+  // if its an array, extract the values
   const elements =
     initializer.type?.typeName?.escapedText === 'const'
       ? initializer.expression?.elements
@@ -27,7 +32,20 @@ const getStaticPropertyDeclarationByName = ({
 
 export const extractRelevantStaticPropertiesFromClassDeclaration = (
   classDeclaration: ClassDeclaration,
-): { unique: string[] | null; updatable: string[] | null } => {
+): {
+  alias: string | null;
+  unique: string[] | null;
+  updatable: string[] | null;
+} => {
+  // grab values of alias
+  const aliasPropertyDeclaration = getStaticPropertyDeclarationByName({
+    classDeclaration,
+    name: 'alias',
+  });
+  const alias = aliasPropertyDeclaration
+    ? getInitialValueOfStaticProperty(aliasPropertyDeclaration)
+    : null;
+
   // grab values of unique
   const uniquePropertyDeclaration = getStaticPropertyDeclarationByName({
     classDeclaration,
@@ -48,6 +66,7 @@ export const extractRelevantStaticPropertiesFromClassDeclaration = (
 
   // return them
   return {
+    alias,
     unique,
     updatable,
   };

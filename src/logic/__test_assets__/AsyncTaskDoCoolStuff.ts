@@ -16,5 +16,6 @@ export class AsyncTaskDoCoolStuff
   extends DomainEntity<AsyncTaskDoCoolStuff>
   implements AsyncTaskDoCoolStuff
 {
+  public static alias = 'task';
   public static unique = ['targetExid'];
 }
