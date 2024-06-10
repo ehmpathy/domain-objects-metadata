@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.2](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.7.1...v0.7.2) (2024-06-10)
+
+
+### Bug Fixes
+
+* **decorations:** expose the alias static decorator ([1d39943](https://github.com/ehmpathy/domain-objects-metadata/commit/1d3994345e2a770bddd0703771946ab5cc741894))
+
 ## [0.7.1](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.7.0...v0.7.1) (2024-06-07)
 
 
