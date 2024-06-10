@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.3](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.7.2...v0.7.3) (2024-06-10)
+
+
+### Bug Fixes
+
+* **decorations:** expose the primary static decorator ([c98dbc8](https://github.com/ehmpathy/domain-objects-metadata/commit/c98dbc84f3dd0dd10cb46ed4157bb849bc37d7df))
+
 ## [0.7.2](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.7.1...v0.7.2) (2024-06-10)
 
 

@@ -2,7 +2,7 @@
   "name": "domain-objects-metadata",
   "author": "ehmpathy",
   "description": "Extract domain information from your domain-object definitions using type introspection.",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "repository": "ehmpathy/domain-objects-metadata",
   "homepage": "https://github.com/ehmpathy/domain-objects-metadata",
   "keywords": [
