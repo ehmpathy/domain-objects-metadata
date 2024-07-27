@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.4](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.7.3...v0.7.4) (2024-07-27)
+
+
+### Bug Fixes
+
+* **practs:** bump practs to latest best ([e0fb895](https://github.com/ehmpathy/domain-objects-metadata/commit/e0fb8950030c50181cb65aa058e4623af857a8db))
+
 ## [0.7.3](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.7.2...v0.7.3) (2024-06-10)
 
 
