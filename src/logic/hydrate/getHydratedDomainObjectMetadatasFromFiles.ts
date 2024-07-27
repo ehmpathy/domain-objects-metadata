@@ -1,6 +1,5 @@
 import { UnexpectedCodePathError } from '@ehmpathy/error-fns';
-import omit from 'lodash.omit';
-import { isPresent } from 'type-fns';
+import { isPresent, omit } from 'type-fns';
 import {
   isClassDeclaration,
   isEnumDeclaration,
@@ -48,7 +47,7 @@ const ensurePropertyIsHydrated = ({
           enumMetadatas,
           aliasMetadatas,
         }),
-        'name', // make sure to remove the nested name that comes back when we hydrate a reference property
+        ['name'], // make sure to remove the nested name that comes back when we hydrate a reference property
       ),
     });
 

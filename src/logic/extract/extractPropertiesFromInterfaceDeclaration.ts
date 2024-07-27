@@ -1,5 +1,5 @@
 import { BadRequestError, UnexpectedCodePathError } from '@ehmpathy/error-fns';
-import omit from 'lodash.omit';
+import { omit } from 'type-fns';
 import {
   InterfaceDeclaration,
   isArrayTypeNode,
@@ -111,7 +111,7 @@ const extractPropertyDefinitionFromNormalizedMemberTypeDefinition = ({
           propertyName,
           interfaceName,
         }),
-        'name',
+        ['name'],
       ),
       nullable,
       required,
