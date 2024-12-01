@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.6](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.7.5...v0.7.6) (2024-12-01)
+
+
+### Bug Fixes
+
+* **tests:** add more test coverage on domain object refs ([fb3e3e7](https://github.com/ehmpathy/domain-objects-metadata/commit/fb3e3e724d15c3fd30d1caea7bd1dc04523986c0))
+
 ## [0.7.5](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.7.4...v0.7.5) (2024-12-01)
 
 
