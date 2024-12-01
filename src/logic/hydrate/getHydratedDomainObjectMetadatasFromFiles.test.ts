@@ -1,6 +1,6 @@
 import ts from 'typescript';
 
-import { DomainObjectPropertyType } from '../../domain';
+import { DomainObjectPropertyType, DomainObjectVariant } from '../../domain';
 import { extractRelevantProgramSourceFiles } from '../extractRelevantProgramSourceFiles';
 import { getHydratedDomainObjectMetadatasFromFiles } from './getHydratedDomainObjectMetadatasFromFiles';
 
@@ -162,6 +162,24 @@ describe('getHydratedDomainObjectMetadatasFromFiles', () => {
     expect(metadatas[1]?.properties.occurredAt?.type).toEqual(
       DomainObjectPropertyType.STRING,
     );
+    expect(metadatas).toMatchSnapshot();
+  });
+  it('should return metadata from files which reference a Reference<> type from domain-objects', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../__test_assets__/SeaGuide.ts`],
+      {},
+    );
+    const files = extractRelevantProgramSourceFiles(program.getSourceFiles());
+    const metadatas = getHydratedDomainObjectMetadatasFromFiles(files);
+    console.log(JSON.stringify(metadatas, null, 2));
+
+    expect(metadatas[1]?.properties.turtle?.type).toEqual(
+      DomainObjectPropertyType.REFERENCE,
+    );
+    expect(metadatas[1]?.properties.turtle?.of).toEqual({
+      name: 'SeaTurtle',
+      extends: DomainObjectVariant.DOMAIN_ENTITY,
+    });
     expect(metadatas).toMatchSnapshot();
   });
 });

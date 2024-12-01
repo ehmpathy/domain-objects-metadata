@@ -430,6 +430,93 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
 ]
 `;
 
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which reference a Reference<> type from domain-objects 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": [
+        "uuid",
+      ],
+      "unique": [
+        "seawaterSecurityNumber",
+      ],
+      "updatable": [
+        "name",
+      ],
+    },
+    "extends": "DomainEntity",
+    "name": "SeaTurtle",
+    "properties": {
+      "name": DomainObjectPropertyMetadata {
+        "name": "name",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "seawaterSecurityNumber": DomainObjectPropertyMetadata {
+        "name": "seawaterSecurityNumber",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "uuid": DomainObjectPropertyMetadata {
+        "name": "uuid",
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+    },
+  },
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": [
+        "uuid",
+      ],
+      "unique": [
+        "turtle",
+      ],
+      "updatable": [
+        "name",
+      ],
+    },
+    "extends": "DomainEntity",
+    "name": "SeaGuide",
+    "properties": {
+      "rank": DomainObjectPropertyMetadata {
+        "name": "rank",
+        "nullable": false,
+        "of": [
+          "SAND_SCOUT",
+          "KELP_KEEPER",
+          "WAVE_WHISPERER",
+          "OCEAN_ORACLE",
+        ],
+        "required": true,
+        "type": "ENUM",
+      },
+      "turtle": DomainObjectPropertyMetadata {
+        "name": "turtle",
+        "nullable": false,
+        "of": DomainObjectReferenceMetadata {
+          "extends": "DomainEntity",
+          "name": "SeaTurtle",
+        },
+        "required": true,
+        "type": "REFERENCE",
+      },
+      "uuid": DomainObjectPropertyMetadata {
+        "name": "uuid",
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+    },
+  },
+]
+`;
+
 exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which reference a generic type modifier from a package plugin, Literalize 1`] = `
 [
   DomainObjectMetadata {
