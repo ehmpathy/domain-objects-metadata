@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.5](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.7.4...v0.7.5) (2024-12-01)
+
+
+### Bug Fixes
+
+* **refs:** support domain-objects.Refs explicitly; plan for plugins ([ce73ad4](https://github.com/ehmpathy/domain-objects-metadata/commit/ce73ad4f41c8c9eab936956ad0dd75137d373a3e))
+
 ## [0.7.4](https://github.com/ehmpathy/domain-objects-metadata/compare/v0.7.3...v0.7.4) (2024-07-27)
 
 
