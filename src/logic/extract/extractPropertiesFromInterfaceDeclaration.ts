@@ -158,6 +158,26 @@ const extractPropertyDefinitionFromNormalizedMemberTypeDefinition = ({
         required,
       });
 
+    // handle Ref<> references // todo: think through how we can support future aliases like these via plugins, instead of hardcoded defs
+    if (referencedName === 'Ref') {
+      const possibleReferencedDobjName = (primaryType.typeArguments?.[0] as any)
+        ?.exprName?.escapedText;
+      const hasReferencedDObjArgumentLikely =
+        primaryType.typeArguments?.length === 1 &&
+        primaryType.typeArguments[0]?.kind === SyntaxKind.TypeQuery &&
+        (primaryType.typeArguments[0] as any)?.exprName?.kind ===
+          SyntaxKind.Identifier &&
+        possibleReferencedDobjName;
+      if (hasReferencedDObjArgumentLikely)
+        return new DomainObjectPropertyMetadata({
+          name: propertyName,
+          type: DomainObjectPropertyType.REFERENCE,
+          of: possibleReferencedDobjName,
+          nullable,
+          required,
+        });
+    }
+
     // handle generic references (e.g., alias, enum, or domain-object-references)
     return new DomainObjectPropertyMetadata({
       name: propertyName,
@@ -208,7 +228,7 @@ const extractPropertyFromDomainObjectInterfaceMemberDeclaration = ({
 
 export const extractPropertiesFromInterfaceDeclaration = (
   interfaceDeclaration: InterfaceDeclaration,
-) => {
+): Record<string, DomainObjectPropertyMetadata> => {
   const properties = interfaceDeclaration.members.map((memberDeclaration) =>
     extractPropertyFromDomainObjectInterfaceMemberDeclaration({
       memberDeclaration,

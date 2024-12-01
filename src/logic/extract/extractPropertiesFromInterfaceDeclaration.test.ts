@@ -156,4 +156,25 @@ describe('extractPropertiesFromInterfaceDeclaration', () => {
     // save an example
     expect(properties).toMatchSnapshot();
   });
+  it('should be able to extract properties from an interface with a ref type', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../__test_assets__/SeaGuide.ts`],
+      {},
+    );
+    const file = program
+      .getSourceFiles()
+      .find((thisFile) => thisFile.fileName.includes('/SeaGuide.ts'))!; // grab the right file
+    const interfaceDeclaration = file.statements.find(isInterfaceDeclaration)!;
+    const properties =
+      extractPropertiesFromInterfaceDeclaration(interfaceDeclaration);
+
+    // prove we got the enum defined
+    expect(properties.turtle).toMatchObject({
+      type: DomainObjectPropertyType.REFERENCE,
+      of: 'SeaTurtle',
+    });
+
+    // save an example
+    expect(properties).toMatchSnapshot();
+  });
 });

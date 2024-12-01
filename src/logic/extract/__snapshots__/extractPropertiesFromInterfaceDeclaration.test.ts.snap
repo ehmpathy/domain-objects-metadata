@@ -71,6 +71,31 @@ exports[`extractPropertiesFromInterfaceDeclaration should be able to extract pro
 }
 `;
 
+exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with a ref type 1`] = `
+{
+  "rank": DomainObjectPropertyMetadata {
+    "name": "rank",
+    "nullable": false,
+    "of": "SeaGuideRank",
+    "required": true,
+    "type": "REFERENCE",
+  },
+  "turtle": DomainObjectPropertyMetadata {
+    "name": "turtle",
+    "nullable": false,
+    "of": "SeaTurtle",
+    "required": true,
+    "type": "REFERENCE",
+  },
+  "uuid": DomainObjectPropertyMetadata {
+    "name": "uuid",
+    "nullable": false,
+    "required": false,
+    "type": "STRING",
+  },
+}
+`;
+
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with all of the primitive types we support: number, string, boolean w/ required and optional combination 1`] = `
 {
   "gateNumber": DomainObjectPropertyMetadata {
