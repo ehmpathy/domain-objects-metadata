@@ -1,0 +1,3 @@
+# dpdm exclude patterns
+# each entry is joined with | to form a single regex for --exclude
+exclude: []

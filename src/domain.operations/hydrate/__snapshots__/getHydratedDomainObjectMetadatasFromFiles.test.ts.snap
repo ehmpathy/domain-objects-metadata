@@ -1,0 +1,631 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files w/ has lots of imports and needs hydration of nested domain objects 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": null,
+      "unique": null,
+      "updatable": null,
+    },
+    "extends": "DomainLiteral",
+    "name": "Address",
+    "properties": {
+      "city": DomainObjectPropertyMetadata {
+        "name": "city",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "postal": DomainObjectPropertyMetadata {
+        "name": "postal",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "state": DomainObjectPropertyMetadata {
+        "name": "state",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "street": DomainObjectPropertyMetadata {
+        "name": "street",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "suite": DomainObjectPropertyMetadata {
+        "name": "suite",
+        "nullable": true,
+        "required": true,
+        "type": "STRING",
+      },
+    },
+  },
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": null,
+      "unique": [
+        "upc",
+      ],
+      "updatable": [
+        "colors",
+        "quantity",
+        "description",
+      ],
+    },
+    "extends": "DomainEntity",
+    "name": "Item",
+    "properties": {
+      "colors": DomainObjectPropertyMetadata {
+        "name": "colors",
+        "nullable": false,
+        "of": {
+          "nullable": false,
+          "required": true,
+          "type": "STRING",
+        },
+        "required": true,
+        "type": "ARRAY",
+      },
+      "description": DomainObjectPropertyMetadata {
+        "name": "description",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "price": DomainObjectPropertyMetadata {
+        "name": "price",
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+      "upc": DomainObjectPropertyMetadata {
+        "name": "upc",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+    },
+  },
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": null,
+      "unique": [],
+      "updatable": [],
+    },
+    "extends": "DomainEntity",
+    "name": "Order",
+    "properties": {
+      "destination": DomainObjectPropertyMetadata {
+        "name": "destination",
+        "nullable": false,
+        "of": DomainObjectReferenceMetadata {
+          "extends": "DomainLiteral",
+          "name": "Address",
+        },
+        "required": true,
+        "type": "REFERENCE",
+      },
+      "id": DomainObjectPropertyMetadata {
+        "name": "id",
+        "nullable": false,
+        "required": false,
+        "type": "NUMBER",
+      },
+      "items": DomainObjectPropertyMetadata {
+        "name": "items",
+        "nullable": false,
+        "of": {
+          "nullable": false,
+          "of": DomainObjectReferenceMetadata {
+            "extends": "DomainEntity",
+            "name": "Item",
+          },
+          "required": true,
+          "type": "REFERENCE",
+        },
+        "required": true,
+        "type": "ARRAY",
+      },
+      "status": DomainObjectPropertyMetadata {
+        "name": "status",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "uuid": DomainObjectPropertyMetadata {
+        "name": "uuid",
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+    },
+  },
+]
+`;
+
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files w/ no need for hydration 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": null,
+      "unique": null,
+      "updatable": null,
+    },
+    "extends": "DomainLiteral",
+    "name": "Address",
+    "properties": {
+      "city": DomainObjectPropertyMetadata {
+        "name": "city",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "postal": DomainObjectPropertyMetadata {
+        "name": "postal",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "state": DomainObjectPropertyMetadata {
+        "name": "state",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "street": DomainObjectPropertyMetadata {
+        "name": "street",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "suite": DomainObjectPropertyMetadata {
+        "name": "suite",
+        "nullable": true,
+        "required": true,
+        "type": "STRING",
+      },
+    },
+  },
+]
+`;
+
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which needs hydration of enum from another package 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": "task",
+      "primary": null,
+      "unique": [
+        "targetExid",
+      ],
+      "updatable": null,
+    },
+    "extends": "DomainEntity",
+    "name": "AsyncTaskDoCoolStuff",
+    "properties": {
+      "createdAt": DomainObjectPropertyMetadata {
+        "name": "createdAt",
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+      "status": DomainObjectPropertyMetadata {
+        "name": "status",
+        "nullable": false,
+        "of": [
+          "HALTED",
+          "SCHEDULED",
+          "QUEUED",
+          "ATTEMPTED",
+          "FULFILLED",
+          "FAILED",
+          "CANCELED",
+        ],
+        "required": true,
+        "type": "ENUM",
+      },
+      "targetExid": DomainObjectPropertyMetadata {
+        "name": "targetExid",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "updatedAt": DomainObjectPropertyMetadata {
+        "name": "updatedAt",
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+      "uuid": DomainObjectPropertyMetadata {
+        "name": "uuid",
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+    },
+  },
+]
+`;
+
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which needs hydration of nested enum 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": null,
+      "unique": [
+        "externalId",
+      ],
+      "updatable": [
+        "status",
+        "amount",
+        "currency",
+      ],
+    },
+    "extends": "DomainEntity",
+    "name": "Payment",
+    "properties": {
+      "amount": DomainObjectPropertyMetadata {
+        "name": "amount",
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+      "currency": DomainObjectPropertyMetadata {
+        "name": "currency",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "externalId": DomainObjectPropertyMetadata {
+        "name": "externalId",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "status": DomainObjectPropertyMetadata {
+        "name": "status",
+        "nullable": false,
+        "of": [
+          "PENDING",
+          "COMPLETED",
+          "CANCELED",
+        ],
+        "required": true,
+        "type": "ENUM",
+      },
+    },
+  },
+]
+`;
+
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which needs hydration of nested enum array 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": null,
+      "unique": [
+        "exid",
+      ],
+      "updatable": [
+        "name",
+        "description",
+        "permissions",
+      ],
+    },
+    "extends": "DomainEntity",
+    "name": "AgentRole",
+    "properties": {
+      "description": DomainObjectPropertyMetadata {
+        "name": "description",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "exid": DomainObjectPropertyMetadata {
+        "name": "exid",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "name": DomainObjectPropertyMetadata {
+        "name": "name",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "permissions": DomainObjectPropertyMetadata {
+        "name": "permissions",
+        "nullable": false,
+        "of": {
+          "nullable": false,
+          "of": [
+            "data:get:shipment:*",
+            "data:set:shipment:*",
+          ],
+          "required": true,
+          "type": "ENUM",
+        },
+        "required": true,
+        "type": "ARRAY",
+      },
+    },
+  },
+]
+`;
+
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which needs hydration of nested type alias 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": null,
+      "unique": [
+        "onDate",
+      ],
+      "updatable": [],
+    },
+    "extends": "DomainEvent",
+    "name": "PerformanceReport",
+    "properties": {
+      "conversions": DomainObjectPropertyMetadata {
+        "name": "conversions",
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+      "cost": DomainObjectPropertyMetadata {
+        "name": "cost",
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+      "createdAt": DomainObjectPropertyMetadata {
+        "name": "createdAt",
+        "nullable": false,
+        "required": false,
+        "type": "DATE",
+      },
+      "engagements": DomainObjectPropertyMetadata {
+        "name": "engagements",
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+      "exposures": DomainObjectPropertyMetadata {
+        "name": "exposures",
+        "nullable": false,
+        "required": true,
+        "type": "NUMBER",
+      },
+      "id": DomainObjectPropertyMetadata {
+        "name": "id",
+        "nullable": false,
+        "required": false,
+        "type": "NUMBER",
+      },
+      "onDate": DomainObjectPropertyMetadata {
+        "name": "onDate",
+        "nullable": false,
+        "of": "StandardDate",
+        "required": true,
+        "type": "STRING",
+      },
+      "uuid": DomainObjectPropertyMetadata {
+        "name": "uuid",
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+    },
+  },
+]
+`;
+
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which reference a Reference<> type from domain-objects 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": [
+        "uuid",
+      ],
+      "unique": [
+        "seawaterSecurityNumber",
+      ],
+      "updatable": [
+        "name",
+      ],
+    },
+    "extends": "DomainEntity",
+    "name": "SeaTurtle",
+    "properties": {
+      "name": DomainObjectPropertyMetadata {
+        "name": "name",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "seawaterSecurityNumber": DomainObjectPropertyMetadata {
+        "name": "seawaterSecurityNumber",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "uuid": DomainObjectPropertyMetadata {
+        "name": "uuid",
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+    },
+  },
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": [
+        "uuid",
+      ],
+      "unique": [
+        "turtle",
+      ],
+      "updatable": [
+        "name",
+      ],
+    },
+    "extends": "DomainEntity",
+    "name": "SeaGuide",
+    "properties": {
+      "rank": DomainObjectPropertyMetadata {
+        "name": "rank",
+        "nullable": false,
+        "of": [
+          "SAND_SCOUT",
+          "KELP_KEEPER",
+          "WAVE_WHISPERER",
+          "OCEAN_ORACLE",
+        ],
+        "required": true,
+        "type": "ENUM",
+      },
+      "turtle": DomainObjectPropertyMetadata {
+        "name": "turtle",
+        "nullable": false,
+        "of": DomainObjectReferenceMetadata {
+          "extends": "DomainEntity",
+          "name": "SeaTurtle",
+        },
+        "required": true,
+        "type": "REFERENCE",
+      },
+      "uuid": DomainObjectPropertyMetadata {
+        "name": "uuid",
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+    },
+  },
+]
+`;
+
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which reference a generic type modifier from a package plugin, Literalize 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": null,
+      "unique": null,
+      "updatable": null,
+    },
+    "extends": "DomainLiteral",
+    "name": "Nutrient",
+    "properties": {
+      "value": DomainObjectPropertyMetadata {
+        "name": "value",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "variant": DomainObjectPropertyMetadata {
+        "name": "variant",
+        "nullable": false,
+        "of": [
+          "PROTEIN",
+          "VITAMIN",
+          "MINERAL",
+          "CARBOHYDRATE",
+        ],
+        "required": true,
+        "type": "ENUM",
+      },
+    },
+  },
+]
+`;
+
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which reference a generic type modifier from a package plugin, UniDateTime 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": null,
+      "unique": null,
+      "updatable": null,
+    },
+    "extends": "DomainLiteral",
+    "name": "Nutrient",
+    "properties": {
+      "value": DomainObjectPropertyMetadata {
+        "name": "value",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "variant": DomainObjectPropertyMetadata {
+        "name": "variant",
+        "nullable": false,
+        "of": [
+          "PROTEIN",
+          "VITAMIN",
+          "MINERAL",
+          "CARBOHYDRATE",
+        ],
+        "required": true,
+        "type": "ENUM",
+      },
+    },
+  },
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": null,
+      "unique": [
+        "nutrient",
+        "exid",
+        "occurredAt",
+      ],
+      "updatable": null,
+    },
+    "extends": "DomainEvent",
+    "name": "NutrientResearchPublicationEvent",
+    "properties": {
+      "authors": DomainObjectPropertyMetadata {
+        "name": "authors",
+        "nullable": false,
+        "of": {
+          "nullable": false,
+          "required": true,
+          "type": "STRING",
+        },
+        "required": true,
+        "type": "ARRAY",
+      },
+      "nutrient": DomainObjectPropertyMetadata {
+        "name": "nutrient",
+        "nullable": false,
+        "of": DomainObjectReferenceMetadata {
+          "extends": "DomainLiteral",
+          "name": "Nutrient",
+        },
+        "required": true,
+        "type": "REFERENCE",
+      },
+      "occurredAt": DomainObjectPropertyMetadata {
+        "name": "occurredAt",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+    },
+  },
+]
+`;
