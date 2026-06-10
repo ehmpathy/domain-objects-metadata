@@ -1,0 +1,83 @@
+import ts, { isClassDeclaration } from 'typescript';
+
+import { extractRelevantStaticPropertiesFromClassDeclaration } from './extractRelevantStaticPropertiesFromClassDeclaration';
+
+describe('extractRelevantStaticPropertiesFromClassDeclaration', () => {
+  it('should be able to get the unique and updatable properties of a DomainEntity', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../.test.assets/Payment.ts`],
+      {},
+    );
+    const file = program
+      .getSourceFiles()
+      .find((thisFile) => thisFile.fileName.includes('/Payment.ts'))!; // grab the right file
+    const classDeclaration = file.statements.find(isClassDeclaration)!;
+    const options =
+      extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
+    // console.log(options);
+    expect(options).toEqual({
+      alias: null,
+      primary: null,
+      unique: ['externalId'],
+      updatable: ['status', 'amount', 'currency'],
+    });
+  });
+  it('should be able to get the unique and updatable properties of a DomainLiteral', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../.test.assets/Address.ts`],
+      {},
+    );
+    const file = program
+      .getSourceFiles()
+      .find((thisFile) => thisFile.fileName.includes('/Address.ts'))!; // grab the right file
+    const classDeclaration = file.statements.find(isClassDeclaration)!;
+    const options =
+      extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
+    // console.log(options);
+    expect(options).toEqual({
+      alias: null,
+      primary: null,
+      unique: null,
+      updatable: null,
+    });
+  });
+  it('should be able to get the primary, unique, and updatable properties of a DomainEntity with primary and unique keys as const', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../.test.assets/SeaTurtle.ts`],
+      {},
+    );
+    const file = program
+      .getSourceFiles()
+      .find((thisFile) => thisFile.fileName.includes('/SeaTurtle.ts'))!; // grab the right file
+    const classDeclaration = file.statements.find(isClassDeclaration)!;
+    const options =
+      extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
+    // console.log(options);
+    expect(options).toEqual({
+      alias: null,
+      primary: ['uuid'],
+      unique: ['seawaterSecurityNumber'],
+      updatable: ['name'],
+    });
+  });
+  it('should be able to get the alias, unique, and updatable properties of a DomainEntity with an alias', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../.test.assets/AsyncTaskDoCoolStuff.ts`],
+      {},
+    );
+    const file = program
+      .getSourceFiles()
+      .find((thisFile) =>
+        thisFile.fileName.includes('/AsyncTaskDoCoolStuff.ts'),
+      )!; // grab the right file
+    const classDeclaration = file.statements.find(isClassDeclaration)!;
+    const options =
+      extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
+    expect(options).toEqual({
+      alias: 'task',
+      primary: null,
+      unique: ['targetExid'],
+      updatable: null,
+    });
+  });
+});
