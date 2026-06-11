@@ -6,8 +6,8 @@ import {
   DomainObjectPropertyMetadata,
   DomainObjectPropertyType,
 } from '@src/domain.objects';
-
 import type { ASTInterfacePropertyType } from '@src/domain.objects/ASTInterfacePropertyType';
+
 import { extractHomogeneousLiteralUnionType } from './extractHomogeneousLiteralUnionType';
 import { extractPrimitiveTypeFromAstNodeDeclaration } from './extractPrimitiveTypeFromAstNodeDeclaration';
 

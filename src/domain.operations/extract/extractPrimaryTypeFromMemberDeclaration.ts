@@ -2,6 +2,7 @@ import { BadRequestError, UnexpectedCodePathError } from 'helpful-errors';
 import { SyntaxKind, type TypeElement } from 'typescript';
 
 import type { ASTInterfacePropertyType } from '@src/domain.objects/ASTInterfacePropertyType';
+
 import { extractHomogeneousLiteralUnionType } from './extractHomogeneousLiteralUnionType';
 
 /**

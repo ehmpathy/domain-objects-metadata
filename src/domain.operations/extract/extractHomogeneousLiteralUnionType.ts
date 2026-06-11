@@ -1,6 +1,6 @@
 import type { DomainObjectPropertyType } from '@src/domain.objects';
-
 import type { ASTInterfacePropertyType } from '@src/domain.objects/ASTInterfacePropertyType';
+
 import { extractPrimitiveTypeFromLiteralKind } from './extractPrimitiveTypeFromLiteralKind';
 
 /**
