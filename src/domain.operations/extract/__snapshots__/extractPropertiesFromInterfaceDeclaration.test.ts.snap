@@ -195,6 +195,58 @@ exports[`extractPropertiesFromInterfaceDeclaration should be able to extract pro
 }
 `;
 
+exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with string literal unions 1`] = `
+{
+  "isActive": DomainObjectPropertyMetadata {
+    "name": "isActive",
+    "nullable": false,
+    "required": true,
+    "type": "BOOLEAN",
+  },
+  "mode": DomainObjectPropertyMetadata {
+    "name": "mode",
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+  "name": DomainObjectPropertyMetadata {
+    "name": "name",
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+  "priority": DomainObjectPropertyMetadata {
+    "name": "priority",
+    "nullable": false,
+    "required": true,
+    "type": "NUMBER",
+  },
+  "status": DomainObjectPropertyMetadata {
+    "name": "status",
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+  "tags": DomainObjectPropertyMetadata {
+    "name": "tags",
+    "nullable": false,
+    "of": {
+      "nullable": false,
+      "required": true,
+      "type": "STRING",
+    },
+    "required": true,
+    "type": "ARRAY",
+  },
+  "verdict": DomainObjectPropertyMetadata {
+    "name": "verdict",
+    "nullable": true,
+    "required": true,
+    "type": "STRING",
+  },
+}
+`;
+
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from our Address interface. all strings 1`] = `
 {
   "city": DomainObjectPropertyMetadata {
@@ -228,4 +280,49 @@ exports[`extractPropertiesFromInterfaceDeclaration should be able to extract pro
     "type": "STRING",
   },
 }
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration should throw on mixed literal union (e.g., string | number) 1`] = `
+"BadRequestError: domain object property types can only have one primary type. they can be nullable or optional, but they can not be 'string | number', for example. not satisfied by MixedLiteralUnion.mixed 
+
+{
+  "subTypes": [
+    {
+      "pos": 184,
+      "end": 193,
+      "flags": 0,
+      "modifierFlagsCache": 0,
+      "transformFlags": 1,
+      "kind": 201,
+      "literal": {
+        "pos": 184,
+        "end": 193,
+        "flags": 0,
+        "modifierFlagsCache": 0,
+        "transformFlags": 0,
+        "kind": 11,
+        "text": "active",
+        "hasExtendedUnicodeEscape": false
+      }
+    },
+    {
+      "pos": 195,
+      "end": 197,
+      "flags": 0,
+      "modifierFlagsCache": 0,
+      "transformFlags": 1,
+      "kind": 201,
+      "literal": {
+        "pos": 195,
+        "end": 197,
+        "flags": 0,
+        "modifierFlagsCache": 0,
+        "transformFlags": 0,
+        "kind": 9,
+        "text": "1",
+        "numericLiteralFlags": 0
+      }
+    }
+  ]
+}"
 `;
