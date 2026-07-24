@@ -1,3 +1,5 @@
+import { DomainLiteral } from 'domain-objects';
+
 /**
  * test asset for string literal union types
  */
@@ -16,6 +18,11 @@ export interface ClaimSearch {
    * single string literal — should extract as STRING
    */
   mode: 'search';
+
+  /**
+   * optional string literal union — should extract as STRING, required false
+   */
+  sortBy?: 'date' | 'relevance';
 
   /**
    * number literal union — should extract as NUMBER
@@ -37,3 +44,6 @@ export interface ClaimSearch {
    */
   tags: ('featured' | 'promoted' | 'archived')[];
 }
+export class ClaimSearch
+  extends DomainLiteral<ClaimSearch>
+  implements ClaimSearch {}

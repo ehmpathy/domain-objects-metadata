@@ -1,5 +1,73 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
+exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for a literal with string literal unions 1`] = `
+DomainObjectMetadata {
+  "decorations": {
+    "alias": null,
+    "primary": null,
+    "unique": null,
+    "updatable": null,
+  },
+  "extends": "DomainLiteral",
+  "name": "ClaimSearch",
+  "properties": {
+    "isActive": DomainObjectPropertyMetadata {
+      "name": "isActive",
+      "nullable": false,
+      "required": true,
+      "type": "BOOLEAN",
+    },
+    "mode": DomainObjectPropertyMetadata {
+      "name": "mode",
+      "nullable": false,
+      "required": true,
+      "type": "STRING",
+    },
+    "name": DomainObjectPropertyMetadata {
+      "name": "name",
+      "nullable": false,
+      "required": true,
+      "type": "STRING",
+    },
+    "priority": DomainObjectPropertyMetadata {
+      "name": "priority",
+      "nullable": false,
+      "required": true,
+      "type": "NUMBER",
+    },
+    "sortBy": DomainObjectPropertyMetadata {
+      "name": "sortBy",
+      "nullable": false,
+      "required": false,
+      "type": "STRING",
+    },
+    "status": DomainObjectPropertyMetadata {
+      "name": "status",
+      "nullable": false,
+      "required": true,
+      "type": "STRING",
+    },
+    "tags": DomainObjectPropertyMetadata {
+      "name": "tags",
+      "nullable": false,
+      "of": {
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "required": true,
+      "type": "ARRAY",
+    },
+    "verdict": DomainObjectPropertyMetadata {
+      "name": "verdict",
+      "nullable": true,
+      "required": true,
+      "type": "STRING",
+    },
+  },
+}
+`;
+
 exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for a more complicated entity 1`] = `
 DomainObjectMetadata {
   "decorations": {

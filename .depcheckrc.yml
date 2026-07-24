@@ -11,6 +11,7 @@ ignores:
   - rhachet-brains-anthropic
   - rhachet-brains-fireworksai
   - rhachet-brains-xai
+  - rhachet-brains-fireworksai
   - rhachet-roles-bhrain
   - rhachet-roles-bhrowser
   - rhachet-roles-bhuild
