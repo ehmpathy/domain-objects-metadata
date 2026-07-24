@@ -3,7 +3,7 @@ import type { TypeAliasDeclaration } from 'typescript';
 
 import { extractPrimitiveTypeFromAstNodeDeclaration } from './extractPrimitiveTypeFromAstNodeDeclaration';
 
-export const extractAliasMetadataFromAliasDeclaration = (
+export const extractNominalMetadataFromAliasDeclaration = (
   aliasDeclaration: TypeAliasDeclaration,
 ) => {
   // resolve the primitive type, if supported

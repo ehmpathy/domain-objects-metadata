@@ -3,6 +3,7 @@ import { omit } from 'type-fns';
 import { isArrayTypeNode, isTypeReferenceNode, SyntaxKind } from 'typescript';
 
 import {
+  DomainObjectNominalMetadata,
   DomainObjectPropertyMetadata,
   DomainObjectPropertyType,
 } from '@src/domain.objects';
@@ -10,6 +11,7 @@ import type { ASTInterfacePropertyType } from '@src/domain.objects/ASTInterfaceP
 
 import { extractHomogeneousUnionMetadata } from './extractHomogeneousUnionMetadata';
 import { extractPrimitiveTypeFromAstNodeDeclaration } from './extractPrimitiveTypeFromAstNodeDeclaration';
+import { knownNominals } from './knownNominals';
 
 /**
  * .what = extracts property definition from an AST node
@@ -127,11 +129,18 @@ export const extractPropertyDefinitionFromAstNode = ({
         });
     }
 
-    // handle UniDateTime and UniDate references // todo: think through how we can support future aliases like these via plugins, instead of hardcoded defs
-    if (referencedName === 'UniDateTime' || referencedName === 'UniDate')
+    // handle known branded nominals (Serializable, Uuid, Hash, IsoPrice, iso-time family, ...) -> NOMINAL that holds the brand + primitive // todo: support future nominals via plugins, instead of a hardcoded registry
+    const nominalKnown = knownNominals.find(
+      (nominal) => nominal.name === referencedName,
+    );
+    if (nominalKnown)
       return new DomainObjectPropertyMetadata({
         name: propertyName,
-        type: DomainObjectPropertyType.STRING,
+        type: DomainObjectPropertyType.NOMINAL,
+        of: new DomainObjectNominalMetadata({
+          name: nominalKnown.name,
+          primitive: nominalKnown.primitive,
+        }),
         nullable,
         required,
       });

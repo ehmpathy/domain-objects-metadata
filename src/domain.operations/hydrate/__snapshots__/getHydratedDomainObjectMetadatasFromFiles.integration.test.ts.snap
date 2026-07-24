@@ -601,9 +601,12 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
       "onDate": DomainObjectPropertyMetadata {
         "name": "onDate",
         "nullable": false,
-        "of": "StandardDate",
+        "of": DomainObjectNominalMetadata {
+          "name": "StandardDate",
+          "primitive": "STRING",
+        },
         "required": true,
-        "type": "STRING",
+        "type": "NOMINAL",
       },
       "uuid": DomainObjectPropertyMetadata {
         "name": "uuid",
@@ -741,7 +744,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
 ]
 `;
 
-exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which reference a generic type modifier from a package plugin, UniDateTime 1`] = `
+exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files which reference a known branded nominal from a package, IsoTimeStamp 1`] = `
 [
   DomainObjectMetadata {
     "decorations": {
@@ -813,8 +816,12 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
       "occurredAt": DomainObjectPropertyMetadata {
         "name": "occurredAt",
         "nullable": false,
+        "of": DomainObjectNominalMetadata {
+          "name": "IsoTimeStamp",
+          "primitive": "STRING",
+        },
         "required": true,
-        "type": "STRING",
+        "type": "NOMINAL",
       },
     },
   },

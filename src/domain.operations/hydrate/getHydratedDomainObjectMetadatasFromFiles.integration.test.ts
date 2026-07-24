@@ -92,9 +92,14 @@ describe('getHydratedDomainObjectMetadatasFromFiles', () => {
     const metadatas = getHydratedDomainObjectMetadatasFromFiles(files);
     // console.log(JSON.stringify(metadatas, null, 2));
 
+    // a local primitive type alias hydrates to NOMINAL that holds brand + primitive
     expect(metadatas[0]?.properties.onDate?.type).toEqual(
-      DomainObjectPropertyType.STRING,
+      DomainObjectPropertyType.NOMINAL,
     );
+    expect(metadatas[0]?.properties.onDate?.of).toEqual({
+      name: 'StandardDate',
+      primitive: DomainObjectPropertyType.STRING,
+    });
     expect(metadatas).toMatchSnapshot();
   });
   it('should return metadata from files which needs hydration of nested enum array', () => {
@@ -173,7 +178,7 @@ describe('getHydratedDomainObjectMetadatasFromFiles', () => {
     ]);
     expect(metadatas).toMatchSnapshot();
   });
-  it('should return metadata from files which reference a generic type modifier from a package plugin, UniDateTime', () => {
+  it('should return metadata from files which reference a known branded nominal from a package, IsoTimeStamp', () => {
     const program = ts.createProgram(
       [`${__dirname}/../.test.assets/NutrientResearchPublicationEvent.ts`],
       {},
@@ -182,9 +187,14 @@ describe('getHydratedDomainObjectMetadatasFromFiles', () => {
     const metadatas = getHydratedDomainObjectMetadatasFromFiles(files);
     // console.log(JSON.stringify(metadatas, null, 2));
 
+    // a known branded nominal extracts as NOMINAL that holds brand + primitive
     expect(metadatas[1]?.properties.occurredAt?.type).toEqual(
-      DomainObjectPropertyType.STRING,
+      DomainObjectPropertyType.NOMINAL,
     );
+    expect(metadatas[1]?.properties.occurredAt?.of).toEqual({
+      name: 'IsoTimeStamp',
+      primitive: DomainObjectPropertyType.STRING,
+    });
     expect(metadatas).toMatchSnapshot();
   });
   it('should hydrate primitive arrays so they classify as primitive-array properties (extract→hydrate→classify seam)', () => {
