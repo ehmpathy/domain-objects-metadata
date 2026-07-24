@@ -1,5 +1,16 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
+exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from a union where null is written first 1`] = `
+{
+  "scheduledAt": DomainObjectPropertyMetadata {
+    "name": "scheduledAt",
+    "nullable": true,
+    "required": true,
+    "type": "DATE",
+  },
+}
+`;
+
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface that references another interface or an array of interfaces 1`] = `
 {
   "destination": DomainObjectPropertyMetadata {
@@ -195,6 +206,29 @@ exports[`extractPropertiesFromInterfaceDeclaration should be able to extract pro
 }
 `;
 
+exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with non-interpolated backtick literals 1`] = `
+{
+  "slug": DomainObjectPropertyMetadata {
+    "name": "slug",
+    "nullable": true,
+    "required": false,
+    "type": "STRING",
+  },
+  "stage": DomainObjectPropertyMetadata {
+    "name": "stage",
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+  "status": DomainObjectPropertyMetadata {
+    "name": "status",
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+}
+`;
+
 exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with string literal unions 1`] = `
 {
   "isActive": DomainObjectPropertyMetadata {
@@ -247,6 +281,57 @@ exports[`extractPropertiesFromInterfaceDeclaration should be able to extract pro
   "verdict": DomainObjectPropertyMetadata {
     "name": "verdict",
     "nullable": true,
+    "required": true,
+    "type": "STRING",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with template literal types 1`] = `
+{
+  "label": DomainObjectPropertyMetadata {
+    "name": "label",
+    "nullable": false,
+    "required": false,
+    "type": "STRING",
+  },
+  "slug": DomainObjectPropertyMetadata {
+    "name": "slug",
+    "nullable": true,
+    "required": true,
+    "type": "STRING",
+  },
+  "version": DomainObjectPropertyMetadata {
+    "name": "version",
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration should be able to extract properties from an interface with template literal unions 1`] = `
+{
+  "history": DomainObjectPropertyMetadata {
+    "name": "history",
+    "nullable": false,
+    "of": {
+      "nullable": false,
+      "required": true,
+      "type": "STRING",
+    },
+    "required": true,
+    "type": "ARRAY",
+  },
+  "tag": DomainObjectPropertyMetadata {
+    "name": "tag",
+    "nullable": true,
+    "required": true,
+    "type": "STRING",
+  },
+  "version": DomainObjectPropertyMetadata {
+    "name": "version",
+    "nullable": false,
     "required": true,
     "type": "STRING",
   },
@@ -369,43 +454,20 @@ exports[`extractPropertiesFromInterfaceDeclaration should throw on mixed literal
 "BadRequestError: domain object property types can only have one primary type. they can be nullable or optional, but they can not be 'string | number', for example. not satisfied by MixedLiteralUnion.mixed 
 
 {
-  "subTypes": [
-    {
-      "pos": 184,
-      "end": 193,
-      "flags": 0,
-      "modifierFlagsCache": 0,
-      "transformFlags": 1,
-      "kind": 201,
-      "literal": {
-        "pos": 184,
-        "end": 193,
-        "flags": 0,
-        "modifierFlagsCache": 0,
-        "transformFlags": 0,
-        "kind": 11,
-        "text": "active",
-        "hasExtendedUnicodeEscape": false
-      }
-    },
-    {
-      "pos": 195,
-      "end": 197,
-      "flags": 0,
-      "modifierFlagsCache": 0,
-      "transformFlags": 1,
-      "kind": 201,
-      "literal": {
-        "pos": 195,
-        "end": 197,
-        "flags": 0,
-        "modifierFlagsCache": 0,
-        "transformFlags": 0,
-        "kind": 9,
-        "text": "1",
-        "numericLiteralFlags": 0
-      }
-    }
+  "subTypeKinds": [
+    "StringLiteral",
+    "NumericLiteral"
+  ]
+}"
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration should throw on mixed template literal union (e.g., \`v\${number}\` | number) 1`] = `
+"BadRequestError: domain object property types can only have one primary type. they can be nullable or optional, but they can not be 'string | number', for example. not satisfied by MixedTemplateUnion.mixed 
+
+{
+  "subTypeKinds": [
+    "TemplateLiteralType",
+    "NumberKeyword"
   ]
 }"
 `;

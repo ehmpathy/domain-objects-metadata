@@ -360,6 +360,143 @@ describe('extractPropertiesFromInterfaceDeclaration', () => {
     // save an example
     expect(properties).toMatchSnapshot();
   });
+  it('should be able to extract properties from an interface with template literal types', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../.test.assets/TemplateLiteralTag.ts`],
+      {},
+    );
+    const file = program
+      .getSourceFiles()
+      .find((thisFile) =>
+        thisFile.fileName.includes('/TemplateLiteralTag.ts'),
+      )!;
+    const interfaceDeclaration = file.statements.find(isInterfaceDeclaration)!;
+    const properties =
+      extractPropertiesFromInterfaceDeclaration(interfaceDeclaration);
+
+    // required template literal extracts as STRING
+    expect(properties.version).toMatchObject({
+      type: DomainObjectPropertyType.STRING,
+      nullable: false,
+      required: true,
+    });
+
+    // nullable template literal extracts as STRING, nullable
+    expect(properties.slug).toMatchObject({
+      type: DomainObjectPropertyType.STRING,
+      nullable: true,
+      required: true,
+    });
+
+    // optional template literal extracts as STRING, optional
+    expect(properties.label).toMatchObject({
+      type: DomainObjectPropertyType.STRING,
+      nullable: false,
+      required: false,
+    });
+
+    // save an example
+    expect(properties).toMatchSnapshot();
+  });
+  it('should be able to extract properties from an interface with template literal unions', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../.test.assets/TemplateLiteralUnion.ts`],
+      {},
+    );
+    const file = program
+      .getSourceFiles()
+      .find((thisFile) =>
+        thisFile.fileName.includes('/TemplateLiteralUnion.ts'),
+      )!;
+    const interfaceDeclaration = file.statements.find(isInterfaceDeclaration)!;
+    const properties =
+      extractPropertiesFromInterfaceDeclaration(interfaceDeclaration);
+
+    // template literal unioned with a string literal extracts as STRING
+    expect(properties.version).toMatchObject({
+      type: DomainObjectPropertyType.STRING,
+      nullable: false,
+      required: true,
+    });
+
+    // nullable template literal union extracts as STRING, nullable
+    expect(properties.tag).toMatchObject({
+      type: DomainObjectPropertyType.STRING,
+      nullable: true,
+      required: true,
+    });
+
+    // array of template literal extracts as ARRAY of STRING
+    expect(properties.history).toMatchObject({
+      type: DomainObjectPropertyType.ARRAY,
+      of: {
+        type: DomainObjectPropertyType.STRING,
+        nullable: false,
+        required: true,
+      },
+    });
+
+    // save an example
+    expect(properties).toMatchSnapshot();
+  });
+  it('should be able to extract properties from a union where null is written first', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../.test.assets/NullFirstUnion.ts`],
+      {},
+    );
+    const file = program
+      .getSourceFiles()
+      .find((thisFile) => thisFile.fileName.includes('/NullFirstUnion.ts'))!;
+    const interfaceDeclaration = file.statements.find(isInterfaceDeclaration)!;
+    const properties =
+      extractPropertiesFromInterfaceDeclaration(interfaceDeclaration);
+
+    // null written before the primary type still extracts the primary type, nullable
+    expect(properties.scheduledAt).toMatchObject({
+      type: DomainObjectPropertyType.DATE,
+      nullable: true,
+      required: true,
+    });
+
+    // save an example
+    expect(properties).toMatchSnapshot();
+  });
+  it('should be able to extract properties from an interface with non-interpolated backtick literals', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../.test.assets/BacktickLiteral.ts`],
+      {},
+    );
+    const file = program
+      .getSourceFiles()
+      .find((thisFile) => thisFile.fileName.includes('/BacktickLiteral.ts'))!;
+    const interfaceDeclaration = file.statements.find(isInterfaceDeclaration)!;
+    const properties =
+      extractPropertiesFromInterfaceDeclaration(interfaceDeclaration);
+
+    // non-interpolated backtick literal extracts as STRING
+    expect(properties.status).toMatchObject({
+      type: DomainObjectPropertyType.STRING,
+      nullable: false,
+      required: true,
+    });
+
+    // union of non-interpolated backtick literals extracts as STRING
+    expect(properties.stage).toMatchObject({
+      type: DomainObjectPropertyType.STRING,
+      nullable: false,
+      required: true,
+    });
+
+    // optional and nullable template literal extracts as STRING, optional, nullable
+    expect(properties.slug).toMatchObject({
+      type: DomainObjectPropertyType.STRING,
+      nullable: true,
+      required: false,
+    });
+
+    // save an example
+    expect(properties).toMatchSnapshot();
+  });
   it('should throw on mixed literal union (e.g., string | number)', () => {
     const program = ts.createProgram(
       [`${__dirname}/../.test.assets/MixedLiteralUnion.ts`],
@@ -368,6 +505,29 @@ describe('extractPropertiesFromInterfaceDeclaration', () => {
     const file = program
       .getSourceFiles()
       .find((thisFile) => thisFile.fileName.includes('/MixedLiteralUnion.ts'))!;
+    const interfaceDeclaration = file.statements.find(isInterfaceDeclaration)!;
+
+    // capture the error
+    const error = getError(() =>
+      extractPropertiesFromInterfaceDeclaration(interfaceDeclaration),
+    );
+
+    // verify it is the correct error class
+    expect(error).toBeInstanceOf(BadRequestError);
+
+    // snapshot the error message for review
+    expect(error.message).toMatchSnapshot();
+  });
+  it('should throw on mixed template literal union (e.g., `v${number}` | number)', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../.test.assets/MixedTemplateUnion.ts`],
+      {},
+    );
+    const file = program
+      .getSourceFiles()
+      .find((thisFile) =>
+        thisFile.fileName.includes('/MixedTemplateUnion.ts'),
+      )!;
     const interfaceDeclaration = file.statements.find(isInterfaceDeclaration)!;
 
     // capture the error

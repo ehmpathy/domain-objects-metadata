@@ -1,5 +1,7 @@
 import { UnexpectedCodePathError } from 'helpful-errors';
 
+import { DomainObjectPropertyType } from '@src/domain.objects';
+
 import { isEnumArrayProperty } from './guard/isEnumArrayProperty';
 import { isPrimitiveArrayProperty } from './guard/isPrimitiveArrayProperty';
 import { isReferenceArrayProperty } from './guard/isReferenceArrayProperty';
@@ -117,12 +119,40 @@ describe('introspect', () => {
     expect(isPrimitiveArrayProperty(status)).toBe(false);
     expect(isReferenceArrayProperty(status)).toBe(false);
   });
-  it('should throw (not silently degrade) for an element-level primitive union array (string | null)[] — a prior extraction limitation', () => {
-    // documents the ACTUAL behavior: extraction throws before any guard runs.
-    // the vision claimed this collapses to STRING; it does not. asserted per rule.forbid.failhide
-    expect(() =>
-      introspect(`${__dirname}/.test.assets/PrimitiveNullableUnionArray.ts`),
-    ).toThrow(UnexpectedCodePathError);
+  it('should extract an element-level primitive union array (string | null)[] as a primitive array of STRING', () => {
+    // the homogeneous-union support now collapses (string | null) to STRING per the vision,
+    // and array-element nulls are filtered out, so (string | null)[] classifies as a primitive array
+    const metadatas = introspect(
+      `${__dirname}/.test.assets/PrimitiveNullableUnionArray.ts`,
+    );
+    const asset = metadatas.find(
+      (metadata) => metadata.name === 'PrimitiveNullableUnionArray',
+    );
+    if (!asset)
+      throw new UnexpectedCodePathError(
+        'expected a PrimitiveNullableUnionArray metadata from introspect',
+        {
+          names: metadatas.map((metadata) => metadata.name),
+          hint: 'check that .test.assets/PrimitiveNullableUnionArray.ts still declares the interface',
+        },
+      );
+    const values = asset.properties.values;
+    if (!values)
+      throw new UnexpectedCodePathError(
+        'expected a values property on PrimitiveNullableUnionArray',
+        {
+          keys: Object.keys(asset.properties),
+          hint: 'check that PrimitiveNullableUnionArray.ts still declares values: (string | null)[]',
+        },
+      );
+
+    // classifies as a primitive array through the public guards
+    expect(isPrimitiveArrayProperty(values)).toBe(true);
+    expect(isReferenceArrayProperty(values)).toBe(false);
+    expect(isEnumArrayProperty(values)).toBe(false);
+
+    // the element collapses to STRING (the null member is filtered out)
+    expect(values.of).toMatchObject({ type: DomainObjectPropertyType.STRING });
   });
   it('should throw (not silently degrade) for a named type-alias array Variant[] — a prior hydration limitation', () => {
     // documents the ACTUAL behavior: hydration throws before any guard runs.
