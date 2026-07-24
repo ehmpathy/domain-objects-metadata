@@ -319,6 +319,13 @@ describe('extractPropertiesFromInterfaceDeclaration', () => {
       required: true,
     });
 
+    // optional string literal union extracts as STRING, required false
+    expect(properties.sortBy).toMatchObject({
+      type: DomainObjectPropertyType.STRING,
+      nullable: false,
+      required: false,
+    });
+
     // number literal union extracts as NUMBER
     expect(properties.priority).toMatchObject({
       type: DomainObjectPropertyType.NUMBER,
