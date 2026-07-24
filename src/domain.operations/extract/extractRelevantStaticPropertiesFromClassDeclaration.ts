@@ -11,6 +11,13 @@ const getInitialValueOfStaticProperty = (staticProperty: ClassElement) => {
   // if its a string, extract the value
   if (initializer.kind === SyntaxKind.StringLiteral) return initializer.text;
 
+  // if its a string asserted `as const`, unwrap the assertion and extract the value
+  if (
+    initializer.type?.typeName?.escapedText === 'const' &&
+    initializer.expression?.kind === SyntaxKind.StringLiteral
+  )
+    return initializer.expression.text;
+
   // if its an array, extract the values
   const elements =
     initializer.type?.typeName?.escapedText === 'const'
@@ -37,52 +44,27 @@ const getStaticPropertyDeclarationByName = ({
 export const extractRelevantStaticPropertiesFromClassDeclaration = (
   classDeclaration: ClassDeclaration,
 ): {
+  origin: string | null;
   alias: string | null;
   primary: string[] | null;
   unique: string[] | null;
   updatable: string[] | null;
 } => {
-  // grab values of alias
-  const aliasPropertyDeclaration = getStaticPropertyDeclarationByName({
-    classDeclaration,
-    name: 'alias',
-  });
-  const alias = aliasPropertyDeclaration
-    ? getInitialValueOfStaticProperty(aliasPropertyDeclaration)
-    : null;
+  // grab the initial value of a static property by name, or null if absent
+  const getStaticValueByName = (name: string) => {
+    const declaration = getStaticPropertyDeclarationByName({
+      classDeclaration,
+      name,
+    });
+    return declaration ? getInitialValueOfStaticProperty(declaration) : null;
+  };
 
-  // grab values of primary
-  const primaryPropertyDeclaration = getStaticPropertyDeclarationByName({
-    classDeclaration,
-    name: 'primary',
-  });
-  const primary = primaryPropertyDeclaration
-    ? getInitialValueOfStaticProperty(primaryPropertyDeclaration)
-    : null;
-
-  // grab values of unique
-  const uniquePropertyDeclaration = getStaticPropertyDeclarationByName({
-    classDeclaration,
-    name: 'unique',
-  });
-  const unique = uniquePropertyDeclaration
-    ? getInitialValueOfStaticProperty(uniquePropertyDeclaration)
-    : null;
-
-  // grab values of updatable
-  const updatablePropertyDeclaration = getStaticPropertyDeclarationByName({
-    classDeclaration,
-    name: 'updatable',
-  });
-  const updatable = updatablePropertyDeclaration
-    ? getInitialValueOfStaticProperty(updatablePropertyDeclaration)
-    : null;
-
-  // return them
+  // return the value of each relevant static property
   return {
-    alias,
-    primary,
-    unique,
-    updatable,
+    origin: getStaticValueByName('origin'),
+    alias: getStaticValueByName('alias'),
+    primary: getStaticValueByName('primary'),
+    unique: getStaticValueByName('unique'),
+    updatable: getStaticValueByName('updatable'),
   };
 };

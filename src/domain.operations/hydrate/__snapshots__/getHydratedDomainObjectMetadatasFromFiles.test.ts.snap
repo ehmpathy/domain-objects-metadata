@@ -5,6 +5,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should classify an array of b
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": [
         "uuid",
       ],
@@ -41,6 +42,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should classify an array of b
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": [
         "uuid",
       ],
@@ -89,6 +91,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should hydrate primitive arra
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": [
         "id",
@@ -180,6 +183,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": null,
       "updatable": null,
@@ -222,6 +226,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": [
         "upc",
@@ -269,6 +274,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": [],
       "updatable": [],
@@ -329,6 +335,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": null,
       "updatable": null,
@@ -376,6 +383,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   DomainObjectMetadata {
     "decorations": {
       "alias": "task",
+      "origin": null,
       "primary": null,
       "unique": [
         "targetExid",
@@ -434,6 +442,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": [
         "externalId",
@@ -486,6 +495,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": [
         "exid",
@@ -542,6 +552,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": [
         "onDate",
@@ -610,6 +621,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": [
         "uuid",
       ],
@@ -646,6 +658,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": [
         "uuid",
       ],
@@ -697,6 +710,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": null,
       "updatable": null,
@@ -732,6 +746,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": null,
       "updatable": null,
@@ -762,6 +777,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from f
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": [
         "nutrient",

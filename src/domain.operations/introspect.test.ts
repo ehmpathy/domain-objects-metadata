@@ -26,6 +26,17 @@ describe('introspect', () => {
     expect(metadatas.length).toEqual(4);
     expect(metadatas).toMatchSnapshot();
   });
+  it('should be possible to introspect a file for an entity owned by another service via origin', () => {
+    const metadatas = introspect(
+      `${__dirname}/.test.assets/SvcHomeServicesHomeService.ts`,
+    );
+    // console.log(JSON.stringify(metadatas, null, 2));
+    expect(metadatas.length).toEqual(1);
+    expect(metadatas[0]?.decorations.origin).toEqual(
+      'ahbode/svc-home-services',
+    );
+    expect(metadatas).toMatchSnapshot();
+  });
   it('should be possible to introspect all of those files at the same time', () => {
     const metadatas = introspect([
       `${__dirname}/.test.assets/Delivery.ts`,

@@ -1,10 +1,51 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
+exports[`introspect should be possible to introspect a file for an entity owned by another service via origin 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "origin": "ahbode/svc-home-services",
+      "primary": [
+        "uuid",
+      ],
+      "unique": [
+        "slug",
+      ],
+      "updatable": [],
+    },
+    "extends": "DomainEntity",
+    "name": "SvcHomeServicesHomeService",
+    "properties": {
+      "name": DomainObjectPropertyMetadata {
+        "name": "name",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "slug": DomainObjectPropertyMetadata {
+        "name": "slug",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "uuid": DomainObjectPropertyMetadata {
+        "name": "uuid",
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+    },
+  },
+]
+`;
+
 exports[`introspect should be possible to introspect all of those files at the same time 1`] = `
 [
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": null,
       "updatable": null,
@@ -47,6 +88,7 @@ exports[`introspect should be possible to introspect all of those files at the s
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": [
         "vin",
@@ -105,6 +147,7 @@ exports[`introspect should be possible to introspect all of those files at the s
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": [
         "trackingNumber",
@@ -143,6 +186,7 @@ exports[`introspect should be possible to introspect all of those files at the s
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": [],
       "updatable": [
@@ -234,6 +278,7 @@ exports[`introspect should be possible to introspect the Address file 1`] = `
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": null,
       "updatable": null,
@@ -281,6 +326,7 @@ exports[`introspect should be possible to introspect the Delivery file 1`] = `
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": null,
       "updatable": null,
@@ -323,6 +369,7 @@ exports[`introspect should be possible to introspect the Delivery file 1`] = `
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": [
         "vin",
@@ -381,6 +428,7 @@ exports[`introspect should be possible to introspect the Delivery file 1`] = `
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": [
         "trackingNumber",
@@ -419,6 +467,7 @@ exports[`introspect should be possible to introspect the Delivery file 1`] = `
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": [],
       "updatable": [
@@ -510,6 +559,7 @@ exports[`introspect should be possible to introspect the DeliveryVan file 1`] = 
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": [
         "vin",

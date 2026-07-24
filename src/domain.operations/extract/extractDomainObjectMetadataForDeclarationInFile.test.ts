@@ -131,4 +131,26 @@ describe('extractDomainObjectMetadataForDeclarationInFile', () => {
     // log an example
     expect(metadata).toMatchSnapshot();
   });
+  it('should be able to extract domain object metadata for an entity owned by another service via origin', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../.test.assets/SvcHomeServicesHomeService.ts`],
+      {},
+    );
+    const file = program
+      .getSourceFiles()
+      .find((thisFile) =>
+        thisFile.fileName.includes('/SvcHomeServicesHomeService.ts'),
+      )!; // grab the right file
+    const classDeclaration = file.statements.find(isClassDeclaration)!;
+    const metadata = extractDomainObjectMetadataForDeclarationInFile({
+      file,
+      classDeclaration,
+    });
+
+    // assert the origin surfaces on the decorations
+    expect(metadata.decorations.origin).toEqual('ahbode/svc-home-services');
+
+    // log an example
+    expect(metadata).toMatchSnapshot();
+  });
 });

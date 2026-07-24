@@ -16,6 +16,7 @@ describe('extractRelevantStaticPropertiesFromClassDeclaration', () => {
       extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
     // console.log(options);
     expect(options).toEqual({
+      origin: null,
       alias: null,
       primary: null,
       unique: ['externalId'],
@@ -35,6 +36,7 @@ describe('extractRelevantStaticPropertiesFromClassDeclaration', () => {
       extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
     // console.log(options);
     expect(options).toEqual({
+      origin: null,
       alias: null,
       primary: null,
       unique: null,
@@ -54,6 +56,7 @@ describe('extractRelevantStaticPropertiesFromClassDeclaration', () => {
       extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
     // console.log(options);
     expect(options).toEqual({
+      origin: null,
       alias: null,
       primary: ['uuid'],
       unique: ['seawaterSecurityNumber'],
@@ -74,10 +77,72 @@ describe('extractRelevantStaticPropertiesFromClassDeclaration', () => {
     const options =
       extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
     expect(options).toEqual({
+      origin: null,
       alias: 'task',
       primary: null,
       unique: ['targetExid'],
       updatable: null,
+    });
+  });
+  it('should be able to get the alias property of a DomainEntity with an alias declared `as const`', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../.test.assets/AsyncTaskRideWaves.ts`],
+      {},
+    );
+    const file = program
+      .getSourceFiles()
+      .find((thisFile) =>
+        thisFile.fileName.includes('/AsyncTaskRideWaves.ts'),
+      )!; // grab the right file
+    const classDeclaration = file.statements.find(isClassDeclaration)!;
+    const options =
+      extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
+    expect(options).toEqual({
+      origin: null,
+      alias: 'task',
+      primary: null,
+      unique: ['targetExid'],
+      updatable: null,
+    });
+  });
+  it('should be able to get the origin property of a DomainEntity with an origin declared `as const`', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../.test.assets/SvcHomeServicesHomeService.ts`],
+      {},
+    );
+    const file = program
+      .getSourceFiles()
+      .find((thisFile) =>
+        thisFile.fileName.includes('/SvcHomeServicesHomeService.ts'),
+      )!; // grab the right file
+    const classDeclaration = file.statements.find(isClassDeclaration)!;
+    const options =
+      extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
+    expect(options).toEqual({
+      origin: 'ahbode/svc-home-services',
+      alias: null,
+      primary: ['uuid'],
+      unique: ['slug'],
+      updatable: [],
+    });
+  });
+  it('should be able to get the origin property of a DomainEntity with an origin declared as a bare string', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../.test.assets/SeaShell.ts`],
+      {},
+    );
+    const file = program
+      .getSourceFiles()
+      .find((thisFile) => thisFile.fileName.includes('/SeaShell.ts'))!; // grab the right file
+    const classDeclaration = file.statements.find(isClassDeclaration)!;
+    const options =
+      extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
+    expect(options).toEqual({
+      origin: 'ehmpathy/svc-sea-registry',
+      alias: null,
+      primary: ['uuid'],
+      unique: ['serialNumber'],
+      updatable: ['color'],
     });
   });
 });
