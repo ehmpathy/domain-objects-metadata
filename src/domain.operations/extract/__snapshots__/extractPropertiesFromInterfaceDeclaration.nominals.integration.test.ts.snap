@@ -1,0 +1,344 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts AlgaeBloom.peakMonthFloat (IsoMonthFloat) as NOMINAL 1`] = `
+{
+  "peakMonthFloat": DomainObjectPropertyMetadata {
+    "name": "peakMonthFloat",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "IsoMonthFloat",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts BreachAlert.detectedMinute (IsoMinuteFloat) as NOMINAL 1`] = `
+{
+  "detectedMinute": DomainObjectPropertyMetadata {
+    "name": "detectedMinute",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "IsoMinuteFloat",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts DiveLog.diveDuration (IsoDuration) as NOMINAL 1`] = `
+{
+  "buddyTagIds": DomainObjectPropertyMetadata {
+    "name": "buddyTagIds",
+    "nullable": false,
+    "of": {
+      "nullable": false,
+      "of": DomainObjectNominalMetadata {
+        "name": "Uuid",
+        "primitive": "STRING",
+      },
+      "required": true,
+      "type": "NOMINAL",
+    },
+    "required": true,
+    "type": "ARRAY",
+  },
+  "diveDuration": DomainObjectPropertyMetadata {
+    "name": "diveDuration",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "IsoDuration",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts FeedWindow.opensAtHour (IsoHourFloat) as NOMINAL 1`] = `
+{
+  "opensAtHour": DomainObjectPropertyMetadata {
+    "name": "opensAtHour",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "IsoHourFloat",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts GiftShopPlushie.priceTag (IsoPriceHuman) as NOMINAL 1`] = `
+{
+  "priceTag": DomainObjectPropertyMetadata {
+    "name": "priceTag",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "IsoPriceHuman",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts HatchEvent.hatchedOn (IsoDateStamp) as NOMINAL 1`] = `
+{
+  "hatchedOn": DomainObjectPropertyMetadata {
+    "name": "hatchedOn",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "IsoDateStamp",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts KelpMarketOffer.askPrice (IsoPriceWords) as NOMINAL 1`] = `
+{
+  "askPrice": DomainObjectPropertyMetadata {
+    "name": "askPrice",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "IsoPriceWords",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts LunarForage.dayOfMonth (IsoDayFloat) as NOMINAL 1`] = `
+{
+  "dayOfMonth": DomainObjectPropertyMetadata {
+    "name": "dayOfMonth",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "IsoDayFloat",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts MigrationSeason.peakMonth (IsoMonthStamp) as NOMINAL 1`] = `
+{
+  "peakMonth": DomainObjectPropertyMetadata {
+    "name": "peakMonth",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "IsoMonthStamp",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts PatrolShift.weekday (IsoWeekdayFloat) as NOMINAL 1`] = `
+{
+  "weekday": DomainObjectPropertyMetadata {
+    "name": "weekday",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "IsoWeekdayFloat",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts ReefCleanupInvoice.laborCost (IsoPrice) as NOMINAL 1`] = `
+{
+  "laborCost": DomainObjectPropertyMetadata {
+    "name": "laborCost",
+    "nullable": true,
+    "of": DomainObjectNominalMetadata {
+      "name": "IsoPrice",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts RestInterval.restSpan (IsoDurationWords) as NOMINAL 1`] = `
+{
+  "restSpan": DomainObjectPropertyMetadata {
+    "name": "restSpan",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "IsoDurationWords",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts SeaTurtleTag.tagId (Uuid) as NOMINAL 1`] = `
+{
+  "tagId": DomainObjectPropertyMetadata {
+    "name": "tagId",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "Uuid",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts SeaTurtleTelemetry.payload (Serializable) as NOMINAL 1`] = `
+{
+  "payload": DomainObjectPropertyMetadata {
+    "name": "payload",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "Serializable",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts ShellScuteScan.patternHash (Hash) as NOMINAL 1`] = `
+{
+  "patternHash": DomainObjectPropertyMetadata {
+    "name": "patternHash",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "Hash",
+      "primitive": "STRING",
+    },
+    "required": false,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts SurfaceBreath.breathedAt (IsoTimeFloat) as NOMINAL 1`] = `
+{
+  "breathedAt": DomainObjectPropertyMetadata {
+    "name": "breathedAt",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "IsoTimeFloat",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts TagRecord.taggedYear (IsoYearStamp) as NOMINAL 1`] = `
+{
+  "taggedYear": DomainObjectPropertyMetadata {
+    "name": "taggedYear",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "IsoYearStamp",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts TurtleSpotEvent.observedAt (IsoTimeStamp) as NOMINAL 1`] = `
+{
+  "observedAt": DomainObjectPropertyMetadata {
+    "name": "observedAt",
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "IsoTimeStamp",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals extracts an array of a nominal (DiveLog.buddyTagIds: Uuid[]) as ARRAY of NOMINAL 1`] = `
+DomainObjectPropertyMetadata {
+  "name": "buddyTagIds",
+  "nullable": false,
+  "of": {
+    "nullable": false,
+    "of": DomainObjectNominalMetadata {
+      "name": "Uuid",
+      "primitive": "STRING",
+    },
+    "required": true,
+    "type": "NOMINAL",
+  },
+  "required": true,
+  "type": "ARRAY",
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals keeps out-of-scope IsoDateStampRange (ClutchWatch.span) as REFERENCE, not NOMINAL 1`] = `
+DomainObjectPropertyMetadata {
+  "name": "span",
+  "nullable": false,
+  "of": "IsoDateStampRange",
+  "required": true,
+  "type": "REFERENCE",
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals keeps out-of-scope IsoDurationShape (FastCurrentDrift.durationShape) as REFERENCE, not NOMINAL 1`] = `
+DomainObjectPropertyMetadata {
+  "name": "durationShape",
+  "nullable": false,
+  "of": "IsoDurationShape",
+  "required": true,
+  "type": "REFERENCE",
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals keeps out-of-scope IsoPriceShape (ReefCleanupQuote.priceShape) as REFERENCE, not NOMINAL 1`] = `
+DomainObjectPropertyMetadata {
+  "name": "priceShape",
+  "nullable": false,
+  "of": "IsoPriceShape",
+  "required": true,
+  "type": "REFERENCE",
+}
+`;
+
+exports[`extractPropertiesFromInterfaceDeclaration - known branded nominals keeps out-of-scope IsoTimeStampRange (DiveSession.window) as REFERENCE, not NOMINAL 1`] = `
+DomainObjectPropertyMetadata {
+  "name": "window",
+  "nullable": false,
+  "of": "IsoTimeStampRange",
+  "required": true,
+  "type": "REFERENCE",
+}
+`;

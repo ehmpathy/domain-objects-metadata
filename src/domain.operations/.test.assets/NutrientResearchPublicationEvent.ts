@@ -1,12 +1,12 @@
-import { UniDateTime } from '@ehmpathy/uni-time';
 import { DomainEvent } from 'domain-objects';
+import { IsoTimeStamp } from 'iso-time';
 
 import { Nutrient } from './Nutrient';
 
 export interface NutrientResearchPublicationEvent {
   nutrient: Nutrient;
   authors: string[];
-  occurredAt: UniDateTime;
+  occurredAt: IsoTimeStamp;
 }
 export class NutrientResearchPublicationEvent
   extends DomainEvent<NutrientResearchPublicationEvent>

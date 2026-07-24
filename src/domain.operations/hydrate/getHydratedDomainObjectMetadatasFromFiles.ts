@@ -9,13 +9,14 @@ import {
 
 import {
   DomainObjectMetadata,
+  DomainObjectNominalMetadata,
   DomainObjectPropertyMetadata,
   DomainObjectPropertyType,
   DomainObjectReferenceMetadata,
 } from '@src/domain.objects';
-import { extractAliasMetadataFromAliasDeclaration } from '@src/domain.operations/extract/extractAliasMetadataFromAliasDeclaration';
 import { extractDomainObjectMetadataForDeclarationInFile } from '@src/domain.operations/extract/extractDomainObjectMetadataForDeclarationInFile';
 import { extractEnumMetadataFromEnumDeclaration } from '@src/domain.operations/extract/extractEnumMetadataFromEnumDeclaration';
+import { extractNominalMetadataFromAliasDeclaration } from '@src/domain.operations/extract/extractNominalMetadataFromAliasDeclaration';
 import { isAClassDecorationWhichExtendsDomainObject } from '@src/domain.operations/extract/isAClassDeclarationWhichExtendsDomainObject';
 
 // hydrate property if needed
@@ -82,14 +83,18 @@ const ensurePropertyIsHydrated = ({
       of: foundReferencedEnum.options,
     });
 
-  // try to see if its referencing a type alias
+  // try to see if its a reference to a type alias
   const foundReferencedTypeAlias = aliasMetadatas.find(
     (metadata) => metadata.name === referencedName,
   );
   if (foundReferencedTypeAlias)
     return new DomainObjectPropertyMetadata({
       ...definition,
-      type: foundReferencedTypeAlias.primitive,
+      type: DomainObjectPropertyType.NOMINAL, // a referenced type alias extracts as NOMINAL that holds both brand + primitive
+      of: new DomainObjectNominalMetadata({
+        name: foundReferencedTypeAlias.name,
+        primitive: foundReferencedTypeAlias.primitive,
+      }),
     });
 
   // if this is neither, throw an error since we can't figure out what its referencing
@@ -137,7 +142,7 @@ export const getHydratedDomainObjectMetadatasFromFiles = (
       (declaration) => referencedAliasNames.includes(declaration.name.text),
     );
     return aliasDeclarationsWeCareAbout.map(
-      extractAliasMetadataFromAliasDeclaration,
+      extractNominalMetadataFromAliasDeclaration,
     );
   });
 

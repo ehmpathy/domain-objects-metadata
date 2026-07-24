@@ -1,3 +1,11 @@
+# files under these patterns are skipped by depcheck.
+# .agent/ holds symlinked third-party role skills (rhachet roles), not this repo's
+# source — their imports (playwright, declastruct-*, etc.) are the roles' own deps, so
+# they must not count against this repo's dependency surface. (materialized locally by
+# `prepare:rhachet`, which CI skips, so this only bites local runs.)
+ignore-patterns:
+  - .agent
+
 ignores:
   - depcheck
   - declapract
