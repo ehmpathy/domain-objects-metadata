@@ -14,6 +14,9 @@ export const extractPrimitiveTypeFromLiteralKind = ({
 }): DomainObjectPropertyType | null => {
   if (literalKind === SyntaxKind.StringLiteral)
     return DomainObjectPropertyType.STRING;
+  // non-interpolated template literal (e.g., `draft`) is a string literal too
+  if (literalKind === SyntaxKind.NoSubstitutionTemplateLiteral)
+    return DomainObjectPropertyType.STRING;
   if (literalKind === SyntaxKind.NumericLiteral)
     return DomainObjectPropertyType.NUMBER;
   if (

@@ -8,7 +8,7 @@ import {
 } from '@src/domain.objects';
 import type { ASTInterfacePropertyType } from '@src/domain.objects/ASTInterfacePropertyType';
 
-import { extractHomogeneousLiteralUnionType } from './extractHomogeneousLiteralUnionType';
+import { extractHomogeneousUnionMetadata } from './extractHomogeneousUnionMetadata';
 import { extractPrimitiveTypeFromAstNodeDeclaration } from './extractPrimitiveTypeFromAstNodeDeclaration';
 
 /**
@@ -19,15 +19,26 @@ export const extractPropertyDefinitionFromAstNode = ({
   primaryType,
   nullable,
   required,
+  resolvedType = null,
   propertyName,
   interfaceName,
 }: {
   primaryType: ASTInterfacePropertyType;
   nullable: boolean;
   required: boolean;
+  resolvedType?: DomainObjectPropertyType | null;
   propertyName: string;
   interfaceName: string;
 }): DomainObjectPropertyMetadata => {
+  // prefer the pre-resolved homogeneous-union type if the caller already computed it
+  if (resolvedType)
+    return new DomainObjectPropertyMetadata({
+      name: propertyName,
+      type: resolvedType,
+      nullable,
+      required,
+    });
+
   // handle the simple cases first
   const primitiveType = extractPrimitiveTypeFromAstNodeDeclaration({
     declaration: primaryType,
@@ -52,33 +63,17 @@ export const extractPropertyDefinitionFromAstNode = ({
     });
   }
 
-  // handle homogeneous literal unions (e.g., 'a' | 'b' | 'c' or 'a' | 'b' | null)
+  // handle homogeneous primitive unions (e.g., 'a' | 'b' | 'c', `v${number}` | 'latest', or 'a' | 'b' | null)
   if (primaryType.kind === SyntaxKind.UnionType && primaryType.types) {
-    // filter out null types
-    const nonNullTypes = primaryType.types.filter(
-      (type) =>
-        type.kind !== SyntaxKind.NullKeyword &&
-        !(
-          type.kind === SyntaxKind.LiteralType &&
-          (type as any).literal.kind === SyntaxKind.NullKeyword
-        ),
-    );
-    const hasNullInUnion = nonNullTypes.length < primaryType.types.length;
-    const allAreLiteralType = nonNullTypes.every(
-      (type) => type.kind === SyntaxKind.LiteralType,
-    );
-    if (allAreLiteralType && nonNullTypes.length > 0) {
-      const extractedType = extractHomogeneousLiteralUnionType({
-        literalTypes: nonNullTypes,
+    const { primitiveType: homogeneousPrimitiveType, hasNull: hasNullInUnion } =
+      extractHomogeneousUnionMetadata({ subTypes: primaryType.types });
+    if (homogeneousPrimitiveType)
+      return new DomainObjectPropertyMetadata({
+        name: propertyName,
+        type: homogeneousPrimitiveType,
+        nullable: nullable || hasNullInUnion,
+        required,
       });
-      if (extractedType)
-        return new DomainObjectPropertyMetadata({
-          name: propertyName,
-          type: extractedType,
-          nullable: nullable || hasNullInUnion,
-          required,
-        });
-    }
   }
 
   // handle the array case

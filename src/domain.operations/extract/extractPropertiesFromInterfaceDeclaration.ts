@@ -16,7 +16,7 @@ const extractPropertyFromDomainObjectInterfaceMemberDeclaration = ({
   const propertyName = (memberDeclaration.name as any).escapedText;
 
   // extract the primary type from the member declaration
-  const { primaryType, nullable, required } =
+  const { primaryType, nullable, required, resolvedType } =
     extractPrimaryTypeFromMemberDeclaration({
       memberDeclaration,
       propertyName,
@@ -28,6 +28,7 @@ const extractPropertyFromDomainObjectInterfaceMemberDeclaration = ({
     primaryType,
     nullable,
     required,
+    resolvedType,
     interfaceName,
     propertyName,
   });

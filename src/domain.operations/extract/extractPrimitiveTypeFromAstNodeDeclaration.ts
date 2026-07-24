@@ -16,6 +16,10 @@ export const extractPrimitiveTypeFromAstNodeDeclaration = ({
   // support root primitives
   if (declaration.kind === SyntaxKind.StringKeyword)
     return DomainObjectPropertyType.STRING;
+
+  // support template literal types (e.g., `v${number}.${number}` -> STRING)
+  if (declaration.kind === SyntaxKind.TemplateLiteralType)
+    return DomainObjectPropertyType.STRING;
   if (declaration.kind === SyntaxKind.NumberKeyword)
     return DomainObjectPropertyType.NUMBER;
   if (declaration.kind === SyntaxKind.BooleanKeyword)
