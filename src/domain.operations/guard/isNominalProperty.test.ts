@@ -56,8 +56,7 @@ describe('isNominalProperty', () => {
     );
     const isANominal = isNominalProperty(property);
     expect(isANominal).toEqual(true);
-    if (isNominalProperty(property))
-      expect(property.of.name).toEqual('Uuid');
+    if (isNominalProperty(property)) expect(property.of.name).toEqual('Uuid');
   });
   it('should allow a narrow of the ".of" of an array property to a nominal property', () => {
     const property = new DomainObjectPropertyMetadata({
