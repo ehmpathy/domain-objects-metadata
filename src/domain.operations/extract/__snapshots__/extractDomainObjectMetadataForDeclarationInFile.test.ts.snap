@@ -72,6 +72,7 @@ exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extra
 DomainObjectMetadata {
   "decorations": {
     "alias": null,
+    "origin": null,
     "primary": null,
     "unique": [
       "upc",
@@ -122,6 +123,7 @@ exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extra
 DomainObjectMetadata {
   "decorations": {
     "alias": null,
+    "origin": null,
     "primary": null,
     "unique": [
       "gate",
@@ -168,10 +170,49 @@ DomainObjectMetadata {
 }
 `;
 
+exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for an entity owned by another service via origin 1`] = `
+DomainObjectMetadata {
+  "decorations": {
+    "alias": null,
+    "origin": "ahbode/svc-home-services",
+    "primary": [
+      "uuid",
+    ],
+    "unique": [
+      "slug",
+    ],
+    "updatable": [],
+  },
+  "extends": "DomainEntity",
+  "name": "SvcHomeServicesHomeService",
+  "properties": {
+    "name": DomainObjectPropertyMetadata {
+      "name": "name",
+      "nullable": false,
+      "required": true,
+      "type": "STRING",
+    },
+    "slug": DomainObjectPropertyMetadata {
+      "name": "slug",
+      "nullable": false,
+      "required": true,
+      "type": "STRING",
+    },
+    "uuid": DomainObjectPropertyMetadata {
+      "name": "uuid",
+      "nullable": false,
+      "required": false,
+      "type": "STRING",
+    },
+  },
+}
+`;
+
 exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extract domain object metadata for simple literal 1`] = `
 DomainObjectMetadata {
   "decorations": {
     "alias": null,
+    "origin": null,
     "primary": null,
     "unique": null,
     "updatable": null,

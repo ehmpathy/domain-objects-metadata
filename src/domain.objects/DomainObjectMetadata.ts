@@ -9,6 +9,7 @@ const schema = z.object({
   extends: z.nativeEnum(DomainObjectVariant),
   properties: z.record(z.string(), DomainObjectPropertyMetadata.schema),
   decorations: z.object({
+    origin: z.string().nullable(),
     alias: z.string().nullable(),
     primary: z.array(z.string()).nullable(),
     unique: z.array(z.string()).nullable(),
@@ -23,6 +24,7 @@ export interface DomainObjectMetadata {
     [index: string]: DomainObjectPropertyMetadata;
   };
   decorations: {
+    origin: string | null;
     alias: string | null;
     primary: string[] | null;
     unique: string[] | null;

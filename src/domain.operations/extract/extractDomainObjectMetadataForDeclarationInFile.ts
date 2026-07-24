@@ -68,17 +68,9 @@ export const extractDomainObjectMetadataForDeclarationInFile = ({
   const properties =
     extractPropertiesFromInterfaceDeclaration(interfaceDeclaration);
 
-  // grab the static properties of the class: `unique` and `updatable` specifically
-  const relevantStaticProperties =
+  // extract the decorations of the class: origin, alias, primary, unique, updatable
+  const decorations =
     extractRelevantStaticPropertiesFromClassDeclaration(classDeclaration);
-
-  // define the decorations of this domain-object
-  const decorations = {
-    alias: relevantStaticProperties.alias,
-    primary: relevantStaticProperties.primary,
-    unique: relevantStaticProperties.unique,
-    updatable: relevantStaticProperties.updatable,
-  };
 
   // return the domain object metadata
   return new DomainObjectMetadata({
