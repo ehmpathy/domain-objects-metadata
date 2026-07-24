@@ -5,6 +5,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should classify an array of b
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": [
         "uuid",
       ],
@@ -41,6 +42,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should classify an array of b
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": [
         "uuid",
       ],
@@ -89,6 +91,7 @@ exports[`getHydratedDomainObjectMetadatasFromFiles should hydrate primitive arra
   DomainObjectMetadata {
     "decorations": {
       "alias": null,
+      "origin": null,
       "primary": null,
       "unique": [
         "id",

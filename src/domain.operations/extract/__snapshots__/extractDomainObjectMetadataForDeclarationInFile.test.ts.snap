@@ -4,6 +4,7 @@ exports[`extractDomainObjectMetadataForDeclarationInFile should be able to extra
 DomainObjectMetadata {
   "decorations": {
     "alias": null,
+    "origin": null,
     "primary": null,
     "unique": null,
     "updatable": null,
