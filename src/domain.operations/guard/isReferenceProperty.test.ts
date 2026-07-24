@@ -3,12 +3,12 @@ import {
   DomainObjectPropertyType,
   DomainObjectReferenceMetadata,
   DomainObjectVariant,
-} from '@src/domain.operations/..';
+} from '@src/domain.objects';
 
-import { isDomainObjectArrayProperty } from './isDomainObjectArrayProperty';
-import { isDomainObjectReferenceProperty } from './isDomainObjectReferenceProperty';
+import { isReferenceArrayProperty } from './isReferenceArrayProperty';
+import { isReferenceProperty } from './isReferenceProperty';
 
-describe('isDomainObjectReferenceProperty', () => {
+describe('isReferenceProperty', () => {
   it('should be able to allow us to use the of clause of a reference property without type errors', () => {
     const property = new DomainObjectPropertyMetadata({
       name: 'geocode',
@@ -18,9 +18,9 @@ describe('isDomainObjectReferenceProperty', () => {
         name: 'Geocode',
       }),
     });
-    const isAReference = isDomainObjectReferenceProperty(property);
+    const isAReference = isReferenceProperty(property);
     expect(isAReference).toEqual(true);
-    if (isDomainObjectReferenceProperty(property))
+    if (isReferenceProperty(property))
       expect(property.of.name).toEqual('Geocode'); // see how we can just use 'of' here
   });
   it('should return false for non references', () => {
@@ -28,7 +28,7 @@ describe('isDomainObjectReferenceProperty', () => {
       name: 'id',
       type: DomainObjectPropertyType.NUMBER,
     });
-    const isAReference = isDomainObjectReferenceProperty(property);
+    const isAReference = isReferenceProperty(property);
     expect(isAReference).toEqual(false);
   });
   it('should allow checking if the ".of" of an array property is a reference property', () => {
@@ -44,8 +44,7 @@ describe('isDomainObjectReferenceProperty', () => {
       },
     });
     const isAnArrayReference =
-      isDomainObjectArrayProperty(property) &&
-      isDomainObjectReferenceProperty(property.of);
+      isReferenceArrayProperty(property) && isReferenceProperty(property.of);
     expect(isAnArrayReference).toEqual(true);
   });
 });

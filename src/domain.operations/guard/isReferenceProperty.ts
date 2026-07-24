@@ -4,7 +4,7 @@ import {
   type DomainObjectReferenceMetadata,
 } from '@src/domain.objects';
 
-export const isDomainObjectReferenceProperty = (
+export const isReferenceProperty = (
   property:
     | DomainObjectPropertyMetadata
     | Omit<DomainObjectPropertyMetadata, 'name'>,

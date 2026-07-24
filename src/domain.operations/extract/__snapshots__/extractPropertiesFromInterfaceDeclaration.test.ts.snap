@@ -282,6 +282,83 @@ exports[`extractPropertiesFromInterfaceDeclaration should be able to extract pro
 }
 `;
 
+exports[`extractPropertiesFromInterfaceDeclaration should extract primitive arrays (string[], number[]) with nullable/required preserved 1`] = `
+{
+  "flags": DomainObjectPropertyMetadata {
+    "name": "flags",
+    "nullable": false,
+    "of": {
+      "nullable": false,
+      "required": true,
+      "type": "BOOLEAN",
+    },
+    "required": true,
+    "type": "ARRAY",
+  },
+  "id": DomainObjectPropertyMetadata {
+    "name": "id",
+    "nullable": false,
+    "required": true,
+    "type": "STRING",
+  },
+  "labels": DomainObjectPropertyMetadata {
+    "name": "labels",
+    "nullable": true,
+    "of": {
+      "nullable": false,
+      "required": true,
+      "type": "STRING",
+    },
+    "required": true,
+    "type": "ARRAY",
+  },
+  "occurredAts": DomainObjectPropertyMetadata {
+    "name": "occurredAts",
+    "nullable": false,
+    "of": {
+      "nullable": false,
+      "required": true,
+      "type": "DATE",
+    },
+    "required": true,
+    "type": "ARRAY",
+  },
+  "ratings": DomainObjectPropertyMetadata {
+    "name": "ratings",
+    "nullable": false,
+    "of": {
+      "nullable": false,
+      "required": true,
+      "type": "NUMBER",
+    },
+    "required": false,
+    "type": "ARRAY",
+  },
+  "scores": DomainObjectPropertyMetadata {
+    "name": "scores",
+    "nullable": false,
+    "of": {
+      "nullable": false,
+      "required": true,
+      "type": "NUMBER",
+    },
+    "required": true,
+    "type": "ARRAY",
+  },
+  "tags": DomainObjectPropertyMetadata {
+    "name": "tags",
+    "nullable": false,
+    "of": {
+      "nullable": false,
+      "required": true,
+      "type": "STRING",
+    },
+    "required": true,
+    "type": "ARRAY",
+  },
+}
+`;
+
 exports[`extractPropertiesFromInterfaceDeclaration should throw on mixed literal union (e.g., string | number) 1`] = `
 "BadRequestError: domain object property types can only have one primary type. they can be nullable or optional, but they can not be 'string | number', for example. not satisfied by MixedLiteralUnion.mixed 
 
