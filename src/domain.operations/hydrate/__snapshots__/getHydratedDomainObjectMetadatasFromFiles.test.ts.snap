@@ -1,5 +1,180 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
+exports[`getHydratedDomainObjectMetadatasFromFiles should classify an array of by-uuid references as a reference array 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": [
+        "uuid",
+      ],
+      "unique": [
+        "seawaterSecurityNumber",
+      ],
+      "updatable": [
+        "name",
+      ],
+    },
+    "extends": "DomainEntity",
+    "name": "SeaTurtle",
+    "properties": {
+      "name": DomainObjectPropertyMetadata {
+        "name": "name",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "seawaterSecurityNumber": DomainObjectPropertyMetadata {
+        "name": "seawaterSecurityNumber",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "uuid": DomainObjectPropertyMetadata {
+        "name": "uuid",
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+    },
+  },
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": [
+        "uuid",
+      ],
+      "unique": [
+        "name",
+      ],
+      "updatable": null,
+    },
+    "extends": "DomainEntity",
+    "name": "SeaSquad",
+    "properties": {
+      "members": DomainObjectPropertyMetadata {
+        "name": "members",
+        "nullable": false,
+        "of": {
+          "nullable": false,
+          "of": DomainObjectReferenceMetadata {
+            "extends": "DomainEntity",
+            "name": "SeaTurtle",
+          },
+          "required": true,
+          "type": "REFERENCE",
+        },
+        "required": true,
+        "type": "ARRAY",
+      },
+      "name": DomainObjectPropertyMetadata {
+        "name": "name",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "uuid": DomainObjectPropertyMetadata {
+        "name": "uuid",
+        "nullable": false,
+        "required": false,
+        "type": "STRING",
+      },
+    },
+  },
+]
+`;
+
+exports[`getHydratedDomainObjectMetadatasFromFiles should hydrate primitive arrays so they classify as primitive-array properties (extract→hydrate→classify seam) 1`] = `
+[
+  DomainObjectMetadata {
+    "decorations": {
+      "alias": null,
+      "primary": null,
+      "unique": [
+        "id",
+      ],
+      "updatable": null,
+    },
+    "extends": "DomainEntity",
+    "name": "PrimitiveArrays",
+    "properties": {
+      "flags": DomainObjectPropertyMetadata {
+        "name": "flags",
+        "nullable": false,
+        "of": {
+          "nullable": false,
+          "required": true,
+          "type": "BOOLEAN",
+        },
+        "required": true,
+        "type": "ARRAY",
+      },
+      "id": DomainObjectPropertyMetadata {
+        "name": "id",
+        "nullable": false,
+        "required": true,
+        "type": "STRING",
+      },
+      "labels": DomainObjectPropertyMetadata {
+        "name": "labels",
+        "nullable": true,
+        "of": {
+          "nullable": false,
+          "required": true,
+          "type": "STRING",
+        },
+        "required": true,
+        "type": "ARRAY",
+      },
+      "occurredAts": DomainObjectPropertyMetadata {
+        "name": "occurredAts",
+        "nullable": false,
+        "of": {
+          "nullable": false,
+          "required": true,
+          "type": "DATE",
+        },
+        "required": true,
+        "type": "ARRAY",
+      },
+      "ratings": DomainObjectPropertyMetadata {
+        "name": "ratings",
+        "nullable": false,
+        "of": {
+          "nullable": false,
+          "required": true,
+          "type": "NUMBER",
+        },
+        "required": false,
+        "type": "ARRAY",
+      },
+      "scores": DomainObjectPropertyMetadata {
+        "name": "scores",
+        "nullable": false,
+        "of": {
+          "nullable": false,
+          "required": true,
+          "type": "NUMBER",
+        },
+        "required": true,
+        "type": "ARRAY",
+      },
+      "tags": DomainObjectPropertyMetadata {
+        "name": "tags",
+        "nullable": false,
+        "of": {
+          "nullable": false,
+          "required": true,
+          "type": "STRING",
+        },
+        "required": true,
+        "type": "ARRAY",
+      },
+    },
+  },
+]
+`;
+
 exports[`getHydratedDomainObjectMetadatasFromFiles should return metadata from files w/ has lots of imports and needs hydration of nested domain objects 1`] = `
 [
   DomainObjectMetadata {

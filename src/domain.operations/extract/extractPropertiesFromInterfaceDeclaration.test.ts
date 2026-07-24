@@ -99,6 +99,93 @@ describe('extractPropertiesFromInterfaceDeclaration', () => {
     // save an example
     expect(properties).toMatchSnapshot();
   });
+  it('should extract primitive arrays (string[], number[]) with nullable/required preserved', () => {
+    const program = ts.createProgram(
+      [`${__dirname}/../.test.assets/PrimitiveArrays.ts`],
+      {},
+    );
+    const file = program
+      .getSourceFiles()
+      .find((thisFile) => thisFile.fileName.includes('/PrimitiveArrays.ts'))!; // grab the right file
+    const interfaceDeclaration = file.statements.find(isInterfaceDeclaration)!;
+    const properties =
+      extractPropertiesFromInterfaceDeclaration(interfaceDeclaration);
+    // console.log(JSON.stringify(properties, null, 2));
+
+    // required string[] → ARRAY of STRING, required, not nullable
+    expect(properties.tags).toMatchObject({
+      type: DomainObjectPropertyType.ARRAY,
+      of: {
+        type: DomainObjectPropertyType.STRING,
+        nullable: false,
+        required: true,
+      },
+      required: true,
+      nullable: false,
+    });
+
+    // required number[] → ARRAY of NUMBER, required, not nullable
+    expect(properties.scores).toMatchObject({
+      type: DomainObjectPropertyType.ARRAY,
+      of: {
+        type: DomainObjectPropertyType.NUMBER,
+        nullable: false,
+        required: true,
+      },
+      required: true,
+      nullable: false,
+    });
+
+    // required boolean[] → ARRAY of BOOLEAN, required, not nullable
+    expect(properties.flags).toMatchObject({
+      type: DomainObjectPropertyType.ARRAY,
+      of: {
+        type: DomainObjectPropertyType.BOOLEAN,
+        nullable: false,
+        required: true,
+      },
+      required: true,
+      nullable: false,
+    });
+
+    // required Date[] → ARRAY of DATE, required, not nullable
+    expect(properties.occurredAts).toMatchObject({
+      type: DomainObjectPropertyType.ARRAY,
+      of: {
+        type: DomainObjectPropertyType.DATE,
+        nullable: false,
+        required: true,
+      },
+      required: true,
+      nullable: false,
+    });
+
+    // nullable string[] | null → ARRAY of STRING, required, nullable on the outer
+    expect(properties.labels).toMatchObject({
+      type: DomainObjectPropertyType.ARRAY,
+      of: {
+        type: DomainObjectPropertyType.STRING,
+        nullable: false,
+        required: true,
+      },
+      required: true,
+      nullable: true,
+    });
+
+    // optional number[]? → ARRAY of NUMBER, not required on the outer
+    expect(properties.ratings).toMatchObject({
+      type: DomainObjectPropertyType.ARRAY,
+      of: {
+        type: DomainObjectPropertyType.NUMBER,
+        nullable: false,
+        required: true,
+      },
+      required: false,
+    });
+
+    // save an example
+    expect(properties).toMatchSnapshot();
+  });
   it('should be able to extract properties from an interface that references another interface or an array of interfaces', () => {
     const program = ts.createProgram(
       [`${__dirname}/../.test.assets/Order.ts`],
